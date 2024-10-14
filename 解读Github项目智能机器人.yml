@@ -1,0 +1,370 @@
+app:
+  description: 解读Github项目智能机器人
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: 解读Github项目智能机器人
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.2
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: llm
+      id: 1726477902803-source-1726477954373-target
+      source: '1726477902803'
+      sourceHandle: source
+      target: '1726477954373'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: http-request
+      id: 1726477954373-source-1726478004324-target
+      source: '1726477954373'
+      sourceHandle: source
+      target: '1726478004324'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: http-request
+        targetType: llm
+      id: 1726478004324-source-1726478344988-target
+      source: '1726478004324'
+      sourceHandle: source
+      target: '1726478344988'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: http-request
+      id: 1726478344988-source-1726478412443-target
+      source: '1726478344988'
+      sourceHandle: source
+      target: '1726478412443'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: http-request
+        targetType: llm
+      id: 1726478412443-source-1726478514343-target
+      source: '1726478412443'
+      sourceHandle: source
+      target: '1726478514343'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: end
+      id: 1726478514343-source-1726478601010-target
+      source: '1726478514343'
+      sourceHandle: source
+      target: '1726478601010'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - label: url
+          max_length: 200
+          options: []
+          required: true
+          type: text-input
+          variable: url
+      height: 110
+      id: '1726477902803'
+      position:
+        x: 80.6966122088869
+        y: 279
+      positionAbsolute:
+        x: 80.6966122088869
+        y: 279
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1726477902803'
+          - url
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen2.5:latest
+          provider: ollama
+        prompt_template:
+        - edition_type: basic
+          id: 6f5a131a-5601-488c-874b-3db41ec44927
+          role: system
+          text: "任务：从给定的文本中提取GitHub地址的URL部分。  \n  \n要求：  \n1. 只提取GitHub地址的URL部分，确保URL是有效的GitHub仓库链接。\
+            \  \n2. 不要包含URL前后的任何额外文本、标签、注释或无关的信息。  \n3. 如果文本中包含多个GitHub地址，请提取并列出所有符合条件的URL。\
+            \  \n4. 如果文本中没有找到GitHub地址，请输出“未找到GitHub地址”。  \n  \n示例输入：  \n文本：\"请查看这个GitHub仓库\
+            \ <url>https://github.com/user/repo</url>，它包含了有用的代码。还有另一个链接 https://github.com/anotheruser/anotherrepo/tree/main\
+            \ 但注意，这不是一个GitHub链接 http://example.com。\"  \n  \n示例输出：  \nhttps://github.com/user/repo\
+            \  \nhttps://github.com/anotheruser/anotherrepo  \n  \n现在，请根据上述要求，从以下文本中提取GitHub地址的URL部分：\
+            \  {{#context#}}"
+        selected: false
+        title: 验证GitHub链接
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 120
+      id: '1726477954373'
+      position:
+        x: 374.65846443835756
+        y: 279
+      positionAbsolute:
+        x: 374.65846443835756
+        y: 279
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data: ''
+          type: none
+        desc: ''
+        headers: ''
+        method: get
+        params: url:{{#1726477954373.text#}}
+        selected: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: 获取README
+        type: http-request
+        url: http://192.168.0.101:5001/get_readme
+        variables: []
+      height: 135
+      id: '1726478004324'
+      position:
+        x: 683.7782774523216
+        y: 279
+      positionAbsolute:
+        x: 683.7782774523216
+        y: 279
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1726478004324'
+          - body
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen2.5:latest
+          provider: ollama
+        prompt_template:
+        - edition_type: basic
+          id: be557c33-6329-4949-935d-2e6a5637193d
+          role: system
+          text: '请将以下GitHUb README内容转换为纯文本，去除所有
+
+            Markdown标记:
+
+            {{#context#}}
+
+            只返回转换后的纯文本内容。
+
+            '
+        selected: false
+        title: README转纯文本
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 120
+      id: '1726478344988'
+      position:
+        x: 987.0744071843851
+        y: 279
+      positionAbsolute:
+        x: 987.0744071843851
+        y: 279
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data: ''
+          type: none
+        desc: ''
+        headers: ''
+        method: get
+        params: url:{{#1726477954373.text#}}
+        selected: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: 获取项目结构
+        type: http-request
+        url: http://192.168.0.101:5001/get_structure
+        variables: []
+      height: 135
+      id: '1726478412443'
+      position:
+        x: 1292.931173676521
+        y: 279
+      positionAbsolute:
+        x: 1292.931173676521
+        y: 279
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1726478412443'
+          - body
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen2.5:latest
+          provider: ollama
+        prompt_template:
+        - edition_type: basic
+          id: 64d5a35f-4c38-4f7c-ab6c-f7810fe73f8f
+          role: system
+          text: '基于以下信息，请提供一个简洁的GitHub项目总结：
+
+
+            项目URL: {{#1726477954373.text#}}
+
+            README内容：{{#1726478004324.body#}}
+
+
+            项目结构：{{#1726478412443.body#}}
+
+
+            请包含以下内容在您的总结中：
+
+            1. 项目的主要功能和目的
+
+            2. 使用的主要技术或编程语言
+
+            3. 项目的结构概览
+
+            4. 潜在的用途或应用场景
+
+            5. 任何值得注意的特点或创新点
+
+
+            请以清晰、简洁的中文呈现这些信息。'
+        selected: false
+        title: 总结GitHub项目
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 120
+      id: '1726478514343'
+      position:
+        x: 1602.8598293832817
+        y: 279
+      positionAbsolute:
+        x: 1602.8598293832817
+        y: 279
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1726478514343'
+          - text
+          variable: text
+        selected: false
+        title: 结束
+        type: end
+      height: 110
+      id: '1726478601010'
+      position:
+        x: 1904
+        y: 279
+      positionAbsolute:
+        x: 1904
+        y: 279
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: -412.9711814829568
+      y: -43.83344767649146
+      zoom: 1.0045659946703789

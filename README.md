@@ -13,5 +13,5 @@ DifyAIA仓库-说明文档
 3、在打开的终端窗口中输入执行flask服务命令：`Python readme.py`<br>
 4、运行dify，在dify中导入 解读Github项目智能机器人.yml DSL文件：在打开的工作流中修改LLM节点模型，以及修改HTTP请求节点的get请求的URL。<br>
 
-![]()
+![](https://github.com/BannyLon/DifyAIA/blob/main/analysis-Github-project/readmes/analysis-Github-project.png)
 

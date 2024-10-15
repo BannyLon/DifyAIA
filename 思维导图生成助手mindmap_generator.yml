@@ -1,0 +1,144 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: mindmap_generator
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.2
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: http-request
+      id: 1726043651563-source-1726043694549-target
+      source: '1726043651563'
+      sourceHandle: source
+      target: '1726043694549'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: http-request
+        targetType: end
+      id: 1726043694549-source-1726043697418-target
+      source: '1726043694549'
+      sourceHandle: source
+      target: '1726043697418'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - label: content
+          max_length: 5000
+          options: []
+          required: true
+          type: paragraph
+          variable: content
+      height: 110
+      id: '1726043651563'
+      position:
+        x: 54
+        y: 195
+      positionAbsolute:
+        x: 54
+        y: 195
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data: '{{#1726043651563.content#}}'
+          type: raw-text
+        desc: ''
+        headers: ''
+        method: post
+        params: ''
+        selected: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: HTTP 请求
+        type: http-request
+        url: http://192.168.0.100:5002/upload
+        variables: []
+      height: 135
+      id: '1726043694549'
+      position:
+        x: 355.9080545277707
+        y: 195
+      positionAbsolute:
+        x: 355.9080545277707
+        y: 195
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1726043694549'
+          - body
+          variable: body
+        selected: false
+        title: 结束
+        type: end
+      height: 110
+      id: '1726043697418'
+      position:
+        x: 657.7272414109493
+        y: 195
+      positionAbsolute:
+        x: 657.7272414109493
+        y: 195
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: 19.580006654238105
+      y: 63.441005739197976
+      zoom: 0.8529632861627278

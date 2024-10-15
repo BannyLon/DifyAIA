@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.17.0/dist/style.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.8.5/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.17.0/dist/browser/index.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.17.0/dist/index.js"></script><script>((r) => {
+            setTimeout(r);
+          })(() => {
+  const { markmap, mm } = window;
+  const toolbar = new markmap.Toolbar();
+  toolbar.attach(mm);
+  const el = toolbar.render();
+  el.setAttribute("style", "position:absolute;bottom:20px;right:20px");
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, root2, jsonOptions) => {
+              const markmap = getMarkmap();
+              window.mm = markmap.Markmap.create(
+                "svg#mindmap",
+                (getOptions || markmap.deriveOptions)(jsonOptions),
+                root2
+              );
+            })(() => window.markmap,null,{"content":"大模型微调指南","children":[{"content":"引言","children":[],"payload":{"lines":"1,2"}},{"content":"微调步骤","children":[{"content":"选择预训练模型","children":[{"content":"模型类型：根据任务需求选择合适的预训练模型，如文本生成、文本分类、命名实体识别等。","children":[],"payload":{"lines":"5,6"}},{"content":"模型规模：根据计算资源选择适当规模的模型，大型模型通常性能更好，但也需要更多的计算资源。","children":[],"payload":{"lines":"6,7"}}],"payload":{"lines":"4,7"}},{"content":"准备数据集","children":[{"content":"数据收集：收集与任务相关的数据，确保数据的质量和多样性。","children":[],"payload":{"lines":"8,9"}},{"content":"数据预处理：对收集到的数据进行清洗、分词、标注等预处理操作，使其符合模型输入的要求。","children":[],"payload":{"lines":"9,10"}},{"content":"数据划分：将数据集划分为训练集、验证集和测试集，用于模型训练、验证和测试。","children":[],"payload":{"lines":"10,11"}}],"payload":{"lines":"7,11"}},{"content":"设置训练参数","children":[{"content":"学习率：设置合适的学习率，通常使用较小的学习率进行微调。","children":[],"payload":{"lines":"12,13"}},{"content":"批量大小（Batch Size）：根据计算资源设置合适的批量大小。","children":[],"payload":{"lines":"13,14"}},{"content":"训练轮数（Epochs）：根据验证集性能确定训练轮数，避免过拟合。","children":[],"payload":{"lines":"14,15"}}],"payload":{"lines":"11,15"}},{"content":"微调模型","children":[{"content":"加载预训练模型：使用深度学习框架加载预训练模型。","children":[],"payload":{"lines":"16,17"}},{"content":"修改模型输出层：根据任务需求修改模型的输出层，使其适应特定任务的输出格式。","children":[],"payload":{"lines":"17,18"}},{"content":"训练模型：在训练集上训练模型，同时使用验证集进行性能监控，调整学习率等参数。","children":[],"payload":{"lines":"18,19"}}],"payload":{"lines":"15,19"}},{"content":"模型评估与测试","children":[{"content":"评估指标：根据任务需求选择合适的评估指标，如准确率、F1分数、BLEU分数等。","children":[],"payload":{"lines":"20,21"}},{"content":"模型测试：在测试集上评估模型的性能，确保模型具有良好的泛化能力。","children":[],"payload":{"lines":"21,22"}}],"payload":{"lines":"19,22"}},{"content":"模型部署与监控","children":[{"content":"模型导出：将训练好的模型导出为可部署的格式，如ONNX、TensorFlow SavedModel等。","children":[],"payload":{"lines":"23,24"}},{"content":"模型部署：将模型部署到生产环境中，确保模型能够实时处理输入数据。","children":[],"payload":{"lines":"24,25"}},{"content":"性能监控：持续监控模型在生产环境中的性能，及时发现并解决问题。","children":[],"payload":{"lines":"25,26"}}],"payload":{"lines":"22,26"}}],"payload":{"lines":"3,4"}},{"content":"注意事项","children":[{"content":"数据质量：确保数据的质量和多样性，避免数据偏差导致模型性能下降。","children":[],"payload":{"lines":"27,28"}},{"content":"计算资源：根据计算资源选择合适的模型规模和批量大小，避免资源不足导致训练失败。","children":[],"payload":{"lines":"28,29"}},{"content":"过拟合：使用正则化、dropout等技术防止模型过拟合，同时关注验证集性能。","children":[],"payload":{"lines":"29,30"}},{"content":"模型解释性：对于某些任务，可能需要关注模型的解释性，以便更好地理解模型的决策过程。","children":[],"payload":{"lines":"30,31"}}],"payload":{"lines":"26,27"}}],"payload":{"lines":"0,1"}},null)</script>
+</body>
+</html>

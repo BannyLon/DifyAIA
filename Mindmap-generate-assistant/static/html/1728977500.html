@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.17.0/dist/style.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.8.5/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.17.0/dist/browser/index.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.17.0/dist/index.js"></script><script>((r) => {
+            setTimeout(r);
+          })(() => {
+  const { markmap, mm } = window;
+  const toolbar = new markmap.Toolbar();
+  toolbar.attach(mm);
+  const el = toolbar.render();
+  el.setAttribute("style", "position:absolute;bottom:20px;right:20px");
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, root2, jsonOptions) => {
+              const markmap = getMarkmap();
+              window.mm = markmap.Markmap.create(
+                "svg#mindmap",
+                (getOptions || markmap.deriveOptions)(jsonOptions),
+                root2
+              );
+            })(() => window.markmap,null,{"content":"大模型微调指南","children":[{"content":"引言","children":[],"payload":{"lines":"1,2"}},{"content":"微调步骤","children":[{"content":"1. 选择预训练模型","children":[{"content":"模型类型","children":[],"payload":{"lines":"4,5"}},{"content":"模型规模","children":[],"payload":{"lines":"5,6"}}],"payload":{"lines":"3,4"}},{"content":"2. 准备数据集","children":[{"content":"数据收集","children":[],"payload":{"lines":"7,8"}},{"content":"数据预处理","children":[],"payload":{"lines":"8,9"}},{"content":"数据划分","children":[],"payload":{"lines":"9,10"}}],"payload":{"lines":"6,7"}},{"content":"3. 设置训练参数","children":[{"content":"学习率","children":[],"payload":{"lines":"11,12"}},{"content":"批量大小（Batch Size）","children":[],"payload":{"lines":"12,13"}},{"content":"训练轮数（Epochs）","children":[],"payload":{"lines":"13,14"}}],"payload":{"lines":"10,11"}},{"content":"4. 微调模型","children":[{"content":"加载预训练模型","children":[],"payload":{"lines":"15,16"}},{"content":"修改模型输出层","children":[],"payload":{"lines":"16,17"}},{"content":"训练模型","children":[],"payload":{"lines":"17,18"}}],"payload":{"lines":"14,15"}},{"content":"5. 模型评估与测试","children":[{"content":"评估指标","children":[],"payload":{"lines":"19,20"}},{"content":"模型测试","children":[],"payload":{"lines":"20,21"}}],"payload":{"lines":"18,19"}},{"content":"6. 模型部署与监控","children":[{"content":"模型导出","children":[],"payload":{"lines":"22,23"}},{"content":"模型部署","children":[],"payload":{"lines":"23,24"}},{"content":"性能监控","children":[],"payload":{"lines":"24,25"}}],"payload":{"lines":"21,22"}}],"payload":{"lines":"2,3"}},{"content":"注意事项","children":[],"payload":{"lines":"25,26"}}],"payload":{"lines":"0,1"}},null)</script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+app:
+  description: 思维导图生成的助手
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: agent-chat
+  name: 一键生成思维导图
+  use_icon_as_answer_icon: false
+kind: app
+model_config:
+  agent_mode:
+    enabled: true
+    max_iteration: 5
+    prompt: null
+    strategy: react
+    tools:
+    - enabled: true
+      provider_id: 62b5435f-c3e5-4df0-a1c8-afe2912702f1
+      provider_name: 思维导图生成
+      provider_type: workflow
+      tool_label: 思维导图生成
+      tool_name: mindmap_generator
+      tool_parameters:
+        content: ''
+  annotation_reply:
+    enabled: false
+  chat_prompt_config: {}
+  completion_prompt_config: {}
+  dataset_configs:
+    datasets:
+      datasets: []
+    retrieval_model: multiple
+  dataset_query_variable: ''
+  external_data_tools: []
+  file_upload:
+    image:
+      detail: high
+      enabled: false
+      number_limits: 3
+      transfer_methods:
+      - remote_url
+      - local_file
+  model:
+    completion_params:
+      stop: []
+    mode: chat
+    name: qwen2.5:latest
+    provider: ollama
+  more_like_this:
+    enabled: false
+  opening_statement: ''
+  pre_prompt: '你是一位思维导图生成助手。
+
+    任务描述：
+
+    - 根据用户提供的信息和要求，生成符合markmap格式的思维导图数据。
+
+    - 使用mindmap_generator工具保存生成的思维导图，并获取一个可供预览的链接并显示。
+
+
+    工作流程：
+
+    1. 接收用户关于所需思维导图的具体内容与结构要求。
+
+    2. 依据用户要求构建markmap格式的数据结构。
+
+    3. 调用mindmap_generator 工具来保存思维导图，并请求返回预览链接。
+
+    4. 向用户提供最终的思维导图预览链接。
+
+
+    请确保在处理过程中考虑到以下参考知识："""{{knowledge}}"""
+
+
+    现在，请根据上述指示开始协助用户创建他们所需的思维导图。'
+  prompt_type: simple
+  retriever_resource:
+    enabled: false
+  sensitive_word_avoidance:
+    configs: []
+    enabled: false
+    type: ''
+  speech_to_text:
+    enabled: false
+  suggested_questions: []
+  suggested_questions_after_answer:
+    enabled: false
+  text_to_speech:
+    enabled: false
+    language: ''
+    voice: ''
+  user_input_form:
+  - paragraph:
+      default: ''
+      label: 参考知识
+      max_length: 5000
+      required: true
+      variable: knowledge
+version: 0.1.2

@@ -31,7 +31,7 @@ Dify workflow(Dify精选工作流)
 ---
 Dify workflow将存储我精心整理的所有与学习相关的Dify工作流。我会不定期进行更新，确保你能找到所需的工作流。
 | 文件名称 | 文件描述 |文件图示 |
-| :------------- | :----------: | ------------: |
+| :-------------: | :----------: | :------------: |
 | RedCanvas.yml |   一键生成吸引眼球的小红书文案和配图，让您的每篇内容都成为焦点！   |![](./Dify%20workflow/IME/RedCanvas.jpg?raw=true)|
 | Twitter 账号分析助手.yml        |    根据用户提供的Twitter账户ID，利用HTTP请求和外部爬虫工具来抓取该ID的推文内容，并使用先进的LLM（Large Language Model，大型语言模型）技术对抓取到的社交平台数据进行深度分析。最终，我们将基于分析结果，模拟该用户的写作风格，撰写出符合我们要求的推文内容。     |        ![](./Dify%20workflow/IME/Twitter.jpg?raw=true) |
 

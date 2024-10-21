@@ -1,0 +1,249 @@
+app:
+  description: Twitter 账号分析助手
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: Twitter 账号分析助手
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.2
+workflow:
+  conversation_variables: []
+  environment_variables:
+  - description: ''
+    id: 4048b6fc-a737-46b1-b6fc-978a318bb32e
+    name: token
+    value: ''
+    value_type: secret
+  features:
+    file_upload:
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        sourceType: llm
+        targetType: answer
+      id: llm-answer
+      source: llm
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: code
+      id: 1728637656381-source-1728637708804-target
+      source: '1728637656381'
+      sourceHandle: source
+      target: '1728637708804'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: http-request
+      id: 1728637708804-source-1728637912028-target
+      source: '1728637708804'
+      sourceHandle: source
+      target: '1728637912028'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: http-request
+        targetType: llm
+      id: 1728637912028-source-llm-target
+      source: '1728637912028'
+      sourceHandle: source
+      target: llm
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: true
+        title: 开始
+        type: start
+        variables:
+        - label: ID
+          max_length: 48
+          options: []
+          required: true
+          type: text-input
+          variable: ID
+      height: 110
+      id: '1728637656381'
+      position:
+        x: 78.80459457415498
+        y: 282
+      positionAbsolute:
+        x: 78.80459457415498
+        y: 282
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1728637912028'
+          - body
+        desc: ''
+        memory:
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 10
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: llama3.2:latest
+          provider: ollama
+        prompt_template:
+        - id: 40de8429-a2a3-4979-917c-c7693fde5c40
+          role: system
+          text: '分析这个twitter用户的主页：{{#context#}}
+
+            执行以下的指令:
+
+            {{#sys.query#}}'
+        selected: false
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 120
+      id: llm
+      position:
+        x: 980
+        y: 282
+      positionAbsolute:
+        x: 980
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#llm.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复
+        type: answer
+        variables: []
+      height: 127
+      id: answer
+      position:
+        x: 1280.17063482456
+        y: 282
+      positionAbsolute:
+        x: 1280.17063482456
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "def main(id: str) -> dict:\n    return {\n        \"url\": \"https%3A%2F%2Ftwitter.com%2F\"\
+          +id,\n    }"
+        code_language: python3
+        desc: ''
+        outputs:
+          url:
+            children: null
+            type: string
+        selected: false
+        title: 代码执行
+        type: code
+        variables:
+        - value_selector:
+          - '1728637656381'
+          - ID
+          variable: id
+      height: 65
+      id: '1728637708804'
+      position:
+        x: 380
+        y: 282
+      positionAbsolute:
+        x: 380
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data: ''
+          type: none
+        desc: ''
+        headers: ''
+        method: get
+        params: 'token:{{#env.token#}}
+
+          scraper:twitter-profile
+
+          url:{{#1728637708804.url#}}
+
+          format:html'
+        selected: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: HTTP 请求
+        type: http-request
+        url: https://api.crawlbase.com
+        variables: []
+      height: 135
+      id: '1728637912028'
+      position:
+        x: 674.8392053125867
+        y: 282
+      positionAbsolute:
+        x: 674.8392053125867
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: -0.5265926021162386
+      y: 32.36361465811399
+      zoom: 0.7320428513752801

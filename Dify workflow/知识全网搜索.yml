@@ -1,0 +1,849 @@
+app:
+  description: Exa.ai搜索摘要用户问题相关网页，以易读格式输出。
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: Dify AI 教程：知识全网搜索
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.2
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: http-request
+      id: 1721468180646-source-1721463453690-target
+      selected: false
+      source: '1721468180646'
+      sourceHandle: source
+      target: '1721463453690'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: code
+      id: 1721469428830-source-1721468180646-target
+      selected: false
+      source: '1721469428830'
+      sourceHandle: source
+      target: '1721468180646'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: http-request
+        targetType: code
+      id: 1721463453690-source-1721474172600-target
+      selected: false
+      source: '1721463453690'
+      sourceHandle: source
+      target: '1721474172600'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: iteration
+      id: 1721474172600-source-1721475912946-target
+      selected: false
+      source: '1721474172600'
+      sourceHandle: source
+      target: '1721475912946'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        iteration_id: '1721475912946'
+        sourceType: template-transform
+        targetType: answer
+      id: 1721476736499-source-1721477350072-target
+      selected: false
+      source: '1721476736499'
+      sourceHandle: source
+      target: '1721477350072'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: code
+      id: 1721478635205-source-1721469428830-target
+      selected: false
+      source: '1721478635205'
+      sourceHandle: source
+      target: '1721469428830'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        iteration_id: '1721475912946'
+        sourceType: llm
+        targetType: template-transform
+      id: 1721475919640-source-1721476736499-target
+      selected: false
+      source: '1721475919640'
+      sourceHandle: source
+      target: '1721476736499'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        iteration_id: '1721475912946'
+        sourceType: code
+        targetType: http-request
+      id: 1721476938220-source-1721481486245-target
+      selected: false
+      source: '1721476938220'
+      sourceHandle: source
+      target: '1721481486245'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        iteration_id: '1721475912946'
+        sourceType: http-request
+        targetType: llm
+      id: 1721481486245-source-1721475919640-target
+      selected: false
+      source: '1721481486245'
+      sourceHandle: source
+      target: '1721475919640'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: llm
+      id: 1720358802844-source-1721478635205-target
+      selected: false
+      source: '1720358802844'
+      sourceHandle: source
+      target: '1721478635205'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        iteration_id: '1721475912946'
+        sourceType: iteration-start
+        targetType: code
+      id: 1721475912946start0-source-1721476938220-target
+      selected: false
+      source: 1721475912946start0
+      sourceHandle: source
+      target: '1721476938220'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: Start
+        type: start
+        variables: []
+      height: 64
+      id: '1720358802844'
+      position:
+        x: 1390.2361218981657
+        y: 431.6291063691216
+      positionAbsolute:
+        x: 1390.2361218981657
+        y: 431.6291063691216
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        authorization:
+          config:
+            api_key: 70970943-0cb6-4886-a8fa-300a50fe727c
+            header: x-api-key
+            type: custom
+          type: api-key
+        body:
+          data: '{{#1721468180646.result#}}'
+          type: json
+        desc: ''
+        headers: 'accept:application/json
+
+          content-type:application/json'
+        method: post
+        params: ''
+        selected: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: Exa.ai 搜索
+        type: http-request
+        url: https://api.exa.ai/search
+        variables: []
+      height: 134
+      id: '1721463453690'
+      position:
+        x: 2645.733448326028
+        y: 431.6291063691216
+      positionAbsolute:
+        x: 2645.733448326028
+        y: 431.6291063691216
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "import json\n\ndef main(arg1: str, startPublishedDate: str, endPublishedDate:\
+          \ str) -> dict:\n    json_data = {\n        \"query\": arg1,\n        \"\
+          type\": \"neural\",\n        \"numResults\": 6,\n        \"startPublishedDate\"\
+          : startPublishedDate,\n        \"endPublishedDate\":endPublishedDate,\n\
+          \        \"contents\": {\n            \"text\": True,\n            \"highlights\"\
+          : {\n                \"numSentences\": 7,\n                \"highlightPerUrl\"\
+          : 3\n            }\n        }\n    }\n\n    return {\"result\": json.dumps(json_data)}"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: true
+        title: HTTP请求的json
+        type: code
+        variables:
+        - value_selector:
+          - sys
+          - query
+          variable: arg1
+        - value_selector:
+          - '1721469428830'
+          - startPublishedDate
+          variable: startPublishedDate
+        - value_selector:
+          - '1721469428830'
+          - endPublishedDate
+          variable: endPublishedDate
+      height: 64
+      id: '1721468180646'
+      position:
+        x: 2341.940147955429
+        y: 431.6291063691216
+      positionAbsolute:
+        x: 2341.940147955429
+        y: 431.6291063691216
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "from datetime import datetime, timedelta\n\ndef main(arg1: str) ->\
+          \ dict:\n    end_date = datetime.now()\n    start_date = end_date - timedelta(days=60)\n\
+          \    \n    end_formatted = end_date.strftime(\"%Y-%m-%dT%H:%M:%S.%fZ\")\n\
+          \    start_formatted = start_date.strftime(\"%Y-%m-%dT%H:%M:%S.%fZ\")\n\
+          \    \n    return {\n        \"startPublishedDate\": start_formatted,\n\
+          \        \"endPublishedDate\": end_formatted\n    }"
+        code_language: python3
+        desc: ''
+        outputs:
+          endPublishedDate:
+            children: null
+            type: string
+          startPublishedDate:
+            children: null
+            type: string
+        selected: false
+        title: 使用代码节点获取日期
+        type: code
+        variables:
+        - value_selector:
+          - sys
+          - query
+          variable: arg1
+      height: 64
+      id: '1721469428830'
+      position:
+        x: 2035.5228742372458
+        y: 431.6291063691216
+      positionAbsolute:
+        x: 2035.5228742372458
+        y: 431.6291063691216
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "import json\n\ndef main(input_data: str) -> dict:\n    \"\"\"\n   \
+          \ 解析输入的JSON字符串，提取结果数组并将每个项目转换为JSON字符串\n\n    输入:\n    - input_data: JSON字符串\n\
+          \    输出:\n    - 一个包含'items'键和'item_number'键的字典\n    \"\"\"\n    # 解析输入的JSON字符串\n\
+          \    data = json.loads(input_data)\n    \n    # 提取结果数组，并将每个项目转换为JSON字符串\n\
+          \    items = [json.dumps(item) for item in data.get('results', [])]\n\n\
+          \    # 计算项目的数量\n    item_number = len(items)\n\n    # 返回包含'items'键和'item_number'键的字典\n\
+          \    return {\n        \"items\": items,\n        \"item_number\": item_number\n\
+          \    }"
+        code_language: python3
+        desc: ''
+        outputs:
+          item_number:
+            children: null
+            type: number
+          items:
+            children: null
+            type: array[string]
+        selected: false
+        title: 查询结果提取
+        type: code
+        variables:
+        - value_selector:
+          - '1721463453690'
+          - body
+          variable: input_data
+      height: 64
+      id: '1721474172600'
+      position:
+        x: 2996.0174031067663
+        y: 431.6291063691216
+      positionAbsolute:
+        x: 2996.0174031067663
+        y: 431.6291063691216
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        height: 313
+        iterator_selector:
+        - '1721474172600'
+        - items
+        output_selector:
+        - '1721475919640'
+        - text
+        output_type: array[string]
+        selected: false
+        startNodeType: code
+        start_node_id: 1721475912946start0
+        title: 迭代
+        type: iteration
+        width: 1609
+      height: 313
+      id: '1721475912946'
+      position:
+        x: 1617.7411233358848
+        y: 952.2223968607759
+      positionAbsolute:
+        x: 1617.7411233358848
+        y: 952.2223968607759
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 1609
+      zIndex: 1
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        isInIteration: true
+        isIterationStart: false
+        iteration_id: '1721475912946'
+        model:
+          completion_params:
+            temperature: 0
+          mode: chat
+          name: qwen2:latest
+          provider: ollama
+        prompt_template:
+        - id: d9e3e20c-f4d7-4bbd-887d-86bc2a2042d2
+          role: system
+          text: 简要总结以创建摘要，不需要多余的解释，但不能遗漏任何关键点。不要添加任何新内容；严格遵循原文意图。此外，结尾处无需包含URL。
+        - id: 5a274485-5e69-400f-b433-26cc75e2e932
+          role: user
+          text: 'Input: {{#1721481486245.body#}}'
+        selected: false
+        title: 简要总结
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      extent: parent
+      height: 119
+      id: '1721475919640'
+      parentId: '1721475912946'
+      position:
+        x: 718.7382045078157
+        y: 85
+      positionAbsolute:
+        x: 2336.4793278437005
+        y: 1037.222396860776
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+      zIndex: 1001
+    - data:
+        desc: 借助 Jinja2 这一强大的 Python 模板语言，在工作流内实现轻量、灵活的数据转换，适用于文本处理、JSON 转换等情景。例如灵活地格式化并合并来自前面步骤的变量，创建出单一的文本输出。这非常适合于将多个数据源的信息汇总成一个特定格式，满足后续步骤的需求。
+        isInIteration: true
+        iteration_id: '1721475912946'
+        selected: false
+        template: 'NO.{{ index+1 }} {{ markdown_url }}
+
+          Summary: {{ summary }}
+
+          \n\n
+
+          {{ index+1 }}/{{ item_number }}
+
+          \n\n---\n\n'
+        title: 模版转换
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1721475919640'
+          - text
+          variable: summary
+        - value_selector:
+          - '1721476938220'
+          - markdown_url
+          variable: markdown_url
+        - value_selector:
+          - '1721475912946'
+          - index
+          variable: index
+        - value_selector:
+          - '1721474172600'
+          - item_number
+          variable: item_number
+        - value_selector:
+          - '1721475912946'
+          - item
+          variable: item
+      extent: parent
+      height: 207
+      id: '1721476736499'
+      parentId: '1721475912946'
+      position:
+        x: 1016.5436531857554
+        y: 85
+      positionAbsolute:
+        x: 2634.28477652164
+        y: 1037.222396860776
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+      zIndex: 1002
+    - data:
+        code: "import json\n\ndef main(item_json: str) -> dict:\n    \"\"\"\n    提取JSON字符串中的标题和网址，并将其转换为Markdown格式的链接\n\
+          \n    参数:\n    - item_json: 包含标题和网址的JSON字符串\n    返回:\n    - 一个包含Markdown格式链接、标题和网址的字典\n\
+          \    \"\"\"\n    # 解析JSON字符串\n    item = json.loads(item_json)\n    \n \
+          \   # 提取标题和网址\n    title = item.get('title', '无标题')  # 若'标题'键不存在，则返回'无标题'\n\
+          \    url = item.get('url', '#')  # 若'url'键不存在，则返回'#'\n\n    # 创建Markdown格式的链接\n\
+          \    markdown_url = f\"[{title}]({url})\"\n\n    # 返回包含Markdown格式链接、标题和网址的字典\n\
+          \    return {\n        \"markdown_url\": markdown_url,\n        \"title\"\
+          : title,\n        \"url\": url\n    }"
+        code_language: python3
+        desc: ''
+        isInIteration: true
+        isIterationStart: true
+        iteration_id: '1721475912946'
+        outputs:
+          markdown_url:
+            children: null
+            type: string
+          title:
+            children: null
+            type: string
+          url:
+            children: null
+            type: string
+        selected: false
+        title: Markdown URL
+        type: code
+        variables:
+        - value_selector:
+          - '1721475912946'
+          - item
+          variable: item_json
+      extent: parent
+      height: 64
+      id: '1721476938220'
+      parentId: '1721475912946'
+      position:
+        x: 114.51190653410731
+        y: 80.89959466867822
+      positionAbsolute:
+        x: 1732.2530298699921
+        y: 1033.1219915294541
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+      zIndex: 1002
+    - data:
+        answer: '{{#1721476736499.output#}}'
+        desc: ''
+        isInIteration: true
+        iteration_id: '1721475912946'
+        selected: false
+        title: 直接回复
+        type: answer
+        variables: []
+      extent: parent
+      height: 118
+      id: '1721477350072'
+      parentId: '1721475912946'
+      position:
+        x: 1315.9188403580674
+        y: 83.96808193728532
+      positionAbsolute:
+        x: 2933.6599636939522
+        y: 1036.1904787980611
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+      zIndex: 1002
+    - data:
+        authorization:
+          config:
+            api_key: 70970943-0cb6-4886-a8fa-300a50fe727c
+            header: x-api-key
+            type: custom
+          type: api-key
+        body:
+          data: "{\n    \"ids\": [\"{{#1721476938220.url#}}\"],\n    \"highlights\"\
+            : {\n      \"numSentences\": 6,\n      \"highlightsPerUrl\": 3\n    }\n\
+            }"
+          type: json
+        desc: ''
+        headers: 'accept:application/json
+
+          content-type:application/json'
+        isInIteration: true
+        iteration_id: '1721475912946'
+        method: post
+        params: ''
+        selected: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: 获取检索内容的摘要
+        type: http-request
+        url: https://api.exa.ai/contents
+        variables: []
+      extent: parent
+      height: 134
+      id: '1721481486245'
+      parentId: '1721475912946'
+      position:
+        x: 399.43807157122137
+        y: 79.45633323882521
+      positionAbsolute:
+        x: 2017.1791949071062
+        y: 1031.6787300996011
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+      zIndex: 1002
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 50
+        model:
+          completion_params:
+            temperature: 0.5
+          mode: chat
+          name: qwen2:latest
+          provider: ollama
+        prompt_template:
+        - id: 874cd053-787d-4fa2-862e-6b9c42a4ecf1
+          role: system
+          text: Please rephrase the user's question to make it more specific without
+            altering the original intent.
+        selected: false
+        title: 优化检索内容
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 119
+      id: '1721478635205'
+      position:
+        x: 1732.3746750250646
+        y: 431.6291063691216
+      positionAbsolute:
+        x: 1732.3746750250646
+        y: 431.6291063691216
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        isInIteration: true
+        selected: false
+        title: ''
+        type: iteration-start
+      draggable: false
+      height: 60
+      id: 1721475912946start0
+      parentId: '1721475912946'
+      position:
+        x: 24
+        y: 68
+      positionAbsolute:
+        x: 1641.7411233358848
+        y: 1020.2223968607759
+      selectable: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-iteration-start
+      width: 55
+      zIndex: 1002
+    - data:
+        author: 苏撒
+        desc: ''
+        height: 109
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"使用大语言模型（LLM）优化用户问题，以使其更清晰、更具体，解决用户提出的不清晰和逻辑混乱的问题。","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 244
+      height: 109
+      id: '1726841322299'
+      position:
+        x: 1730.8809491462277
+        y: 582.1142872581545
+      positionAbsolute:
+        x: 1730.8809491462277
+        y: 582.1142872581545
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 244
+    - data:
+        author: 苏撒
+        desc: ''
+        height: 102
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"exa.ai搜索引擎可以根据日期范围来给到搜索结果。所以，此处是获取开始和结束日期，以框定搜索范围。","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 240
+      height: 102
+      id: '1726841337073'
+      position:
+        x: 2037.3606137724805
+        y: 512.9757770562725
+      positionAbsolute:
+        x: 2037.3606137724805
+        y: 512.9757770562725
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 240
+    - data:
+        author: 苏撒
+        desc: ''
+        height: 144
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"为了避免在使用HTTP请求节点时遇到JSON相关的错误，一个有效的策略是在HTTP请求节点之前插入一个代码执行节点。借助这个代码节点，可以将HTTP请求节点所需的JSON数据写入到代码节点的Python选项框内，随后只需将这个输出变量直接放置到HTTP节点的JSON输入文本框中即可。","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 527
+      height: 144
+      id: '1726841365568'
+      position:
+        x: 2356.2232951513092
+        y: 594.4973040107303
+      positionAbsolute:
+        x: 2356.2232951513092
+        y: 594.4973040107303
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 527
+    - data:
+        author: 苏撒
+        desc: ''
+        height: 100
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"对检索结果进行字符串清理和模板化输出。","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 240
+      height: 100
+      id: '1726841384789'
+      position:
+        x: 2996.0174031067663
+        y: 506.0601597898833
+      positionAbsolute:
+        x: 2996.0174031067663
+        y: 506.0601597898833
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 240
+    - data:
+        author: 苏撒
+        desc: ''
+        height: 199
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"迭代：对数组执行多次步骤直至输出所有结果。","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"示例1：长文章迭代生成器","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"–  
+          在 开始节点 内输入故事标题和大纲","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"–  
+          使用 LLM 节点= 基于用户输入的故事标题和大纲，让 LLM 开始编写内容","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"–  
+          使用 参数提取节点 将 LLM 输出的完整内容转换成数组格式","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"–  
+          通过 迭代节点 包裹的 LLM 节点 循环多次生成各章节内容","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"–  
+          将 直接回复 节点添加在迭代节点内部，实现在每轮迭代生成之后流式输出","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 640
+      height: 199
+      id: '1726841404123'
+      position:
+        x: 1623.8934153961281
+        y: 752.9896153394772
+      positionAbsolute:
+        x: 1623.8934153961281
+        y: 752.9896153394772
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 640
+    - data:
+        author: 苏撒
+        desc: ''
+        height: 329
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"借助
+          Jinja2 这一强大的 Python 模板语言，在工作流内实现轻量、灵活的数据转换，适用于文本处理、JSON 转换等情景。例如灵活地格式化并合并来自前面步骤的变量，创建出单一的文本输出。这非常适合于将多个数据源的信息汇总成一个特定格式，满足后续步骤的需求。","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[],"direction":null,"format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"示例1：将多个输入（文章标题、介绍、内容）拼接为完整文本","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[],"direction":null,"format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"Jinja
+          是一个快速、表达力强、可扩展的模板引擎。模板中的特殊占位符允许编写类似于 Python 语法的代码。然后，模板接收数据以渲染最终文档。","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 292
+      height: 329
+      id: '1726841445193'
+      position:
+        x: 2637.2570147878837
+        y: 1274.7241156259543
+      positionAbsolute:
+        x: 2637.2570147878837
+        y: 1274.7241156259543
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 292
+    - data:
+        author: 苏撒
+        desc: ''
+        height: 88
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"获取检索内容的摘要","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"（HTTP请求节点）","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 240
+      height: 88
+      id: '1726841651171'
+      position:
+        x: 2045.1777825425963
+        y: 1274.7241156259543
+      positionAbsolute:
+        x: 2045.1777825425963
+        y: 1274.7241156259543
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 240
+    viewport:
+      x: -1159.7465788711634
+      y: -209.2103699360921
+      zoom: 0.8283658484492998

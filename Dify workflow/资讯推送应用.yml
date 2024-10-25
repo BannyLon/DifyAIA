@@ -1,0 +1,451 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: Dify AI 实战：资讯推送应用
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.2
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: http-request
+      id: 1727244075454-source-1727244101575-target
+      selected: false
+      source: '1727244075454'
+      sourceHandle: source
+      target: '1727244101575'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: http-request
+        targetType: parameter-extractor
+      id: 1727244101575-source-1727244174131-target
+      selected: false
+      source: '1727244101575'
+      sourceHandle: source
+      target: '1727244174131'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: parameter-extractor
+        targetType: iteration
+      id: 1727244174131-source-1727244261679-target
+      selected: false
+      source: '1727244174131'
+      sourceHandle: source
+      target: '1727244261679'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        iteration_id: '1727244261679'
+        sourceType: iteration-start
+        targetType: http-request
+      id: 1727244261679start-source-1727244283347-target
+      selected: false
+      source: 1727244261679start
+      sourceHandle: source
+      target: '1727244283347'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        sourceType: iteration
+        targetType: template-transform
+      id: 1727244261679-source-1727244713186-target
+      selected: false
+      source: '1727244261679'
+      sourceHandle: source
+      target: '1727244713186'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: template-transform
+        targetType: llm
+      id: 1727244713186-source-1727244657474-target
+      selected: false
+      source: '1727244713186'
+      sourceHandle: source
+      target: '1727244657474'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: tool
+      id: 1727244657474-source-1727346633190-target
+      source: '1727244657474'
+      sourceHandle: source
+      target: '1727346633190'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: end
+      id: 1727346633190-source-1727357548211-target
+      source: '1727346633190'
+      sourceHandle: source
+      target: '1727357548211'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables: []
+      height: 64
+      id: '1727244075454'
+      position:
+        x: 205.19263761534933
+        y: 282
+      positionAbsolute:
+        x: 205.19263761534933
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data:
+          - type: text
+            value: ''
+          type: json
+        desc: ''
+        headers: ''
+        method: get
+        params: ''
+        selected: true
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: HTTP 请求
+        type: http-request
+        url: https://hacker-news.firebaseio.com/v0/beststories.json?print=pretty
+        variables: []
+      height: 174
+      id: '1727244101575'
+      position:
+        x: 469.2680728118497
+        y: 282
+      positionAbsolute:
+        x: 469.2680728118497
+        y: 282
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        instruction: '从HTTP请求的bodyString中提取名为"ids"的Array[Number]数组。
+
+          示例数据格式：body: [1,2,3,4,5,...,500]（实际数组长度可能很长，但示例展示了数组的开始和结束部分）。
+
+          返回的数组应只保留前5个元素。'
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: llama3.1:latest
+          provider: ollama
+        parameters:
+        - description: item ids
+          name: ids
+          required: false
+          type: array[number]
+        query:
+        - '1727244101575'
+        - body
+        reasoning_mode: prompt
+        selected: false
+        title: 参数提取器
+        type: parameter-extractor
+        variables: []
+      height: 119
+      id: '1727244174131'
+      position:
+        x: 743.2708676780887
+        y: 282
+      positionAbsolute:
+        x: 743.2708676780887
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        height: 266
+        iterator_selector:
+        - '1727244174131'
+        - ids
+        output_selector:
+        - '1727244283347'
+        - body
+        output_type: array[string]
+        selected: false
+        start_node_id: 1727244261679start
+        title: 迭代
+        type: iteration
+        width: 425
+      height: 266
+      id: '1727244261679'
+      position:
+        x: 1020.2673667487236
+        y: 282
+      positionAbsolute:
+        x: 1020.2673667487236
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 425
+      zIndex: 1
+    - data:
+        desc: ''
+        isInIteration: true
+        selected: false
+        title: ''
+        type: iteration-start
+      draggable: false
+      height: 60
+      id: 1727244261679start
+      parentId: '1727244261679'
+      position:
+        x: 24
+        y: 68
+      positionAbsolute:
+        x: 1044.2673667487236
+        y: 350
+      selectable: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-iteration-start
+      width: 55
+      zIndex: 1002
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data: ''
+          type: json
+        desc: ''
+        headers: ''
+        isInIteration: true
+        iteration_id: '1727244261679'
+        method: get
+        params: ''
+        selected: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: HTTP 请求 2
+        type: http-request
+        url: https://hacker-news.firebaseio.com/v0/item/{{#1727244261679.item#}}.json
+        variables: []
+      height: 175
+      id: '1727244283347'
+      parentId: '1727244261679'
+      position:
+        x: 139
+        y: 69.17816281551399
+      positionAbsolute:
+        x: 1159.2673667487236
+        y: 351.178162815514
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+      zIndex: 1002
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1727244713186'
+          - output
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gemma2:latest
+          provider: ollama
+        prompt_template:
+        - id: 4bdb867f-0f00-461d-a481-cabbc4e16e81
+          role: system
+          text: "请将以下 Hacker News 数据总结为 \"Hacker News\" 摘要。请按照以下标准进行处理：\n1、提取最重要的事件和信息：从数据中提取出最关键和最相关的事件及信息。\n\
+            2、根据评分排序并输出序号：按照 score 字段对新闻进行降序排列，并在每条新闻前加上序号。\n3、输出信息包括：title, url, text 和 author。\n\
+            4、文本处理：\ntext 需要分成两段：第一段是中文翻译，第二段是原文。\n5、作者展示：只有 author 需要有标签显示，例如 \"\
+            作者: 张三\"，其他信息不需要标签。\n6、格式化文本：使用简单的换行符 \\n 来格式化整体文本，使其更具可读性。\n示例格式如下：\n\
+            1. [标题]\n   - 内容:\n     [中文翻译]\n     [原文]\n   - 作者: [作者名]\n   - 链接: [URL]"
+        - id: 110de85e-b101-4c27-8306-8b500bef3524
+          role: user
+          text: '{{#1727244713186.output#}}'
+        selected: false
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 119
+      id: '1727244657474'
+      position:
+        x: 715.722245525154
+        y: 600.6226283346986
+      positionAbsolute:
+        x: 715.722245525154
+        y: 600.6226283346986
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        selected: false
+        template: '{{ output | join("\n\n") }}'
+        title: 模板转换
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1727244261679'
+          - output
+          variable: output
+      height: 64
+      id: '1727244713186'
+      position:
+        x: 464.73170089214125
+        y: 600.6226283346986
+      positionAbsolute:
+        x: 464.73170089214125
+        y: 600.6226283346986
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        provider_id: wecom
+        provider_name: wecom
+        provider_type: builtin
+        selected: false
+        title: 发送群消息
+        tool_configurations:
+          hook_key: eefea087-4278-40b2-93bb-23741a992cca
+          message_type: text
+        tool_label: 发送群消息
+        tool_name: wecom_group_bot
+        tool_parameters:
+          content:
+            type: mixed
+            value: '{{#1727244657474.text#}}'
+        type: tool
+      height: 142
+      id: '1727346633190'
+      position:
+        x: 974.4799248487736
+        y: 600.6226283346986
+      positionAbsolute:
+        x: 974.4799248487736
+        y: 600.6226283346986
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1727244657474'
+          - text
+          variable: text
+        selected: false
+        title: 结束
+        type: end
+      height: 109
+      id: '1727357548211'
+      position:
+        x: 1235.4887979483879
+        y: 600.6226283346986
+      positionAbsolute:
+        x: 1235.4887979483879
+        y: 600.6226283346986
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    viewport:
+      x: -211.55085233541064
+      y: -20.646409581517048
+      zoom: 0.7274707153474878

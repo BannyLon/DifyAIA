@@ -1,0 +1,897 @@
+app:
+  description: 一款基于人工智能技术的智能工作流工具。它能够智能识别用户上传的图片和文档，并根据内容的不同进行灵活处理。无论是纯图片、纯文档还是图文混合的内容，该工作流都能迅速判断并启动相应的处理模式。通过精准的图片解读和文档总结功能，该工作流能够帮助用户快速获取所需信息，提高工作效率。
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: dify AI 教程：图文智控链
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.2
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      - document
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: true
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: document-extractor
+        targetType: llm
+      id: 1729745812798-source-1729745833319-target
+      selected: false
+      source: '1729745812798'
+      sourceHandle: source
+      target: '1729745833319'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: if-else
+      id: 1729745506050-source-1729842464654-target
+      selected: false
+      source: '1729745506050'
+      sourceHandle: source
+      target: '1729842464654'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: template-transform
+      id: llm-source-17298427900570-target
+      source: llm
+      sourceHandle: source
+      target: '17298427900570'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: template-transform
+        targetType: answer
+      id: 17298427900570-source-1729746188871-target
+      source: '17298427900570'
+      sourceHandle: source
+      target: '1729746188871'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: template-transform
+      id: 1729745833319-source-17298428725480-target
+      source: '1729745833319'
+      sourceHandle: source
+      target: '17298428725480'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: template-transform
+        targetType: answer
+      id: 17298428725480-source-17298428920100-target
+      source: '17298428725480'
+      sourceHandle: source
+      target: '17298428920100'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: list-operator
+        targetType: llm
+      id: 1729843154767-source-llm-target
+      source: '1729843154767'
+      sourceHandle: source
+      target: llm
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: list-operator
+        targetType: document-extractor
+      id: 1729843232287-source-1729745812798-target
+      source: '1729843232287'
+      sourceHandle: source
+      target: '1729745812798'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: list-operator
+      id: 1729842464654-true-17298438860310-target
+      source: '1729842464654'
+      sourceHandle: 'true'
+      target: '17298438860310'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: list-operator
+      id: 1729842464654-true-17298438968460-target
+      source: '1729842464654'
+      sourceHandle: 'true'
+      target: '17298438968460'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: list-operator
+        targetType: llm
+      id: 17298438860310-source-17298439211430-target
+      source: '17298438860310'
+      sourceHandle: source
+      target: '17298439211430'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: list-operator
+        targetType: document-extractor
+      id: 17298438968460-source-17298439469400-target
+      source: '17298438968460'
+      sourceHandle: source
+      target: '17298439469400'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: document-extractor
+        targetType: llm
+      id: 17298439469400-source-17298439554700-target
+      source: '17298439469400'
+      sourceHandle: source
+      target: '17298439554700'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: template-transform
+      id: 17298439211430-source-17298439626060-target
+      source: '17298439211430'
+      sourceHandle: source
+      target: '17298439626060'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: template-transform
+      id: 17298439554700-source-17298439626060-target
+      source: '17298439554700'
+      sourceHandle: source
+      target: '17298439626060'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: template-transform
+        targetType: answer
+      id: 17298439626060-source-17298439666420-target
+      source: '17298439626060'
+      sourceHandle: source
+      target: '17298439666420'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: list-operator
+      id: 1729842464654-38988a71-c603-4a12-a2b4-a2cc28acc3b9-1729843154767-target
+      source: '1729842464654'
+      sourceHandle: 38988a71-c603-4a12-a2b4-a2cc28acc3b9
+      target: '1729843154767'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: list-operator
+      id: 1729842464654-4589631f-60ae-46f1-811c-1f9df2e5e6e4-1729843232287-target
+      source: '1729842464654'
+      sourceHandle: 4589631f-60ae-46f1-811c-1f9df2e5e6e4
+      target: '1729843232287'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables: []
+      height: 64
+      id: '1729745506050'
+      position:
+        x: -234.87097774967907
+        y: -127.36895667889719
+      positionAbsolute:
+        x: -234.87097774967907
+        y: -127.36895667889719
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1729843154767'
+          - last_record
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 10
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: llava
+          provider: ollama
+        prompt_template:
+        - id: 93bf2586-0ea2-4f1c-8735-db18d483869d
+          role: system
+          text: 分析图片{{#context#}}的内容。
+        selected: false
+        title: 图片总结
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+            variable_selector:
+            - '1729843154767'
+            - last_record
+          enabled: true
+      height: 119
+      id: llm
+      position:
+        x: 687.5881894956249
+        y: 164.17302351948064
+      positionAbsolute:
+        x: 687.5881894956249
+        y: 164.17302351948064
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        is_array_file: false
+        selected: false
+        title: 文档提取器
+        type: document-extractor
+        variable_selector:
+        - '1729843232287'
+        - last_record
+      height: 111
+      id: '1729745812798'
+      position:
+        x: 767.5339908292931
+        y: 357.61944668756155
+      positionAbsolute:
+        x: 767.5339908292931
+        y: 357.61944668756155
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1729745812798'
+          - text
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: llava
+          provider: ollama
+        prompt_template:
+        - id: 8f1f437e-b1c3-49ae-8442-fdda8a6db5c8
+          role: system
+          text: '## 角色
+
+            - 你是一个文档总结专家。
+
+
+            ## 技能
+
+            - 用简单的文字总结{{#context#}}的核心内容， 不超过100字。'
+        selected: false
+        title: 文档总结
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 119
+      id: '1729745833319'
+      position:
+        x: 1039.7612511645962
+        y: 357.61944668756155
+      positionAbsolute:
+        x: 1039.7612511645962
+        y: 357.61944668756155
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '{{#17298427900570.output#}}'
+        desc: ''
+        selected: false
+        title: 直接回复
+        type: answer
+        variables: []
+      height: 118
+      id: '1729746188871'
+      position:
+        x: 1213.1551942337567
+        y: 164.17302351948064
+      positionAbsolute:
+        x: 1213.1551942337567
+        y: 164.17302351948064
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: contains
+            id: 7ab7d74e-e103-4b77-a44a-8fb2810a3a29
+            sub_variable_condition:
+              case_id: 0256b38d-9ee3-448e-9814-b2c076335d0e
+              conditions:
+              - comparison_operator: in
+                id: a1757f1c-28c9-4096-850b-e22d4a93bca6
+                key: type
+                value:
+                - image
+                varType: string
+              - comparison_operator: in
+                id: 4cd915ee-743a-42b1-9191-6274036774ee
+                key: type
+                value:
+                - document
+                varType: string
+              logical_operator: and
+            value: ''
+            varType: array[file]
+            variable_selector:
+            - sys
+            - files
+          id: 'true'
+          logical_operator: and
+        - case_id: 38988a71-c603-4a12-a2b4-a2cc28acc3b9
+          conditions:
+          - comparison_operator: contains
+            id: e629939f-d966-4fb3-9cf3-88bf39c02e4f
+            sub_variable_condition:
+              case_id: e770c80e-5bb3-4872-b082-a7305717b2f8
+              conditions:
+              - comparison_operator: in
+                id: eb34ceca-7107-45b7-bdd0-485e3c57df67
+                key: type
+                value:
+                - image
+                varType: string
+              - comparison_operator: not in
+                id: 09dddf61-b545-4796-b631-0ee16ce6f469
+                key: type
+                value:
+                - document
+                varType: string
+              logical_operator: and
+            value: ''
+            varType: array[file]
+            variable_selector:
+            - sys
+            - files
+          logical_operator: and
+        - case_id: 4589631f-60ae-46f1-811c-1f9df2e5e6e4
+          conditions:
+          - comparison_operator: contains
+            id: a1e3ba08-3000-4f51-a734-f49db77ff5ca
+            sub_variable_condition:
+              case_id: 25feda6d-dc59-43de-b47b-462b3b92deb9
+              conditions:
+              - comparison_operator: not in
+                id: f52934b9-db6a-4fba-b7ca-67a78fa07989
+                key: type
+                value:
+                - image
+                varType: string
+              - comparison_operator: in
+                id: 4dd5859b-b6fa-4998-9498-064e29bb55c7
+                key: type
+                value:
+                - document
+                varType: string
+              logical_operator: and
+            value: ''
+            varType: array[file]
+            variable_selector:
+            - sys
+            - files
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 条件分支
+        type: if-else
+      height: 454
+      id: '1729842464654'
+      position:
+        x: 35.890878968153686
+        y: -127.36895667889719
+      positionAbsolute:
+        x: 35.890878968153686
+        y: -127.36895667889719
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        selected: false
+        template: '{{ image }}
+
+          '
+        title: 模板转换 (1)
+        type: template-transform
+        variables:
+        - value_selector:
+          - llm
+          - text
+          variable: image
+      height: 64
+      id: '17298427900570'
+      position:
+        x: 951.6944751905751
+        y: 164.17302351948064
+      positionAbsolute:
+        x: 951.6944751905751
+        y: 164.17302351948064
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        selected: false
+        template: '{{ text }}
+
+          '
+        title: 模板转换 (2)
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1729745833319'
+          - text
+          variable: text
+      height: 64
+      id: '17298428725480'
+      position:
+        x: 1298.8453160644715
+        y: 357.61944668756155
+      positionAbsolute:
+        x: 1298.8453160644715
+        y: 357.61944668756155
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '{{#17298428725480.output#}}'
+        desc: ''
+        selected: false
+        title: 直接回复 (1)
+        type: answer
+        variables: []
+      height: 118
+      id: '17298428920100'
+      position:
+        x: 1559.875533126351
+        y: 357.61944668756155
+      positionAbsolute:
+        x: 1559.875533126351
+        y: 357.61944668756155
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        filter_by:
+          conditions:
+          - comparison_operator: in
+            key: type
+            value:
+            - image
+          enabled: true
+        item_var_type: file
+        limit:
+          enabled: false
+          size: 10
+        order_by:
+          enabled: false
+          key: ''
+          value: asc
+        selected: false
+        title: 筛选图片
+        type: list-operator
+        var_type: array[file]
+        variable:
+        - sys
+        - files
+      height: 111
+      id: '1729843154767'
+      position:
+        x: 417.6965445331159
+        y: 164.17302351948064
+      positionAbsolute:
+        x: 417.6965445331159
+        y: 164.17302351948064
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        filter_by:
+          conditions:
+          - comparison_operator: in
+            key: type
+            value:
+            - document
+          enabled: true
+        item_var_type: file
+        limit:
+          enabled: false
+          size: 10
+        order_by:
+          enabled: false
+          key: ''
+          value: asc
+        selected: false
+        title: 筛选文档
+        type: list-operator
+        var_type: array[file]
+        variable:
+        - sys
+        - files
+      height: 111
+      id: '1729843232287'
+      position:
+        x: 417.6965445331159
+        y: 357.61944668756155
+      positionAbsolute:
+        x: 417.6965445331159
+        y: 357.61944668756155
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        filter_by:
+          conditions:
+          - comparison_operator: in
+            key: type
+            value:
+            - image
+          enabled: true
+        item_var_type: file
+        limit:
+          enabled: false
+          size: 10
+        order_by:
+          enabled: false
+          key: ''
+          value: asc
+        selected: false
+        title: 筛选图片 (1)
+        type: list-operator
+        var_type: array[file]
+        variable:
+        - sys
+        - files
+      height: 111
+      id: '17298438860310'
+      position:
+        x: 426.61058496098326
+        y: -152.93179174084005
+      positionAbsolute:
+        x: 426.61058496098326
+        y: -152.93179174084005
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        filter_by:
+          conditions:
+          - comparison_operator: in
+            key: type
+            value:
+            - document
+          enabled: true
+        item_var_type: file
+        limit:
+          enabled: false
+          size: 10
+        order_by:
+          enabled: false
+          key: ''
+          value: asc
+        selected: false
+        title: 筛选文档 (1)
+        type: list-operator
+        var_type: array[file]
+        variable:
+        - sys
+        - files
+      height: 111
+      id: '17298438968460'
+      position:
+        x: 426.61058496098326
+        y: 4.4174725060721585
+      positionAbsolute:
+        x: 426.61058496098326
+        y: 4.4174725060721585
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '17298438860310'
+          - last_record
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 10
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: llava
+          provider: ollama
+        prompt_template:
+        - id: 93bf2586-0ea2-4f1c-8735-db18d483869d
+          role: system
+          text: 分析图片{{#context#}}的内容。
+        selected: false
+        title: 图片总结 (1)
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+            variable_selector:
+            - '17298438860310'
+            - last_record
+          enabled: true
+      height: 119
+      id: '17298439211430'
+      position:
+        x: 727.9393194994727
+        y: -152.93179174084005
+      positionAbsolute:
+        x: 727.9393194994727
+        y: -152.93179174084005
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        is_array_file: false
+        selected: false
+        title: 文档提取器 (1)
+        type: document-extractor
+        variable_selector:
+        - '17298438968460'
+        - last_record
+      height: 111
+      id: '17298439469400'
+      position:
+        x: 727.9393194994727
+        y: 4.4174725060721585
+      positionAbsolute:
+        x: 727.9393194994727
+        y: 4.4174725060721585
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '17298439469400'
+          - text
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: llava
+          provider: ollama
+        prompt_template:
+        - id: 8f1f437e-b1c3-49ae-8442-fdda8a6db5c8
+          role: system
+          text: '## 角色
+
+            - 你是一个文档总结专家。
+
+
+            ## 技能
+
+            - 用简单的文字总结{{#context#}}的核心内容， 不超过100字。'
+        selected: false
+        title: 文档总结 (1)
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 119
+      id: '17298439554700'
+      position:
+        x: 1001.630456416869
+        y: 4.4174725060721585
+      positionAbsolute:
+        x: 1001.630456416869
+        y: 4.4174725060721585
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        selected: false
+        template: '{{ image }}
+
+
+          ---------------
+
+
+          {{ text }}
+
+          '
+        title: 模板转换 (3)
+        type: template-transform
+        variables:
+        - value_selector:
+          - '17298439211430'
+          - text
+          variable: image
+        - value_selector:
+          - '17298439554700'
+          - text
+          variable: text
+      height: 64
+      id: '17298439626060'
+      position:
+        x: 1275.6730963334733
+        y: -71.837624635702
+      positionAbsolute:
+        x: 1275.6730963334733
+        y: -71.837624635702
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '{{#17298439626060.output#}}'
+        desc: ''
+        selected: false
+        title: 直接回复 (1)
+        type: answer
+        variables: []
+      height: 118
+      id: '17298439666420'
+      position:
+        x: 1553.8835963900578
+        y: -71.837624635702
+      positionAbsolute:
+        x: 1553.8835963900578
+        y: -71.837624635702
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    viewport:
+      x: 137.22410871567558
+      y: 272.91756229349846
+      zoom: 0.6786281342749213

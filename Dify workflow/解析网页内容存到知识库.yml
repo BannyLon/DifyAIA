@@ -1,0 +1,318 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: 解析网页内容存到知识库
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.2
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: tool
+      id: 1726648972903-source-1726648991458-target
+      source: '1726648972903'
+      sourceHandle: source
+      target: '1726648991458'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: llm
+      id: 1726648991458-source-1726649065049-target
+      selected: false
+      source: '1726648991458'
+      sourceHandle: source
+      target: '1726649065049'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: code
+      id: 1726649065049-source-1726649425625-target
+      source: '1726649065049'
+      sourceHandle: source
+      target: '1726649425625'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: http-request
+      id: 1726649425625-source-1726649528184-target
+      source: '1726649425625'
+      sourceHandle: source
+      target: '1726649528184'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: http-request
+        targetType: end
+      id: 1726649528184-source-1726650097797-target
+      source: '1726649528184'
+      sourceHandle: source
+      target: '1726650097797'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - label: url
+          max_length: 256
+          options: []
+          required: true
+          type: text-input
+          variable: url
+      height: 109
+      id: '1726648972903'
+      position:
+        x: 77.84557970061047
+        y: 282
+      positionAbsolute:
+        x: 77.84557970061047
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        provider_id: jina
+        provider_name: jina
+        provider_type: builtin
+        selected: false
+        title: JinaReader
+        tool_configurations:
+          gather_all_images_at_the_end: 0
+          gather_all_links_at_the_end: 0
+          image_caption: 0
+          max_retries: 3
+          no_cache: 0
+          proxy_server: null
+          summary: 0
+          target_selector: null
+          wait_for_selector: null
+        tool_label: JinaReader
+        tool_name: jina_reader
+        tool_parameters:
+          url:
+            type: mixed
+            value: '{{#1726648972903.url#}}'
+        type: tool
+      height: 369
+      id: '1726648991458'
+      position:
+        x: 381.69115940122094
+        y: 282
+      positionAbsolute:
+        x: 381.69115940122094
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1726648991458'
+          - text
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen2.5:latest
+          provider: ollama
+        prompt_template:
+        - id: b74b533b-9c88-494a-a5ad-9136734eb2bb
+          role: system
+          text: 'Use {{#context#}} as learned knowledge.
+
+            任务要求：
+
+            - 从给定的JSON数据中提取所有的纯文本内容。
+
+            - 清除其中的推广信息、图片描述、链接以及换行符（包括\n和\r\n）。
+
+            - 最终输出结果应完全用中文表述。
+
+            - 仅关注并输出清理后的纯文本部分。
+
+            '
+        selected: false
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 119
+      id: '1726649065049'
+      position:
+        x: 691.4615295204807
+        y: 282
+      positionAbsolute:
+        x: 691.4615295204807
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "function main({ arg1 }) {\n    const cleaned = arg1.replace(/\\r?\\\
+          n/g, '');\n    return { result: cleaned };\n}"
+        code_language: javascript
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 代码执行
+        type: code
+        variables:
+        - value_selector:
+          - '1726649065049'
+          - text
+          variable: arg1
+      height: 64
+      id: '1726649425625'
+      position:
+        x: 986.415630992888
+        y: 282
+      positionAbsolute:
+        x: 986.415630992888
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        authorization:
+          config:
+            api_key: dataset-0ns4yKcVofUPJHGhp75MYvop
+            type: bearer
+          type: api-key
+        body:
+          data: '{"name": "content","text": "{{#1726649425625.result#}}","indexing_technique":
+            "high_quality","process_rule": {"mode": "automatic"}}'
+          type: json
+        desc: ''
+        headers: ''
+        method: post
+        params: ''
+        selected: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: HTTP 请求
+        type: http-request
+        url: http://host.docker.internal/v1/datasets/2aae0d12-1b58-495f-834f-1b3dfd0c9bf8/document/create_by_text
+        variables: []
+      height: 214
+      id: '1726649528184'
+      position:
+        x: 1291.7171189006258
+        y: 282
+      positionAbsolute:
+        x: 1291.7171189006258
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1726649528184'
+          - body
+          variable: knowledge
+        - value_selector:
+          - '1726649425625'
+          - result
+          variable: cleaned_content
+        - value_selector:
+          - '1726649065049'
+          - text
+          variable: content
+        selected: true
+        title: 结束
+        type: end
+      height: 174
+      id: '1726650097797'
+      position:
+        x: 1599
+        y: 282
+      positionAbsolute:
+        x: 1599
+        y: 282
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    viewport:
+      x: -172.91311585043468
+      y: -61.259857828891654
+      zoom: 0.9609278489568617

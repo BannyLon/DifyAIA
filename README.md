@@ -32,11 +32,11 @@ Dify workflow(Dify精选工作流)
 Dify workflow将存储我精心整理的所有与学习相关的Dify工作流。我会不定期进行更新，确保你能找到所需的工作流。
 | 文件名称 | 文件描述 |文件图示 |
 | :-------------: | :----------: | :------------: |
-| RedCanvas.yml |   一键生成吸引眼球的小红书文案和配图，让您的每篇内容都成为焦点！   |![](./Dify%20workflow/IME/RedCanvas.jpg?raw=true)|
-| Twitter 账号分析助手.yml        |    根据用户提供的Twitter账户ID，利用HTTP请求和外部爬虫工具来抓取该ID的推文内容，并使用先进的LLM（Large Language Model，大型语言模型）技术对抓取到的社交平台数据进行深度分析。最终，我们将基于分析结果，模拟该用户的写作风格，撰写出符合我们要求的推文内容。     |        ![](./Dify%20workflow/IME/Twitter.jpg?raw=true) |
-| 知识库图像检索与展示.yml        |    通过知识检索从知识库中检索出带有图片链接的内容，然后借助HTTP请求节点将图片链接显示出来，实现一个直观且吸引人的图文结合客服交互场景，为用户带来更加生动、便捷的沟通体验。     |        ![](./Dify%20workflow/IME/1729836804207.jpg?raw=true) |
-| 知识全网搜索.yml        |    根据用户提问，利用Exa.ai搜索引擎搜索相关网页内容，然后对网页内容进行摘要，最后以一种便于阅读的的格式排版输出。妈妈再也不用担心我的学习，想学哪里搜哪里。     |        ![](./Dify%20workflow/IME/1729837233247.jpg?raw=true) |
-| 资讯推送应用.yml       |    从号称程序员圈的"微博"的 Hacker News 获取最佳的文章资讯，并将整理后的资讯推送到企业微信群中。     |        ![](./Dify%20workflow/IME/1729837393352.jpg?raw=true) |
-| 解析网页内容存到知识库.yml       |    利用Jina Reader从指定URL提取核心内容，借助大语言模型（LLM）将这些内容转化为清晰、易管理的文本内容，最后通过知识库API，将精炼后的文档上传至指定的ID知识库中。这一流程将极大地促进我们未来在构建检索增强生成模型（RAG）方面的工作。     |        ![](./Dify%20workflow/IME/1729837328598.jpg?raw=true) |
+| [RedCanvas.yml](https://www.bilibili.com/video/BV1jTyeYGE8q/) |   一键生成吸引眼球的小红书文案和配图，让您的每篇内容都成为焦点！   |![](./Dify%20workflow/IME/RedCanvas.jpg?raw=true)|
+| [Twitter 账号分析助手.yml](https://www.bilibili.com/video/BV1Vw2QY4Ezf/)        |    根据用户提供的Twitter账户ID，利用HTTP请求和外部爬虫工具来抓取该ID的推文内容，并使用先进的LLM（Large Language Model，大型语言模型）技术对抓取到的社交平台数据进行深度分析。最终，我们将基于分析结果，模拟该用户的写作风格，撰写出符合我们要求的推文内容。     |        ![](./Dify%20workflow/IME/Twitter.jpg?raw=true) |
+| [知识库图像检索与展示.yml](https://www.bilibili.com/video/BV1zexgeDEMe/)        |    通过知识检索从知识库中检索出带有图片链接的内容，然后借助HTTP请求节点将图片链接显示出来，实现一个直观且吸引人的图文结合客服交互场景，为用户带来更加生动、便捷的沟通体验。     |        ![](./Dify%20workflow/IME/1729836804207.jpg?raw=true) |
+| [知识全网搜索.yml](https://www.bilibili.com/video/BV1BhtCeUEye/)        |    根据用户提问，利用Exa.ai搜索引擎搜索相关网页内容，然后对网页内容进行摘要，最后以一种便于阅读的的格式排版输出。妈妈再也不用担心我的学习，想学哪里搜哪里。     |        ![](./Dify%20workflow/IME/1729837233247.jpg?raw=true) |
+| [资讯推送应用.yml](https://www.bilibili.com/video/BV1XsxneqE96/)       |    从号称程序员圈的"微博"的 Hacker News 获取最佳的文章资讯，并将整理后的资讯推送到企业微信群中。     |        ![](./Dify%20workflow/IME/1729837393352.jpg?raw=true) |
+| [解析网页内容存到知识库.yml](https://www.bilibili.com/video/BV1CkxXeLEnn/)      |    利用Jina Reader从指定URL提取核心内容，借助大语言模型（LLM）将这些内容转化为清晰、易管理的文本内容，最后通过知识库API，将精炼后的文档上传至指定的ID知识库中。这一流程将极大地促进我们未来在构建检索增强生成模型（RAG）方面的工作。     |        ![](./Dify%20workflow/IME/1729837328598.jpg?raw=true) |
 
 

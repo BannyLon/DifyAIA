@@ -1,4 +1,4 @@
-DifyAIA仓库-说明文档
+<img width="1510" alt="image" src="https://github.com/user-attachments/assets/42d5ba37-92d3-4eb1-b964-1464b07a85b9"><img width="1510" alt="image" src="https://github.com/user-attachments/assets/9c2804b2-1a7b-4381-a54c-31ad16a43cd7">DifyAIA仓库-说明文档
 ==========
 本仓库为B站：bannylon7相关Dify AI实战案例相关源码
 
@@ -39,4 +39,4 @@ Dify workflow将存储我精心整理的所有与学习相关的Dify工作流。
 | [资讯推送应用.yml](https://www.bilibili.com/video/BV1XsxneqE96/)       |    从号称程序员圈的"微博"的 Hacker News 获取最佳的文章资讯，并将整理后的资讯推送到企业微信群中。     |        ![](./Dify%20workflow/IME/1729837393352.jpg?raw=true) |
 | [解析网页内容存到知识库.yml](https://www.bilibili.com/video/BV1CkxXeLEnn/)      |    利用Jina Reader从指定URL提取核心内容，借助大语言模型（LLM）将这些内容转化为清晰、易管理的文本内容，最后通过知识库API，将精炼后的文档上传至指定的ID知识库中。这一流程将极大地促进我们未来在构建检索增强生成模型（RAG）方面的工作。     |        ![](./Dify%20workflow/IME/1729837328598.jpg?raw=true) |
 | [dify AI 教程：图文智控链.yml](https://www.bilibili.com/video/BV1JiyXYNE2g/)      |    图文智控链是一款基于人工智能技术的智能工作流工具。它能够智能识别用户上传的图片和文档，并根据内容的不同进行灵活处理。无论是纯图片、纯文档还是图文混合的内容，该工作流都能迅速判断并启动相应的处理模式。通过精准的图片解读和文档总结功能，该工作流能够帮助用户快速获取所需信息，提高工作效率。     |        ![](./Dify%20workflow/IME/1729845555795.jpg?raw=true) |
-
+| [Dify AI 教程：ChatPaper.yml](https://www.bilibili.com/video/BV1CCSUYrExd/)      |    ChatPaper是一款AI工具，能快速阅读并理解论文，用户上传论文后，AI一分钟内提炼要点，助用户迅速掌握精髓，实现论文内容的交互式学习。     |        ![](./Dify%20workflow/IME/1730695240344.jpg?raw=true) |

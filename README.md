@@ -1,4 +1,4 @@
-<img width="1510" alt="image" src="https://github.com/user-attachments/assets/42d5ba37-92d3-4eb1-b964-1464b07a85b9"><img width="1510" alt="image" src="https://github.com/user-attachments/assets/9c2804b2-1a7b-4381-a54c-31ad16a43cd7">DifyAIA仓库-说明文档
+DifyAIA仓库-说明文档
 ==========
 本仓库为B站：bannylon7相关Dify AI实战案例相关源码
 

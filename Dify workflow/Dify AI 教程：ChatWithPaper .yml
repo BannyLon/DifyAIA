@@ -1,0 +1,1745 @@
+app:
+  description: 分析论文内容，以XML格式提取关键信息，为研究人员提供结构化、易理解的论文摘要。并可进行论文内容的交互式学习。
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: 'Dify AI 教程：ChatWithPaper '
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.2
+workflow:
+  conversation_variables:
+  - description: 交互语言
+    id: d136360a-2fc1-4265-97ef-0d95cd9350a4
+    name: language
+    value: ''
+    value_type: string
+  - description: 原始论文。
+    id: 6103aafb-1ba3-4990-9bd3-57d51433f950
+    name: paper
+    value: []
+    value_type: array[string]
+  - description: 对话阶段。
+    id: a4e029a1-73ed-402e-a180-c607f779fbd3
+    name: chat_stage
+    value: ''
+    value_type: string
+  - description: 第二轮交互，将用户输入转换为prompt的内容。
+    id: 11340519-49cf-40b2-b088-09909ec740a0
+    name: chat2_user
+    value: ''
+    value_type: string
+  - description: 通过LLM大模型交互后的回答内容。
+    id: 88ff36c6-ed2d-4233-b2dd-e3ad819bba3c
+    name: chat2_assistance
+    value: ''
+    value_type: string
+  - description: 存储精读结果（学术快照+方法透视+学术棱镜）
+    id: 14f0acef-3038-44dc-8555-36b6d67278dd
+    name: paper_insight
+    value: []
+    value_type: array[string]
+  environment_variables:
+  - description: ''
+    id: aa8e9eb8-869e-4694-ac8f-5b1dca5dadad
+    name: chat2
+    value: ready
+    value_type: string
+  - description: ''
+    id: effc8e0c-78c9-4fe0-82f9-0f1a7b6168f6
+    name: chatX
+    value: chatX
+    value_type: string
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: 请上传论文，并选择或输入您的语言以开始：
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions:
+    - English
+    - 中文
+    suggested_questions_after_answer:
+      enabled: true
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: if-else
+      id: 1730630185966-source-1730630264417-target
+      selected: false
+      source: '1730630185966'
+      sourceHandle: source
+      target: '1730630264417'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: assigner
+      id: 1730630264417-true-1730631007055-target
+      selected: false
+      source: '1730630264417'
+      sourceHandle: 'true'
+      target: '1730631007055'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: assigner
+        targetType: document-extractor
+      id: 1730631007055-source-1730631054534-target
+      selected: false
+      source: '1730631007055'
+      sourceHandle: source
+      target: '1730631054534'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: document-extractor
+        targetType: variable-aggregator
+      id: 1730631054534-source-1730631118491-target
+      selected: false
+      source: '1730631054534'
+      sourceHandle: source
+      target: '1730631118491'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: variable-aggregator
+        targetType: llm
+      id: 1730631118491-source-1730631148281-target
+      selected: false
+      source: '1730631118491'
+      sourceHandle: source
+      target: '1730631148281'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: 1730631148281-source-answer-target
+      selected: false
+      source: '1730631148281'
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: variable-aggregator
+        targetType: llm
+      id: 1730631118491-source-1730633091910-target
+      selected: false
+      source: '1730631118491'
+      sourceHandle: source
+      target: '1730633091910'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: answer
+        targetType: template-transform
+      id: answer-source-1730633263379-target
+      selected: false
+      source: answer
+      sourceHandle: source
+      target: '1730633263379'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: template-transform
+      id: 1730633091910-source-1730633263379-target
+      selected: false
+      source: '1730633091910'
+      sourceHandle: source
+      target: '1730633263379'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: template-transform
+        targetType: llm
+      id: 1730633263379-source-1730633330276-target
+      selected: false
+      source: '1730633263379'
+      sourceHandle: source
+      target: '1730633330276'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: 1730633330276-source-1730634400456-target
+      selected: false
+      source: '1730633330276'
+      sourceHandle: source
+      target: '1730634400456'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: template-transform
+        targetType: llm
+      id: 1730633263379-source-1730634477242-target
+      selected: false
+      source: '1730633263379'
+      sourceHandle: source
+      target: '1730634477242'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: answer
+        targetType: template-transform
+      id: 1730634400456-source-1730634629774-target
+      selected: false
+      source: '1730634400456'
+      sourceHandle: source
+      target: '1730634629774'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: template-transform
+      id: 1730634477242-source-1730634629774-target
+      selected: false
+      source: '1730634477242'
+      sourceHandle: source
+      target: '1730634629774'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: template-transform
+        targetType: llm
+      id: 1730634629774-source-1730635296561-target
+      selected: false
+      source: '1730634629774'
+      sourceHandle: source
+      target: '1730635296561'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: template-transform
+        targetType: llm
+      id: 1730634629774-source-1730635431930-target
+      selected: false
+      source: '1730634629774'
+      sourceHandle: source
+      target: '1730635431930'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: 1730635431930-source-17306333553220-target
+      selected: false
+      source: '1730635431930'
+      sourceHandle: source
+      target: '17306333553220'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: llm
+      id: 1730635296561-source-1730635609787-target
+      selected: false
+      source: '1730635296561'
+      sourceHandle: source
+      target: '1730635609787'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: answer
+        targetType: llm
+      id: 17306333553220-source-1730635609787-target
+      selected: false
+      source: '17306333553220'
+      sourceHandle: source
+      target: '1730635609787'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: 1730635609787-source-1730635733731-target
+      selected: false
+      source: '1730635609787'
+      sourceHandle: source
+      target: '1730635733731'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: answer
+        targetType: template-transform
+      id: 1730635733731-source-1730635765829-target
+      selected: false
+      source: '1730635733731'
+      sourceHandle: source
+      target: '1730635765829'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: template-transform
+        targetType: assigner
+      id: 1730635765829-source-1730635836889-target
+      selected: false
+      source: '1730635765829'
+      sourceHandle: source
+      target: '1730635836889'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: assigner
+        targetType: assigner
+      id: 1730635836889-source-1730635907524-target
+      selected: false
+      source: '1730635836889'
+      sourceHandle: source
+      target: '1730635907524'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: assigner
+        targetType: assigner
+      id: 1730635907524-source-1730635931505-target
+      selected: false
+      source: '1730635907524'
+      sourceHandle: source
+      target: '1730635931505'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: list-operator
+      id: 1730630264417-b49c4e83-1194-482b-961b-7ccea3017467-1730638765410-target
+      selected: false
+      source: '1730630264417'
+      sourceHandle: b49c4e83-1194-482b-961b-7ccea3017467
+      target: '1730638765410'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: list-operator
+        targetType: template-transform
+      id: 1730638765410-source-1730638802430-target
+      selected: false
+      source: '1730638765410'
+      sourceHandle: source
+      target: '1730638802430'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: template-transform
+        targetType: llm
+      id: 1730638802430-source-1730638958510-target
+      selected: false
+      source: '1730638802430'
+      sourceHandle: source
+      target: '1730638958510'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: 1730638958510-source-1730639017500-target
+      selected: false
+      source: '1730638958510'
+      sourceHandle: source
+      target: '1730639017500'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: answer
+        targetType: assigner
+      id: 1730639017500-source-1730639078686-target
+      selected: false
+      source: '1730639017500'
+      sourceHandle: source
+      target: '1730639078686'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: assigner
+        targetType: assigner
+      id: 1730639078686-source-1730639119951-target
+      selected: false
+      source: '1730639078686'
+      sourceHandle: source
+      target: '1730639119951'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: assigner
+        targetType: assigner
+      id: 1730639119951-source-1730639155773-target
+      selected: false
+      source: '1730639119951'
+      sourceHandle: source
+      target: '1730639155773'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1730630264417-c3b58fe8-708a-4d8c-86e0-cb3ecf5d15b0-1730644512269-target
+      source: '1730630264417'
+      sourceHandle: c3b58fe8-708a-4d8c-86e0-cb3ecf5d15b0
+      target: '1730644512269'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: 1730644512269-source-1730644562416-target
+      source: '1730644512269'
+      sourceHandle: source
+      target: '1730644562416'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - allowed_file_extensions: []
+          allowed_file_types:
+          - document
+          allowed_file_upload_methods:
+          - local_file
+          - remote_url
+          label: Upload a paper
+          max_length: 48
+          options: []
+          required: true
+          type: file
+          variable: paper1
+      height: 109
+      id: '1730630185966'
+      position:
+        x: -45.008773991703606
+        y: 338.4232357667801
+      positionAbsolute:
+        x: -45.008773991703606
+        y: 338.4232357667801
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '{{#1730631148281.text#}}
+
+          ---
+
+
+          **以上是从文档提取器中快速总结的内容。**
+
+
+          如有任何问题，请随时按停止按钮。
+
+
+          AI正在阅读论文。
+
+
+          ---'
+        desc: ''
+        selected: false
+        title: 直接回复 预览
+        type: answer
+        variables: []
+      height: 198
+      id: answer
+      position:
+        x: 1822.6318158166175
+        y: 338.4232357667801
+      positionAbsolute:
+        x: 1822.6318158166175
+        y: 338.4232357667801
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: '='
+            id: 086a76cf-42a4-4794-abf8-78a724bb31b0
+            value: '1'
+            varType: number
+            variable_selector:
+            - sys
+            - dialogue_count
+          id: 'true'
+          logical_operator: and
+        - case_id: b49c4e83-1194-482b-961b-7ccea3017467
+          conditions:
+          - comparison_operator: is
+            id: c0cd9002-4299-49cc-b12e-be11ba8d28ba
+            value: '{{#env.chat2#}}'
+            varType: string
+            variable_selector:
+            - conversation
+            - chat_stage
+          id: b49c4e83-1194-482b-961b-7ccea3017467
+          logical_operator: and
+        - case_id: c3b58fe8-708a-4d8c-86e0-cb3ecf5d15b0
+          conditions:
+          - comparison_operator: is
+            id: e6d05e74-2a4e-48bd-9e97-cd85de7e20c9
+            value: '{{#env.chatX#}}'
+            varType: string
+            variable_selector:
+            - conversation
+            - chat_stage
+          id: c3b58fe8-708a-4d8c-86e0-cb3ecf5d15b0
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 条件分支
+        type: if-else
+      height: 274
+      id: '1730630264417'
+      position:
+        x: 231.21369324803118
+        y: 338.4232357667801
+      positionAbsolute:
+        x: 231.21369324803118
+        y: 338.4232357667801
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        assigned_variable_selector:
+        - conversation
+        - language
+        desc: ''
+        input_variable_selector:
+        - sys
+        - query
+        selected: false
+        title: 设置语言
+        type: assigner
+        write_mode: over-write
+      height: 153
+      id: '1730631007055'
+      position:
+        x: 534.2136932480312
+        y: 338.4232357667801
+      positionAbsolute:
+        x: 534.2136932480312
+        y: 338.4232357667801
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        is_array_file: false
+        selected: false
+        title: 论文提取
+        type: document-extractor
+        variable_selector:
+        - '1730630185966'
+        - paper1
+      height: 111
+      id: '1730631054534'
+      position:
+        x: 837.2136932480312
+        y: 338.4232357667801
+      positionAbsolute:
+        x: 837.2136932480312
+        y: 338.4232357667801
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        output_type: string
+        selected: false
+        title: 原始论文
+        type: variable-aggregator
+        variables:
+        - - '1730631054534'
+          - text
+      height: 137
+      id: '1730631118491'
+      position:
+        x: 1109.4735540480988
+        y: 338.4232357667801
+      positionAbsolute:
+        x: 1109.4735540480988
+        y: 338.4232357667801
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen2.5-72b-instruct
+          provider: tongyi
+        prompt_template:
+        - id: 98b7a75a-01e6-4ee6-8ea3-3c2e9e12259f
+          role: system
+          text: '用{{#conversation.language#}}语言写一篇200字的论文摘要,请按以下步骤进行:
+
+
+            1、仔细阅读全文,充分理解文章的主要观点、研究方法、结果和结论。
+
+            2、从各个主要章节(引言、方法、结果、讨论)中提取关键信息。
+
+            3、将核心要素提炼为精简的摘要,字数控制在200字左右。
+
+            4、确保摘要涵盖以下内容:
+
+            –   主要研究问题或研究目的
+
+            –   方法论的简要概述
+
+            –   重要发现和研究结果
+
+            –   主要结论和启示
+
+            5、使用清晰简洁的语言,除非必要否则避免专业术语。
+
+            6、按照要求调整语言风格(例如:学术/日常用语、专业程度、目标读者)。
+
+            7、完成初稿后检查字数,适当调整使其接近200字。
+
+            8、复查摘要内容,确保准确反映论文内容,避免偏差或误解。
+
+            9、检查语法、错别字,确保表述清晰。
+
+            10、除非特殊要求,摘要默认写成一个段落。
+
+            注意事项:
+
+            –   请根据具体要求调整语言风格
+
+            –   摘要应让读者能快速准确地理解论文要点
+
+            –   输出纯文本,不要包含任何标记
+
+
+            请记住根据任何特定要求调整语言和风格。目标是提供一篇读者可以快速理解的清晰、准确且简洁的论文概述。输出中不要包含任何XML标签。仅提供纯文本摘要。
+
+
+
+            示例：
+
+            输入：
+
+            论文：《气候变化对热带雨林生物多样性的影响》
+
+            语言要求：专业性较强,面向环境科学研究人员
+
+            输出：
+
+            本研究探讨了气候变化对热带雨林生物多样性的影响。研究团队对南美、非洲和东南亚地区的50项长期研究进行了元分析。结果表明,过去30年物种丰富度显著下降,这与气温升高和降水模式改变有关。研究特别指出,特有物种和栖息地范围较窄的物种表现出最高的脆弱性。监测数据显示目标物种的种群数量平均减少了15%,其中两栖类和爬行类受影响最大...'
+        - id: c378f1ac-eb2f-4a13-9598-644d73ac424b
+          role: user
+          text: '<paper_content>
+
+            {{#1730631118491.output#}}
+
+            </paper_content>'
+        selected: false
+        title: 简练总结
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 119
+      id: '1730631148281'
+      position:
+        x: 1443.2136932480312
+        y: 338.4232357667801
+      positionAbsolute:
+        x: 1443.2136932480312
+        y: 338.4232357667801
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: 论文精要概览
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen2.5:latest
+          provider: ollama
+        prompt_template:
+        - id: bce89842-6055-4cb9-bb5b-d1db83f0a8bc
+          role: system
+          text: 你是一位专业的科研助手,擅长总结学术论文。你的任务是从给定论文中提取关键信息,并以结构化的格式呈现,方便研究人员快速阅读。
+        - id: 1d053ea8-2f46-4be3-8cd8-1043c959df8f
+          role: user
+          text: '请按以下要求分析论文内容用{{#conversation.language#}}语言进行总结:
+
+
+            <paper_content>
+
+            {{#1730631118491.output#}}
+
+            </paper_content>
+
+             
+
+            请按照以下XML格式提取并呈现关键信息:
+
+            <paper_summary>
+
+            <title>
+
+            <original>[原文标题]</original>
+
+            <translation>[英文翻译(如适用)]</translation>
+
+            </title>
+
+            <authors>[作者列表]</authors>
+
+            <first_author_affiliation>[第一作者单位]</first_author_affiliation>
+
+            <keywords>[关键词列表]</keywords>
+
+            <urls>
+
+            <paper>[论文链接]</paper>
+
+            <github>[GitHub代码仓库链接(若无则填"暂无")]</github>
+
+            </urls>
+
+            <summary>
+
+            <background>[研究背景及意义]</background>
+
+            <objective>[主要研究问题或目标]</objective>
+
+            <methodology>[研究方法]</methodology>
+
+            <findings>[主要发现及其含义]</findings>
+
+            <impact>[研究的潜在影响]</impact>
+
+            </summary>
+
+            <key_figures>
+
+            <figure1>[重要图表1的简要说明(如有)]</figure1>
+
+            <figure2>[重要图表2的简要说明(如有)]</figure2>
+
+            </key_figures>
+
+            </paper_summary>
+
+             
+
+            撰写指南:
+
+            1、全文采用简洁的学术语言
+
+            2、将相关信息填入对应的XML标签中
+
+            3、避免在不同部分重复信息
+
+            4、保留原文的数值和单位
+
+            5、首次出现的专业术语请在括号中简要解释
+
+             
+
+            输出语言：
+
+            请用以下语言生成摘要:
+
+
+            <output_language>
+
+            {{#conversation.language#}}
+
+            </output_language>
+
+             
+
+            翻译说明：
+
+            如果输出语言不是英语,以下内容保持原文:
+
+            a) 论文原标题
+
+            b) 作者姓名
+
+            c) 专业术语(在括号内提供翻译)
+
+            d) 网址链接
+
+            翻译时要保持学术语气和技术准确性
+
+             
+
+            字数限制:
+
+            整个摘要控制在800字或5000字符以内(以先到者为准)'
+        selected: false
+        title: 学术快照
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 150
+      id: '1730633091910'
+      position:
+        x: 1443.2136932480312
+        y: 500.18422228604567
+      positionAbsolute:
+        x: 1443.2136932480312
+        y: 500.18422228604567
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: await
+        selected: false
+        template: Made by Dify
+        title: 模板转换
+        type: template-transform
+        variables: []
+      height: 95
+      id: '1730633263379'
+      position:
+        x: 2125.6318158166177
+        y: 338.4232357667801
+      positionAbsolute:
+        x: 2125.6318158166177
+        y: 338.4232357667801
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: 转换为人类阅读友好的格式(Markdown)
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen2.5:latest
+          provider: ollama
+        prompt_template:
+        - id: 0b061245-04c8-4c85-a26f-e4f8a226671e
+          role: system
+          text: 你是一位内容排版专家,擅长将XML格式的结构化内容转换为对读者友好的Markdown格式。你的任务是在不改变原始内容和语言的前提下,提升文档的可读性。
+        - id: 35495101-bdf2-4d6c-89d8-6e108d51baaa
+          role: user
+          text: "请将以下XML格式的方法论分析转换为结构良好的Markdown格式:\n\n<xml_content>\n{{#1730633091910.text#}}\n\
+            </xml_content>\n \n排版指南:\n1、保持原有语言,即使存在混合语言的情况。主要使用的语言应该是{{#conversation.language#}}。\n\
+            2、不要更改任何内容;你的任务仅限于格式转换。\n3、使用Markdown元素来提升可读性:\n   - 使用适当的标题层级(##, ###,\
+            \ ####)\n   - 在合适处使用项目符号或编号列表\n   - 适当使用粗体或斜体来强调重点(注意不要过度使用)\n   - 使用引用块标注重要陈述或发现\n\
+            4、确保Markdown格式能反映原XML的层级结构。\n5、排版要整洁、一致且易于阅读。\n \n示例结构（根据实际内容进行调整）：\n\
+            ## 方法论分析\n### 概述\n[内容]\n\n### 核心要素\n\n#### [要素1名称]\n- **描述**: [内容]\n-\
+            \ **创新点**: [内容]\n- **优势**: [内容]\n- **局限性**: [内容]\n\n[其他要素按相同格式]\n\n###\
+            \ 与目标的契合度\n[内容]\n\n### 可复现性\n[内容]\n\n### 总体评估\n[内容]\n \n你的目标是创建一个比XML格式更易读的Markdown文档,同时保持所有原始信息和结构完整。"
+        selected: false
+        title: MD友好输出
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 166
+      id: '1730633330276'
+      position:
+        x: 2450.6173455575313
+        y: 311.01615541057623
+      positionAbsolute:
+        x: 2450.6173455575313
+        y: 311.01615541057623
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '{{#1730635431930.text#}}'
+        desc: 输出-2
+        selected: false
+        title: 直接回复 方法论
+        type: answer
+        variables: []
+      height: 149
+      id: '17306333553220'
+      position:
+        x: 3668.015271734767
+        y: 525.8284823702766
+      positionAbsolute:
+        x: 3668.015271734767
+        y: 525.8284823702766
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '{{#1730633330276.text#}}'
+        desc: 输出-1
+        selected: false
+        title: 直接回复 精要概览
+        type: answer
+        variables: []
+      height: 149
+      id: '1730634400456'
+      position:
+        x: 2792.447488286956
+        y: 338.4232357667801
+      positionAbsolute:
+        x: 2792.447488286956
+        y: 338.4232357667801
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: 研究路径剖析 方法论解析
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen2.5:latest
+          provider: ollama
+        prompt_template:
+        - id: 6c023c1f-e56d-4e60-b28a-450183255bbe
+          role: system
+          text: 您是一位专业的研究方法论专家，擅长分析和总结学术论文中的研究方法。你的任务是对给定论文的研究方法进行清晰、简明但全面的分析,重点突出其创新点、优势和潜在局限性。你的分析将帮助其他研究者理解、评估、复现或改进这些方法。
+        - id: e0c6b75b-0031-45c6-b801-64fd277b570a
+          role: user
+          text: "分析以下论文的方法论，并根据以下指示提供一个结构化的摘要：\n \n您将使用两个主要输入：\n \n<paper_content>\n\
+            {{#conversation.paper#}}\n</paper_content>\n \n这是论文全文,作为你获取详细方法论信息的主要来源。\n\
+             \n<paper_summary>\n{{#1730633091910.text#}}\n</paper_summary>\n \n这是论文的结构化摘要,为你的分析提供背景信息。请参考这部分了解论文要点,但分析重点应放在全文内容上。\n\
+             \n方法论分析指南:\n1、仔细阅读论文全文中的方法部分。\n2、识别并分析方法论的核心要素,可能包括:\n   - 研究设计(如实验、观察、混合方法等)\n\
+            \   - 数据收集方法\n   - 抽样技术\n   - 分析方法\n   - 使用的工具或仪器\n   - 统计方法(如适用)\n3、对每个核心要素评估:\n\
+            \   - 创新性:该方法是否新颖或是对现有方法的独特应用?\n   - 优势:这种方法论方法的优点是什么?\n   - 局限性:该方法可能存在哪些不足或限制?\n\
+            4、评估方法论与论文摘要中所述研究目标的契合度。\n5、评估所述方法的清晰度和可复现性。\n \n请用以下XML格式呈现你的分析:\n<methodology_analysis>\
+            \ <overview> [用2-3句话概述整体方法论方法] </overview>\n<key_components> <component1>\
+            \ <name>[方法论要素名称]</name> <description>[描述该方法论要素]</description> <innovation>[讨论创新点]</innovation>\
+            \ <strengths>[列出主要优势]</strengths> <limitations>[提出潜在局限性]</limitations>\
+            \ </component1> <component2> [按相同结构列出其他要素] </component2> [根据需要添加更多要素]\
+            \ </key_components>\n<alignment_with_objectives> [讨论方法论与研究目标的契合度] </alignment_with_objectives>\n\
+            <replicability> [评论方法的清晰度和其他研究者复现的可能性] </replicability>\n<overall_assessment>\
+            \ [简要总结方法论的优缺点] </overall_assessment> </methodology_analysis>\n输出语言: 请用以下语言生成分析:\
+            \ \n<output_language>\n{{#conversation.language#}}\n</output_language>\n\
+             \n翻译说明:\n如果输出语言不是英语,以下内容保持原文:\n a) 专业术语(首次出现时在括号内提供翻译) \nb) 专有名词(如特定工具或方法的名称)\n\
+            保持学术语气和技术准确性\n\n注意事项:\n1、全文使用清晰、简洁的学术语言\n2、客观评估,用论文中的证据支持你的观点\n3、避免各部分内容重复\n\
+            4、如遇到方法论描述不明确或细节缺失,请在分析中指出\n5、必要时提供简短解释或示例以加深理解\n6、如某些方法论细节不清楚或缺失,请在总结中说明\n\
+            7、保留原有术语,必要时简要解释专业术语\n\n字数限制: 整个分析控制在600字或4000字符以内(以先到者为准)\n\n你的分析应为研究者提供有价值的见解,帮助他们理解、评估或在论文所述方法论基础上进行改进。"
+        selected: false
+        title: 方法透视
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 150
+      id: '1730634477242'
+      position:
+        x: 2441.3376337987033
+        y: 547.4123643377417
+      positionAbsolute:
+        x: 2441.3376337987033
+        y: 547.4123643377417
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        selected: false
+        template: made by dify
+        title: 模板转换 2
+        type: template-transform
+        variables: []
+      height: 64
+      id: '1730634629774'
+      position:
+        x: 3093.852734890452
+        y: 338.4232357667801
+      positionAbsolute:
+        x: 3093.852734890452
+        y: 338.4232357667801
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: 多方面论文评估
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen2.5:latest
+          provider: ollama
+        prompt_template:
+        - id: 7e8d7353-89d8-4cb6-81fe-5524213ac208
+          role: system
+          text: 你是一位经验丰富的学术研究者,负责对已发表的论文进行全面的批评性分析。你的角色是帮助读者理解和解读论文的贡献、研究方法和在相关领域的潜在影响。
+        - id: 56f68ccf-cf29-426b-8014-f87a06b7f671
+          role: user
+          text: "请使用以下输入和说明进行分析:\n \n<paper_summary>\n{{#1730633091910.text#}}\n</paper_summary>\n\
+             \n<methodology_analysis>\n{{#1730634477242.text#}}\n</methodology_analysis>\n\
+             \n仔细审阅论文摘要和方法论分析,然后根据以下标准评估论文:\n1、研究背景与目标：\n   - 评估论文在现有文献中的定位情况\n  \
+            \ - 评价研究目标的清晰度和重要性\n2、方法论方法:\n   -分析方法论的适当性和执行情况\n   -考虑方法论分析中提出的优势和局限性\n\
+            3、主要发现及其解释:\n   -检查主要研究结果及其解释\n   -评估发现如何 well 地解决了研究目标\n4、创新点和贡献：\n \
+            \  -识别任何新颖的方法或对该领域的独特贡献\n   -评估对该领域及相关领域的潜在影响\n5、局限性和未来方向：\n   -分析作者如何解决研究的局限性\n\
+            \   -考虑未来可能的研究方向\n6、实际应用:\n   -评估研究的实际应用或政策含义\n \n将你的分析综合成一份全面的评论,使用以下XML格式:\n\
+            <paper_analysis> <overview> [用2-3句话概述论文的主要重点和贡献] </overview>\n<key_strengths>\
+            \ <strength1>[描述论文的一个关键优势]</strength1> <strength2>[描述另一个关键优势]</strength2>\
+            \ [如有需要添加更多强项标签] </key_strengths>\n<potential_limitations> <limitation1>[描述一个潜在的局限性或需改进之处]</limitation1>\
+            \ <limitation2>[描述另一个潜在局限性]</limitation2> [如有需要添加更多局限性标签] </potential_limitations>\n\
+            <detailed_analysis> <research_context> [讨论论文如何融入更广泛的研究背景,以及研究目标的清晰度] </research_context>\n\
+             \n<methodology_evaluation>\n  [评估方法论,参考提供的分析,考虑其是否适合研究问题]\n</methodology_evaluation>\n\
+            \n<findings_interpretation>\n  [分析关键发现及其解释,考虑其与研究目标的相关性]\n</findings_interpretation>\n\
+            \n<innovation_and_impact>\n  [讨论论文的创新点及其对该领域的潜在影响]\n</innovation_and_impact>\n\
+            \n<practical_implications>\n  [评估研究的实际应用或政策含义]\n</practical_implications>\n\
+             \n </detailed_analysis>\n<future_directions> [建议潜在的未来研究方向或论文可扩展的领域] </future_directions>\n\
+            <reader_recommendations> [为读者提供关于如何解释或应用研究发现的建议,或论文可能更适用的读者群体] </reader_recommendations>\
+            \ </paper_analysis>\n\n\n输出语言: 请用以下语言生成分析:\n<output_language>\n{{#conversation.language#}}\n\
+            </output_language>\n \n翻译说明:\n   - 如果输出语言不是英语,以下内容保持原文:\na) 专业术语(首次出现时在括号内提供翻译)\n\
+            b) 专有名词(如特定理论、方法或作者的名称)\n   - 保持学术语气和技术准确性\n\n注意事项:\n1、全文保持客观和分析性的语气\n\
+            2、用论文摘要和方法论分析中的具体例子或证据支持你的评价\n3、兼顾研究的优势和潜在局限性\n4、讨论论文对整个领域的贡献,而不仅是其个别部分\n\
+            5、提供具体建议帮助读者理解或应用研究发现\n6、使用清晰、简洁的学术语言\n7、请记住,论文已经发表,关注如何帮助读者理解其价值和局限性,而不是提出修改建议\n\
+            \n字数限制: 整个分析控制在800字或5000字符以内(以先到者为准)\n\n你的分析应提供全面、平衡和具洞察力的评估,帮助读者理解论文的质量、贡献及其在该领域的潜在影响。"
+        selected: false
+        title: 学术棱镜：多维论文评估
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 150
+      id: '1730635296561'
+      position:
+        x: 3400.0422416834595
+        y: 338.4232357667801
+      positionAbsolute:
+        x: 3400.0422416834595
+        y: 338.4232357667801
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: 转换为人类阅读友好的格式(Markdown)
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen2.5:latest
+          provider: ollama
+        prompt_template:
+        - id: 640d523a-3703-4520-8c24-ddbd72983acd
+          role: system
+          text: 你是一位内容排版专家,擅长将XML格式的结构化内容转换为对读者友好的Markdown格式。你的任务是在不改变原始内容和语言的前提下,提升文档的可读性。
+        - id: ad0b3cc4-c701-49aa-911f-1d6668f81aba
+          role: user
+          text: "请将以下XML格式的方法论分析转换为结构完善的Markdown格式:\n \n<xml_content>\n{{#1730634477242.text#}}\n\
+            </xml_content>\n \n​排版要求：\n1、保持原有语言,即使存在混合语言的情况。核心语言应该是{{#conversation.language#}}。\n\
+            2、不要更改任何内容;你的任务仅限于格式转换。\n3、使用Markdown元素来提升可读性:\n   - 合理使用标题级别(##, ###,\
+            \ ####)\n   - 在适当处使用项目符号或编号列表\n   - 适度使用粗体或斜体来强调重点(避免过度使用)\n   - 使用引用块标注重要观点或研究发现\n\
+            4、确保Markdown格式能体现原XML的层级结构。\n5、排版要保持整洁、一致且易于阅读。\n \n示例结构(根据实际内容调整):\n\
+             ## 研究方法分析\n\n### 概述\n[内容]\n\n### 核心组成部分\n\n#### [组成部分1名称]\n- **具体描述**:\
+            \ [内容]\n- **创新点**: [内容]\n- **优势**: [内容]\n- **局限性**: [内容]\n\n[其他组成部分按相同格式展开]\n\
+            \n### 与研究目标的契合度\n[内容]\n\n### 可重复性分析\n[内容]\n\n### 总体评估\n[内容]\n \n你的目标是创建一个比XML格式更易读的Markdown文档,同时保持所有原始信息和结构的完整性。"
+        selected: false
+        title: MD友好输出-2
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 166
+      id: '1730635431930'
+      position:
+        x: 3400.0422416834595
+        y: 525.8284823702766
+      positionAbsolute:
+        x: 3400.0422416834595
+        y: 525.8284823702766
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: '(await)
+
+          转换为人类阅读友好的格式(Markdown),
+
+          并抛出几个简单衔接问题.'
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen2.5:latest
+          provider: ollama
+        prompt_template:
+        - id: a77d07ad-6863-4edb-b491-4cf44d21a6de
+          role: system
+          text: 你是一位内容专家,负责将XML格式的结构化内容转换为读者友好的Markdown格式,并生成引人深思的后续问题。你的目标是在不改变原始内容和分析的前提下,提高可读性并鼓励读者进一步探讨论文主题。
+        - id: a6a43215-101c-460c-89f6-6593a759d044
+          role: user
+          text: "1、XML转Markdown转换: 请将以下XML格式的论文分析转换为结构完善的Markdown格式:\n\n<xml_content>\n\
+            {{#1730635296561.text#}}\n</xml_content>\n \n转换要求:\n a) 保持内容的原始语言。主要使用的语言应该是:\n\
+            \n<output_language>\n{{#conversation.language#}}\n</output_language>\n\
+            \nb) 不要更改任何内容;你的任务仅限于格式转换和结构优化。 \nc) 使用Markdown元素提升可读性:\n      -合理使用标题级别(##,\
+            \ ###, ####)\n      -适当使用项目符号或编号列表\n      -适度使用粗体或斜体来强调重点(避免过度使用)\n  \
+            \    -使用引用块标注重要论述或发现\nd) 确保Markdown格式能体现原XML的层级结构。\ne) 排版要保持整洁、一致且易于阅读。\n\
+            \n2、生成后续问题:\n将内容转换为Markdown格式后,生成3-5个开放式后续问题,引导读者对论文及其影响进行批判性思考。这些问题应:\n\
+            \      -涉及论文的不同方面(如研究方法、研究发现、研究意义等)\n      -鼓励读者将论文内容与该领域的更广泛问题联系起来\n\
+            \      -引导读者思考实际应用或未来研究方向\n      -具有启发性且适合引发讨论\n\n3、最终输出结构: 按以下格式呈现你的输出:\n\
+             # 论文分析\n\n[插入转换后的Markdown内容]\n\n---\n\n## 深入思考\n\n思考以下问题,加深对论文及其意义的理解:\n\
+            \n1. [第一个后续问题]\n2. [第二个后续问题]\n3. [第三个后续问题]\n[根据需要添加更多问题]\n\n我们鼓励您思考这些问题,并与同行讨论,以获得对研究及其在该领域潜在影响的新见解。\n\
+             \n请记住,你的目标是创建一个比XML格式更易读的Markdown文档,同时保持所有原始信息和结构的完整性,并提供引发思考的问题,鼓励读者进一步探讨论文内容。"
+        selected: false
+        title: MD友好输出-3
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 198
+      id: '1730635609787'
+      position:
+        x: 3930.790360747066
+        y: 338.4232357667801
+      positionAbsolute:
+        x: 3930.790360747066
+        y: 338.4232357667801
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '{{#1730635609787.text#}}'
+        desc: 输出-3
+        selected: false
+        title: 直接回复 总结
+        type: answer
+        variables: []
+      height: 149
+      id: '1730635733731'
+      position:
+        x: 4198.353364264024
+        y: 338.4232357667801
+      positionAbsolute:
+        x: 4198.353364264024
+        y: 338.4232357667801
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        selected: false
+        template: '<paper_summary>
+
+          {{ text }}
+
+          </paper_summary>
+
+
+          <methodology_analysis>
+
+          {{ text_1 }}
+
+          </methodology_analysis>
+
+
+          <paper_evaluation>
+
+          {{ text_2 }}
+
+          </paper_evaluation>'
+        title: 精读结果汇总
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1730633091910'
+          - text
+          variable: text
+        - value_selector:
+          - '1730634477242'
+          - text
+          variable: text_1
+        - value_selector:
+          - '1730635296561'
+          - text
+          variable: text_2
+      height: 64
+      id: '1730635765829'
+      position:
+        x: 4454.047090214768
+        y: 338.4232357667801
+      positionAbsolute:
+        x: 4454.047090214768
+        y: 338.4232357667801
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        assigned_variable_selector:
+        - conversation
+        - paper_insight
+        desc: ''
+        input_variable_selector:
+        - '1730635765829'
+        - output
+        selected: false
+        title: 存储精读结果
+        type: assigner
+        write_mode: append
+      height: 153
+      id: '1730635836889'
+      position:
+        x: 4720.492242085797
+        y: 338.4232357667801
+      positionAbsolute:
+        x: 4720.492242085797
+        y: 338.4232357667801
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        assigned_variable_selector:
+        - conversation
+        - chat_stage
+        desc: ''
+        input_variable_selector:
+        - env
+        - chat2
+        selected: false
+        title: 更新对话阶段
+        type: assigner
+        write_mode: over-write
+      height: 153
+      id: '1730635907524'
+      position:
+        x: 4720.492242085797
+        y: 500.18422228604567
+      positionAbsolute:
+        x: 4720.492242085797
+        y: 500.18422228604567
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        assigned_variable_selector:
+        - conversation
+        - paper
+        desc: ''
+        input_variable_selector:
+        - '1730631118491'
+        - output
+        selected: false
+        title: 存储原始论文
+        type: assigner
+        write_mode: append
+      height: 153
+      id: '1730635931505'
+      position:
+        x: 4720.492242085797
+        y: 666.4135683016453
+      positionAbsolute:
+        x: 4720.492242085797
+        y: 666.4135683016453
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: 我们使用"最后一条记录"
+        filter_by:
+          conditions:
+          - comparison_operator: contains
+            key: ''
+            value: ''
+          enabled: false
+        item_var_type: string
+        limit:
+          enabled: false
+          size: 10
+        order_by:
+          enabled: false
+          key: ''
+          value: asc
+        selected: false
+        title: 列表操作
+        type: list-operator
+        var_type: array[string]
+        variable:
+        - conversation
+        - paper_insight
+      height: 142
+      id: '1730638765410'
+      position:
+        x: 534.2136932480312
+        y: 794.9543471248452
+      positionAbsolute:
+        x: 534.2136932480312
+        y: 794.9543471248452
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: 将用户输入转换为prompt
+        selected: false
+        template: "基于以下输入和指示进行论文研究讨论：\n\n<paper_info>\n{{ last_record }}\n</paper_info>\n\
+          \n互动指南：\n\n1. 仔细分析用户的问题：\n   <user_query>\n   {{ query }}\n   </user_query>\n\
+          \n2. 确定问题涉及论文的具体方面（例如，研究问题、研究方法、研究结果、研究意义）。\n\n3. 根据论文摘要、方法分析和评估提供的信息来形成回应。\n\
+          \n4. 如果问题需要超出所提供范围的信息，请明确说明这一限制。\n\n5. 基于您对研究背景的理解，提供与用户问题相关的额外见解或解释。\n\n\
+          回应策略：\n\n1. 对于方法论的问题：\n   - 参考方法论分析以获取详细解释。\n   - 说明所选方法的理论依据（如有讨论）。\n \
+          \  - 强调方法论的优点和局限性。\n\n2. 对于研究结果的问题：\n   - 提供关键发现的清晰、简洁的总结。\n   - 解释研究结果在研究问题中的重要性。\n\
+          \   - 提及与研究结果相关的局限性或注意事项。\n\n3. 对于研究意义或影响的问题：\n   - 讨论研究的理论和实践意义。\n   -\
+          \ 将研究发现与该领域的更广泛问题联系起来（如果适用）。\n   - 提及论文提出的任何未来研究方向。\n\n4. 对于比较性问题：\n   -\
+          \ 如果有相关信息，将本文与其他已知研究进行对比。\n   - 如果没有相关信息，明确表示需要额外信息才能进行比较。\n\n5. 对于技术或专业问题：\n\
+          \   - 提供既准确又易于理解的解释。\n   - 首次使用专业术语时提供定义。\n   - 在适当的时候使用类比或例子来澄清复杂的概念。\n\
+          \n语言和表达：\n\n- 使用清晰简洁的学术语言。\n- 在学术严谨性和易读性之间保持平衡。\n- 当适当时，使用主题句来清晰地构建你的回应。\n\
+          \n处理限制：\n\n- 如果问题超出所提供信息的范围，请明确说明这一限制。\n- 在不做无根据论断的前提下，建议寻找相关信息的大致方向。\n\
+          - 基于给定的论文分析诚实表明知识边界。\n\n输出语言：\n用以下语言生成回应：\n<output_language>\n{{ language\
+          \ }}\n</output_language>\n\n翻译指示：\n- 如果输出语言不是英语，除以下内容外均需翻译：\n  a) 专业术语（首次使用时在括号中提供翻译）\n\
+          \  b) 专有名词（如理论名称、方法名称或作者姓名）\n- 保持翻译的学术语气和技术准确性。\n\n最终提醒：\n1. 确保所有回应的准确性。\n\
+          2. 通过建议用户可能感兴趣的相关方面来促进深入理解。\n3. 如果问题模糊，在回应前请求澄清。\n4. 特别是在讨论论文优缺点时，保持客观的语气。\n\
+          5. 在适当时候建议可能有益的进一步研究领域。\n6. 回应应当方便阅读，采用markdown格式显示。\n\n您的目标是促进对研究论文富有成效和见解的讨论，加深用户的理解并鼓励对研究进行批判性思考。"
+        title: 格式化输出
+        type: template-transform
+        variables:
+        - value_selector:
+          - conversation
+          - language
+          variable: language
+        - value_selector:
+          - sys
+          - query
+          variable: query
+        - value_selector:
+          - '1730638765410'
+          - last_record
+          variable: last_record
+      height: 95
+      id: '1730638802430'
+      position:
+        x: 837.2136932480312
+        y: 794.9543471248452
+      positionAbsolute:
+        x: 837.2136932480312
+        y: 794.9543471248452
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gemma2:latest
+          provider: ollama
+        prompt_template:
+        - id: 26c84ed5-ecce-460f-b0c0-4542a255b336
+          role: system
+          text: 您是一位专业的学术智能助手,专门用于进行深入的学术论文探讨。您掌握了一篇特定研究论文的完整摘要、详细的研究方法分析以及专业评估内容。您的任务是与用户展开对话,解答他们关于论文的疑问,提供见解,帮助他们更深入地理解研究内容。
+        - id: cb326d6c-2573-416e-8d56-fc0906b29ece
+          role: user
+          text: '{{#1730638802430.output#}}'
+        selected: false
+        title: 与论文聊天
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 119
+      id: '1730638958510'
+      position:
+        x: 1137.5458376863019
+        y: 794.9543471248452
+      positionAbsolute:
+        x: 1137.5458376863019
+        y: 794.9543471248452
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '{{#1730638958510.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复
+        type: answer
+        variables: []
+      height: 118
+      id: '1730639017500'
+      position:
+        x: 1443.2136932480312
+        y: 794.9543471248452
+      positionAbsolute:
+        x: 1443.2136932480312
+        y: 794.9543471248452
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        assigned_variable_selector:
+        - conversation
+        - chat2_user
+        desc: ''
+        input_variable_selector:
+        - '1730638802430'
+        - output
+        selected: false
+        title: 存储prompt转换后的输出
+        type: assigner
+        write_mode: over-write
+      height: 153
+      id: '1730639078686'
+      position:
+        x: 1743.3405261687367
+        y: 794.9543471248452
+      positionAbsolute:
+        x: 1743.3405261687367
+        y: 794.9543471248452
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        assigned_variable_selector:
+        - conversation
+        - chat2_assistance
+        desc: ''
+        input_variable_selector:
+        - '1730638958510'
+        - text
+        selected: false
+        title: 存储LLM输出
+        type: assigner
+        write_mode: over-write
+      height: 153
+      id: '1730639119951'
+      position:
+        x: 2047.8750840368061
+        y: 794.9543471248452
+      positionAbsolute:
+        x: 2047.8750840368061
+        y: 794.9543471248452
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        assigned_variable_selector:
+        - conversation
+        - chat_stage
+        desc: ''
+        input_variable_selector:
+        - env
+        - chatX
+        selected: false
+        title: 更新对话阶段
+        type: assigner
+        write_mode: over-write
+      height: 153
+      id: '1730639155773'
+      position:
+        x: 2350.8797654671666
+        y: 794.9543471248452
+      positionAbsolute:
+        x: 2350.8797654671666
+        y: 794.9543471248452
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 50
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gemma2:latest
+          provider: ollama
+        prompt_template:
+        - id: 5f4afba1-b573-4ab0-8bb4-6b46a2735815
+          role: system
+          text: '<ai_info>
+
+            AI - ChatWithPaper 是由 Dify 开发的学术论文对话助手。它基于预先提供的论文摘要、方法论分析和评估来回答用户关于特定论文的问题。它能像该领域的资深学者一样，与对研究感兴趣的读者进行专业交流。当涉及知识局限性时，
+            AI - ChatWithPaper会及时告知用户。
+
+             
+
+            基本功能：
+
+            1、如果用户提问涉及论文发表日期之后的事件或进展，AI - ChatWithPaper 会告知用户关于该论文的知识截止日期。
+
+            2、AI - ChatWithPaper 无法打开链接、网址或视频。如果用户希望 AI - ChatWithPaper 查看链接内容，它会解释情况并请求用户直接粘贴相关文字或图片内容。
+
+            3、对于提供的与论文相关的图片，AI - ChatWithPaper 可以进行分析。
+
+            4、在讨论可能具有争议的研究话题时，AI - ChatWithPaper 基于论文内容和分析，提供审慎而清晰的信息。在呈现信息时，不直接标注为“敏感”或宣称“客观事实”，仅限于提供论文内容及其分析。
+
+            5、对于需要系统性思考的问题，AI - ChatWithPaper 会分步骤推理后给出最终解答。若因信息不足而无法回答某些问题，AI - ChatWithPaper
+            会直接告知用户信息不足，避免不必要的道歉用语。
+
+            6、对于论文摘要、方法论分析或评估中未涵盖的具体细节， AI - ChatWithPaper 会提醒用户其知识仅限于特定论文的已知信息。
+
+             
+
+            互动特点：
+
+            1、AI - ChatWithPaper保持学术好奇心，乐于就论文和相关研究话题展开学术讨论。如用户对回答不满意，它会建议向 Dify 提供反馈以改进系统。
+
+            2、对于需要长篇解释的问题，AI - ChatWithPaper 可分段解答并随时征询用户反馈。
+
+            3、论文相关的代码示例则会使用 markdown 格式展示，提供代码示例后，询问用户是否需要解释，仅在用户明确要求时才详细说明。
+
+             
+
+            图片分析能力：
+
+            1、AI - ChatWithPaper 可分析对话中分享的论文相关图片；
+
+            2、客观描述和讨论图片内容,重点关注与研究相关的图表、示意图、实验设置或数据可视化；
+
+            3、能够阅读和解释图片中的文字,并结合论文背景进行理解；
+
+            4、不会识别图片中的具体个人,对研究相关图片中的人物采用匿名方式讨论；
+
+            5、在开始分析前会先总结图片中包含的说明或标题。
+
+             
+
+            回答风格：
+
+            1、AI - ChatWithPaper对复杂问题提供详尽回答,对简单询问给出简明答复；
+
+            2、擅长论文深度分析、具体问题解答、方法论解释、意义讨论等多种学术任务；
+
+            3、直接回应用户信息,避免不必要的修饰语；
+
+            4、支持多语言交流,始终使用用户所用或要求的语言回应；
+
+            5、仅在与用户询问直接相关时才提及其背景信息。'
+        - id: da6f0ae6-e914-40b3-9e41-303a2bb61eef
+          role: user
+          text: '{{#conversation.chat2_user#}}'
+        - id: 2d4b6811-4023-4617-ba1a-6ac9a30f653e
+          role: assistant
+          text: '{{#conversation.chat2_assistance#}}'
+        selected: false
+        title: 与论文聊天
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 119
+      id: '1730644512269'
+      position:
+        x: 534.2136932480312
+        y: 1055.876194323424
+      positionAbsolute:
+        x: 534.2136932480312
+        y: 1055.876194323424
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '{{#1730644512269.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复
+        type: answer
+        variables: []
+      height: 118
+      id: '1730644562416'
+      position:
+        x: 837.2136932480312
+        y: 1055.876194323424
+      positionAbsolute:
+        x: 837.2136932480312
+        y: 1055.876194323424
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    viewport:
+      x: 32.21412722342893
+      y: -48.86173290869709
+      zoom: 0.5074931337786196

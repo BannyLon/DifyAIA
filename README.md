@@ -2,6 +2,19 @@ DifyAIA仓库-说明文档
 ==========
 本仓库为B站：bannylon7相关Dify AI实战案例相关源码
 
+BillPic2Web(票据内容识别并将识别的票据内容用HTML页面展示)
+---
+为B战bannylon7发布的Dify AI实战案例教学视频：[(MAC)BillPic2Web—AI智读票据，它能够实现票据图片的自动解析并生成网页](https://www.bilibili.com/video/BV166DDYLE7n/) 的相关源码。<br><br>
+BillPic2Web—AI智读票据，它能够实现票据图片的自动解析并生成网页。该AI应用支持用户上传票据图片并选定票据类型。系统首先校验用户所选类型与模型识别图片所得类型是否一致。若一致，应用将自动识别票据内容，并将其转化为可预览的HTML网页；若不一致，则提示用户确认类型后重试。简而言之，BillPic2Web能快速将票据图片转换成可视化的HTML页面，提升工作效率与便捷性。它集成了票据类型识别、内容提取及HTML生成等功能，旨在为用户提供全面的票据数字化解决方案。
+
+#### 使用指南
+1、下载文件夹bBillPic2Web到本地任意目录；<br>
+2、在BillPic2Web文件夹上右键单击，选择“服务——新建位于文件夹位置的终端窗口“；<br>
+3、在打开的终端窗口中输入执行flask服务命令：`Python invoice.py`<br>
+4、运行dify，在dify中导入 “Dify AI 应用：BillPic2Web.yml” DSL文件：在打开的工作流中修改LLM节点模型，以及修改HTTP请求节点的get请求的URL。<br>
+![](https://raw.githubusercontent.com/BannyLon/DifyAIA/refs/heads/main/BillPic2Web/1731242789983.jpg)
+
+
 解读Github项目智能机器人(analysis-Github-project)
 ---
 为B战bannylon7发布的Dify AI实战案例教学视频：[(MAC)使用本地部署的Dify搭建 AI自动总结概括GitHub项目](https://www.bilibili.com/video/BV1eNtse9Epo) 的相关源码。<br><br>

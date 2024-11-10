@@ -1,0 +1,88 @@
+/* 设置基本样式 */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    max-width: 980px; /* 控制最大宽度 */
+    margin: 0 auto; /* 居中对齐 */
+    padding: 20px; /* 内边距 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 边框阴影 */
+    background-color: #fff; /* 背景色 */
+}
+
+h1 {
+    font-size: 2em; /* 或者使用其他单位，比如 rem 或 px */
+    text-align: center;
+    margin-bottom: 1em; /* 这个margin可以根据实际需要调整 */
+    color: #007bff; /* 标题文字颜色 */
+}
+/* 特殊段落样式 */
+.special-p {
+    font-size: 1em;
+    text-align: center;
+    color:  #007bff;
+    font-weight: bold;
+    margin-top: calc(-2em); /* 负外边距，根据实际情况调整 */
+    margin-bottom: 2em;
+    /* text-indent: 2em;*/
+}
+
+/* 定义 div 的样式 */
+div {
+    display: block;
+    margin-bottom: 1rem;
+    text-indent: 2ch; /* "ch" 单位代表一个零的宽度 */
+}
+
+/* 给 <div> 内部的每个子元素添加下划线作为分隔符 */
+div > * + * {
+    border-top: 1px solid #ddd; /* 添加水平分隔线 */
+    margin-top: 1em; /* 分隔线上方的间距 */
+    padding-top: 1em; /* 分隔线下方的内边距 */
+}
+
+/* 对于 key-value 对，给 value 添加样式 */
+div > span:not([style*="color"]) {
+    color: #007bff;
+    font-weight: bold;
+}
+
+/* 对于数组和对象，调整样式 */
+pre {
+    display: block;
+    overflow-x: auto;
+    padding: 1rem;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+/* 对于嵌套的 JSON 结构，适当缩进 */
+pre code {
+    display: block;
+    white-space: pre-wrap;
+    word-break: break-word;
+    padding: 1rem;
+    background-color: #ebebeb;
+    border-radius: 5px;
+}
+
+/* 对于字符串值，使用单引号包裹 */
+span[type="string"]::before, span[type="string"]::after {
+    content: "'";
+}
+
+/* 对于数字值，使用特定的颜色 */
+span[type="number"] {
+    color: green;
+}
+
+/* 对于布尔值，使用特定的颜色 */
+span[type="boolean"] {
+    color: orange;
+}
+
+/* 对于 null 值，使用特定的颜色 */
+span[type="null"] {
+    color: red;
+}

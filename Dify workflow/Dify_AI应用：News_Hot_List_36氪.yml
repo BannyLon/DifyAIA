@@ -1,0 +1,694 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: 'Dify AI 教程：News Hot List '
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.3
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: http-request
+      id: 1731657142529-source-1731657173907-target
+      source: '1731657142529'
+      sourceHandle: source
+      target: '1731657173907'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: http-request
+        targetType: llm
+      id: 1731657173907-source-1731657269402-target
+      source: '1731657173907'
+      sourceHandle: source
+      target: '1731657269402'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: code
+      id: 1731657269402-source-1731657495644-target
+      source: '1731657269402'
+      sourceHandle: source
+      target: '1731657495644'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: iteration
+      id: 1731657495644-source-1731657624078-target
+      source: '1731657495644'
+      sourceHandle: source
+      target: '1731657624078'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        iteration_id: '1731657624078'
+        sourceType: http-request
+        targetType: llm
+      id: 1731657694132-source-1731657813535-target
+      source: '1731657694132'
+      sourceHandle: source
+      target: '1731657813535'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        sourceType: iteration
+        targetType: template-transform
+      id: 1731657624078-source-1731657915903-target
+      source: '1731657624078'
+      sourceHandle: source
+      target: '1731657915903'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        iteration_id: '1731657624078'
+        sourceType: template-transform
+        targetType: http-request
+      id: 1731662449984-source-1731657694132-target
+      source: '1731662449984'
+      sourceHandle: source
+      target: '1731657694132'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        iteration_id: '1731657624078'
+        sourceType: iteration-start
+        targetType: template-transform
+      id: 1731657624078start-source-1731662449984-target
+      source: 1731657624078start
+      sourceHandle: source
+      target: '1731662449984'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        sourceType: template-transform
+        targetType: code
+      id: 1731657915903-source-1732083026646-target
+      source: '1731657915903'
+      sourceHandle: source
+      target: '1732083026646'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: http-request
+      id: 1732083026646-source-1732083061013-target
+      source: '1732083026646'
+      sourceHandle: source
+      target: '1732083061013'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: http-request
+        targetType: end
+      id: 1732083061013-source-1731658032951-target
+      source: '1732083061013'
+      sourceHandle: source
+      target: '1731658032951'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables: []
+      height: 64
+      id: '1731657142529'
+      position:
+        x: 374.9091923574524
+        y: 42.18373368734646
+      positionAbsolute:
+        x: 374.9091923574524
+        y: 42.18373368734646
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data: []
+          type: none
+        desc: ''
+        headers: ''
+        method: get
+        params: ''
+        selected: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: 获取36氪24小时热榜
+        type: http-request
+        url: https://api.vvhan.com/api/hotlist/36Ke
+        variables: []
+      height: 134
+      id: '1731657173907'
+      position:
+        x: 643.668564924877
+        y: 42.18373368734646
+      positionAbsolute:
+        x: 643.668564924877
+        y: 42.18373368734646
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen2.5:latest
+          provider: ollama
+        prompt_template:
+        - id: 87334ee0-f176-4030-94da-324daaefd4b4
+          role: system
+          text: '```xml
+
+            <instruction>
+
+            <instructions>
+
+             1. 抓取了360氪新闻榜单 json ：{{#1731657173907.body#}}
+
+             2. 只生成榜单前面 3 条数据
+
+             3. 生成如下结构的内容：
+
+               [{
+
+                 "title": "新闻标题",
+
+                 "url": "新闻链接"
+
+               }]
+
+             4.输出不要添加```json 包裹
+
+            </instructions>
+
+             
+
+            <examples>
+
+             <example>
+
+               <output>
+
+                 [
+
+                   {"title": "8点1氪｜个人购房不超140平契税降至1%；特斯拉10万员工薪酬数据曝光；校园招聘严禁限定985和211高校","url":"https://36kr.com/p/3035465134387461"},
+
+                     {"title": "避免内耗，吉利将整合极氪和领克两大品牌｜36氪独家","url":"https://36kr.com/p/3034230633984003"},
+
+            {"title": "Transformer打破三十年数学猜想，Meta研究者用AI给出反例，算法杀手攻克数学难题｜36氪独家","url":"https://36kr.com/p/3034698843615238"},
+
+                 ]
+
+               </output>
+
+             </example>
+
+            <examples>'
+        selected: false
+        title: LLM梳理新闻数组
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 119
+      id: '1731657269402'
+      position:
+        x: 618.3168305973979
+        y: 282
+      positionAbsolute:
+        x: 618.3168305973979
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "import json\nimport re\n\ndef clean_url(url):\n    # 移除所有非打印的ASCII字符（包括控制字符）\n\
+          \    cleaned_url = re.sub(r'[\\x00-\\x1F\\x7F-\\x9F]', '', url)\n    # 移除多余的空格（包括制表符、换页符等）\n\
+          \    cleaned_url = re.sub(r'\\s+', ' ', cleaned_url).strip()\n    return\
+          \ cleaned_url\n\ndef main(arg1: str) -> dict:\n    try:\n        json_object\
+          \ = json.loads(arg1)\n        \n        # 遍历列表中的每个对象以获取 URL，并清理URL\n   \
+          \     if isinstance(json_object, list):\n            for item in json_object:\n\
+          \                raw_url = item.get('url')\n                if raw_url is\
+          \ not None:\n                    # 清理URL\n                    cleaned_url\
+          \ = clean_url(raw_url)\n                    # 更新item中的URL\n            \
+          \        item['url'] = cleaned_url\n        \n        return {\n       \
+          \     \"result\": json_object\n        }\n    except json.JSONDecodeError\
+          \ as e:\n        return {\n            \"result\": None,\n            \"\
+          error\": f\"Invalid JSON: {str(e)}\"\n        }\n\n# 示例输入\nrag1 = '[{\"\
+          name\": \"Item 1\", \"url\": \"http://item1.example.com\\n\"}, {\"name\"\
+          : \"Item 2\", \"url\": \"http://item2.example.com\"}]'\nprint(main(rag1))"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: array[object]
+        selected: false
+        title: 转换数据位json格式
+        type: code
+        variables:
+        - value_selector:
+          - '1731657269402'
+          - text
+          variable: arg1
+      height: 64
+      id: '1731657495644'
+      position:
+        x: 899.074037541089
+        y: 282
+      positionAbsolute:
+        x: 899.074037541089
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        error_handle_mode: terminated
+        height: 225
+        is_parallel: false
+        iterator_selector:
+        - '1731657495644'
+        - result
+        output_selector:
+        - '1731657813535'
+        - text
+        output_type: array[string]
+        parallel_nums: 10
+        selected: false
+        start_node_id: 1731657624078start
+        title: 迭代获取新闻正文
+        type: iteration
+        width: 934
+      height: 225
+      id: '1731657624078'
+      position:
+        x: 1187.0956292950807
+        y: 282
+      positionAbsolute:
+        x: 1187.0956292950807
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 934
+      zIndex: 1
+    - data:
+        desc: ''
+        isInIteration: true
+        selected: false
+        title: ''
+        type: iteration-start
+      draggable: false
+      height: 60
+      id: 1731657624078start
+      parentId: '1731657624078'
+      position:
+        x: 24
+        y: 68
+      positionAbsolute:
+        x: 1211.0956292950807
+        y: 350
+      selectable: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-iteration-start
+      width: 55
+      zIndex: 1002
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data: []
+          type: none
+        desc: ''
+        headers: ''
+        isInIteration: true
+        iteration_id: '1731657624078'
+        method: get
+        params: ''
+        selected: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: HTTP 请求 2
+        type: http-request
+        url: https://r.jina.ai/{{#1731662449984.output#}}
+        variables: []
+      height: 135
+      id: '1731657694132'
+      parentId: '1731657624078'
+      position:
+        x: 400.79820143179086
+        y: 68
+      positionAbsolute:
+        x: 1587.8938307268716
+        y: 350
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+      zIndex: 1002
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        isInIteration: true
+        iteration_id: '1731657624078'
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen2.5:latest
+          provider: ollama
+        prompt_template:
+        - id: 349acaa6-92d5-4fb1-9e26-259049474677
+          role: system
+          text: '```xml
+
+            <instruction>
+
+            <instructions>
+
+             1. jina 抓取了36氪新闻网页内容：{{#1731657694132.body#}}
+
+             2. 生成如下结构的内容：
+
+               新闻标题
+
+               ============================
+
+               新闻日期
+
+               新闻内容
+
+            </instructions>
+
+             
+
+            <examples>
+
+             <example>
+
+               <output>
+
+                    避免内耗，吉利将整合极氪和领克两大品牌｜36氪独家
+
+                    ============================
+
+                    2024-11-14 03:21
+
+                    具体方案预计年底落地
+
+
+            “进一步明晰各品牌定位，理顺股权关系，减少利益冲突和重复投资”，在吉利集团发布的《台州宣言》中，合并与重组成为集团调整的主旋律。
+
+
+            **36氪独家获悉，吉利集团旗下领克汽车将并入极氪汽车，由极氪CEO安聪慧统筹管理。合并后，领克品牌将被保留，但团队与战略将与极氪实现融合。**
+
+
+            其中，财务与采购团队将率先完成合并，产品、研发等部门的调整也将在今年年底至明年年初推进。
+
+
+            领克和极氪，可以说是近年来吉利孵化乘用车品牌双子星。今年前三季度，领克卖出16.98万辆，极氪销量逼近15万，两个品牌销量占吉利集团总销量近30%。不仅是销量支柱，更是吉利新能源转型的重要角色。
+
+
+            **知情人士透露，领克与极氪产品的重叠，是促使高层下定决心整合的原因。**
+
+               </output>
+
+             </example>
+
+            <examples>'
+        selected: false
+        title: LLM 2
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 119
+      id: '1731657813535'
+      parentId: '1731657624078'
+      position:
+        x: 667.9662803399297
+        y: 68
+      positionAbsolute:
+        x: 1855.0619096350104
+        y: 350
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+      zIndex: 1002
+    - data:
+        desc: ''
+        selected: false
+        template: '{{ arg1 | join("\n==============\n") }}'
+        title: 模板转换 2
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1731657624078'
+          - output
+          variable: arg1
+      height: 64
+      id: '1731657915903'
+      position:
+        x: 2150.229228420047
+        y: 282
+      positionAbsolute:
+        x: 2150.229228420047
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1732083061013'
+          - files
+          variable: output
+        selected: false
+        title: 结束
+        type: end
+      height: 109
+      id: '1731658032951'
+      position:
+        x: 2187.6002379283627
+        y: 581.7703328908169
+      positionAbsolute:
+        x: 2187.6002379283627
+        y: 581.7703328908169
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        isInIteration: true
+        iteration_id: '1731657624078'
+        selected: false
+        template: '{{ arg1.url }}'
+        title: 模板转换 2
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1731657624078'
+          - item
+          variable: arg1
+      height: 64
+      id: '1731662449984'
+      parentId: '1731657624078'
+      position:
+        x: 135.5358002659118
+        y: 68.74569884408527
+      positionAbsolute:
+        x: 1322.6314295609925
+        y: 350.74569884408527
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+      zIndex: 1002
+    - data:
+        code: "import re\n\ndef clean_text(text):\n    # 定义一个函数来判断字符是否有效\n    def\
+          \ is_valid_char(c):\n        # 允许可打印字符和换行符\n        return c.isprintable()\
+          \ or c == '\\n'\n    \n    # 使用 filter 函数移除无效字符\n    text = ''.join(filter(is_valid_char,\
+          \ text))\n    \n    # 移除多余的空白字符\n    text = re.sub(r'\\s+', ' ', text).strip()\n\
+          \    \n    return text\n\ndef main(arg1: str) -> dict:\n    return {\n \
+          \       \"result\": clean_text(arg1)\n    }\n\n# 示例用法\nif __name__ == \"\
+          __main__\":\n    sample_text = \"This is a test text with invalid control\
+          \ characters: \\x01\\x02\\x03 and some spaces   .\"\n    print(main(sample_text))"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 代码执行 2
+        type: code
+        variables:
+        - value_selector:
+          - '1731657915903'
+          - output
+          variable: arg1
+      height: 64
+      id: '1732083026646'
+      position:
+        x: 2423.537137054739
+        y: 282
+      positionAbsolute:
+        x: 2423.537137054739
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data:
+          - id: key-value-17
+            key: ''
+            type: text
+            value: "{\n  \"title\": \"24小时新闻资讯速览\",\n  \"content\": \"{{#1732083026646.result#}}\"\
+              \n}"
+          type: json
+        desc: ''
+        headers: Content-Type:application/json
+        method: post
+        params: ''
+        selected: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: HTTP 请求 3
+        type: http-request
+        url: http://192.168.0.141:5001/generate_doc
+        variables: []
+      height: 134
+      id: '1732083061013'
+      position:
+        x: 2199.056535470447
+        y: 410.0100340452678
+      positionAbsolute:
+        x: 2199.056535470447
+        y: 410.0100340452678
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    viewport:
+      x: -209.4900018423764
+      y: 142.84175362013906
+      zoom: 0.6171391218602714

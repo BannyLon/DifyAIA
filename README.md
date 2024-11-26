@@ -1,4 +1,4 @@
-DifyAIA仓库-说明文档
+<img width="1511" alt="image" src="https://github.com/user-attachments/assets/a0a217d6-fc9a-427d-aac8-41afcc39fe19">DifyAIA仓库-说明文档
 ==========
 本仓库为B站：bannylon7相关Dify AI实战案例相关源码
 
@@ -53,7 +53,7 @@ Dify workflow将存储我精心整理的所有与学习相关的Dify工作流。
 | [解析网页内容存到知识库.yml](https://www.bilibili.com/video/BV1CkxXeLEnn/)      |    利用Jina Reader从指定URL提取核心内容，借助大语言模型（LLM）将这些内容转化为清晰、易管理的文本内容，最后通过知识库API，将精炼后的文档上传至指定的ID知识库中。这一流程将极大地促进我们未来在构建检索增强生成模型（RAG）方面的工作。     |        ![](./Dify%20workflow/IME/1729837328598.jpg?raw=true) |
 | [dify AI 教程：图文智控链.yml](https://www.bilibili.com/video/BV1JiyXYNE2g/)      |    图文智控链是一款基于人工智能技术的智能工作流工具。它能够智能识别用户上传的图片和文档，并根据内容的不同进行灵活处理。无论是纯图片、纯文档还是图文混合的内容，该工作流都能迅速判断并启动相应的处理模式。通过精准的图片解读和文档总结功能，该工作流能够帮助用户快速获取所需信息，提高工作效率。     |        ![](./Dify%20workflow/IME/1729845555795.jpg?raw=true) |
 | [Dify AI 教程：ChatWithPaper .yml](https://www.bilibili.com/video/BV1CCSUYrExd/)     |    AI - ChatWithPaper 是由 Dify 开发的学术论文对话助手。它基于预先提供的论文摘要、方法论分析和评估来回答用户关于特定论文的问题。它能像该领域的资深学者一样，与对研究感兴趣的读者进行专业交流。当涉及知识局限性时， AI - ChatWithPaper会及时告知用户。     |        ![](./Dify%20workflow/IME/1730695240344.jpg?raw=true) |
-
+| [Dify AI 应用：Save To Notion.yml](https://www.bilibili.com/video/BV1BaUuYXEde/)     |    复刻“Save to Notion”这个扩展的功能，教大家如何在dify上搭建一个“一键将网页内容保存至Notion”的工作流。     |        ![](./Dify%20workflow/IME/1732612780877.jpg?raw=true) |
 
 
 

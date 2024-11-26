@@ -2,6 +2,19 @@ DifyAIA仓库-说明文档
 ==========
 本仓库为B站：bannylon7相关Dify AI实战案例相关源码
 
+DifyWordBridg(生成Word文档)
+---
+为B战bannylon7发布的Dify AI实战案例教学视频：[（全网首创）Dify AI 教程：DifyWordBridg](https://www.bilibili.com/video/BV13vSuYyE9X/) 相关源码。<br><br>
+DifyWordBridg是将Dify与Word结合。实现将大模型生成的内容一键生成Word文档
+
+#### 使用指南
+1、下载文件夹DifyWordBridg到本地任意目录；<br>
+2、在DifyWordBridg文件夹上右键单击，选择“服务——新建位于文件夹位置的终端窗口“；<br>
+3、在打开的终端窗口中输入执行启动flask服务命令：`Python3 Doc_flask_app.py`<br>
+4、运行dify，在dify中导入 “Dify AI 应用：DifyWordBridg.yml” DSL文件：在打开的工作流中修改LLM节点模型，以及修改HTTP请求节点的post请求的URL。<br>
+![](https://raw.githubusercontent.com/BannyLon/DifyAIA/refs/heads/main/DifyWordBridg/1732613793721.jpg)
+
+
 BillPic2Web(票据内容识别并将识别的票据内容用HTML页面展示)
 ---
 为B战bannylon7发布的Dify AI实战案例教学视频：[(MAC)BillPic2Web—AI智读票据，它能够实现票据图片的自动解析并生成网页](https://www.bilibili.com/video/BV166DDYLE7n/) 的相关源码。<br><br>

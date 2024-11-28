@@ -1,9 +1,10 @@
-DifyAIA仓库-说明文档
-==========
+# DifyAIA仓库-说明文档
+[English](README_EN.md) | [中文](README.md)
+
 本仓库为B站：bannylon7相关Dify AI实战案例相关源码
 
-DifyWordBridg(生成Word文档)
----
+## DifyWordBridg(生成Word文档)
+
 为B战bannylon7发布的Dify AI实战案例教学视频：[（全网首创）Dify AI 教程：DifyWordBridg](https://www.bilibili.com/video/BV13vSuYyE9X/) 相关源码。<br><br>
 DifyWordBridg是将Dify与Word结合。实现将大模型生成的内容一键生成Word文档
 
@@ -53,8 +54,8 @@ BillPic2Web—AI智读票据，它能够实现票据图片的自动解析并生�
 4、运行dify，在dify中导入 `思维导图生成助手mindmap_generator.yml` DSL文件：在打开的工作流中修改LLM节点模型，以及修改HTTP请求节点的get请求的URL。然后发布为工具。<br>
 5、再次导入 `思维导图生成助手.yml` DSL文件，在打开的Agent更换模型，同时删除已调用的工具，再重新添加刚发布的工具。然后就可以直接运行操作了。
 
-Dify workflow(Dify精选工作流)
----
+# Dify workflow(Dify精选工作流)
+
 Dify workflow将存储我精心整理的所有与学习相关的Dify工作流。我会不定期进行更新，确保你能找到所需的工作流。
 | 文件名称 | 文件描述 |文件图示 |
 | :-------------: | :----------: | :------------: |

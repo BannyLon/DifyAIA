@@ -68,7 +68,7 @@ Dify workflow将存储我精心整理的所有与学习相关的Dify工作流。
 | [Dify AI 教程：ChatWithPaper .yml](https://www.bilibili.com/video/BV1CCSUYrExd/)     |    AI - ChatWithPaper 是由 Dify 开发的学术论文对话助手。它基于预先提供的论文摘要、方法论分析和评估来回答用户关于特定论文的问题。它能像该领域的资深学者一样，与对研究感兴趣的读者进行专业交流。当涉及知识局限性时， AI - ChatWithPaper会及时告知用户。     |        ![](./Dify%20workflow/IME/1730695240344.jpg?raw=true) |
 | [Dify AI 应用：Save To Notion.yml](https://www.bilibili.com/video/BV1BaUuYXEde/)     |    复刻“Save to Notion”这个扩展的功能，教大家如何在dify上搭建一个“一键将网页内容保存至Notion”的工作流。     |        ![](./Dify%20workflow/IME/1732612780877.jpg?raw=true) |
 | [Dify_AI应用：News_Hot_List_36氪.yml](https://www.bilibili.com/video/BV1R5U6YvEZB/)     |    一键获取36氪平台的热榜精华文章     |        ![](./Dify%20workflow/IME/1732613122342.jpg?raw=true) |
-
+| [儿童故事播客.yml](https://www.bilibili.com/video/BV1xPioYPEJB/)     |    运用先进的大语言模型，根据用户需求定制生成精彩的儿童故事内容；随后，利用Audio工具将故事转化为生动的语音；同时，借助ComfyUI工具，还会为播客创作一张吸引人的主题图片。     |        ![](./Dify%20workflow/IME/1733996694245.jpg?raw=true) |
 
 
 <br><br><br><br><br><br>

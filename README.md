@@ -3,6 +3,20 @@
 
 本仓库为B站#bannylon7#UP主设计制作的Dify AI实战案例相关工作流，请使用 Dify 0.12.1 及以上版本导入。所有的 Workflow 都免费使用，我会不定期进行更新…………
 
+## DifyMarpFlask_PPT（生成PPT）
+为B战bannylon7发布的Dify AI实战案例教学视频：[Dify AI 教程：DifyMarpFlask_PPT](https://www.bilibili.com/video/BV1CL6MYKEGd/) 相关源码。<br><br>
+DifyMarpFlask_PPT是一款自动生成PPT的dify应用，希望对你的工作、学习有所帮助。
+<details>
+<summary>DifyMarpFlask_PPT 使用指南</summary>
+
+#### 使用指南
+1、下载文件夹DifyMarpFlask_PPT到本地任意目录；<br>
+2、在DifyMarpFlask_PPT文件夹上右键单击，选择“服务——新建位于文件夹位置的终端窗口“；<br>
+3、在打开的终端命令窗口输入命令：cd marp-flask-service；然后执行启动flask服务命令：`python3 marp-flask-service.py`<br>
+4、运行dify，在dify中导入 “PPT生成工具.yml” DSL文件，根据flask服务生成的链接地址对应修改http请求节点；然后生成工具。<br>
+5、最后导入 “PPT制作助手.yml” DSL文件，重新添加工具后即可执行操作。
+</details>
+
 ## DifyWordBridg(生成Word文档)
 为B战bannylon7发布的Dify AI实战案例教学视频：[（全网首创）Dify AI 教程：DifyWordBridg](https://www.bilibili.com/video/BV13vSuYyE9X/) 相关源码。<br><br>
 DifyWordBridg是将Dify与Word结合。实现将大模型生成的内容一键生成Word文档

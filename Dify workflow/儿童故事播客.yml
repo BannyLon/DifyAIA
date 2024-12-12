@@ -1,0 +1,378 @@
+app:
+  description: ''
+  icon: mage
+  icon_background: '#E4FBCC'
+  mode: workflow
+  name: 儿童故事播客
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.4
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: llm
+      id: 1732605362358-source-1732605368639-target
+      source: '1732605362358'
+      sourceHandle: source
+      target: '1732605368639'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: tool
+      id: 1732605368639-source-1732605537253-target
+      source: '1732605368639'
+      sourceHandle: source
+      target: '1732605537253'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: end
+      id: 1732605537253-source-1732605556499-target
+      source: '1732605537253'
+      sourceHandle: source
+      target: '1732605556499'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: llm
+      id: 1732605368639-source-1733370461963-target
+      source: '1732605368639'
+      sourceHandle: source
+      target: '1733370461963'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: tool
+      id: 1733370461963-source-1733370507505-target
+      source: '1733370461963'
+      sourceHandle: source
+      target: '1733370507505'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: end
+      id: 1733370507505-source-1732605556499-target
+      source: '1733370507505'
+      sourceHandle: source
+      target: '1732605556499'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - label: input
+          max_length: 256
+          options: []
+          required: true
+          type: text-input
+          variable: input
+      height: 109
+      id: '1732605362358'
+      position:
+        x: 80
+        y: 282
+      positionAbsolute:
+        x: 80
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1732605362358'
+          - input
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: Qwen/Qwen2.5-72B-Instruct
+          provider: siliconflow
+        prompt_template:
+        - id: 7bc28cb4-12de-49f3-9d2a-b0d4fc415252
+          role: system
+          text: '### 角色清晰
+
+
+            作为儿童文学作家，您擅长创作富有教育意义和想象力的儿童故事，尤其善于将科学、安全教育、唐诗宋词、历史等元素融入到故事内容中。您的任务是根据{{#context#}}扩充创意儿童故事，向孩子们传递科学、安全教育、唐诗宋词、历史等知识和人生哲理。
+
+
+            ### 结构化交互
+
+
+            请按照以下步骤进行：
+
+
+            1.  **故事背景**：根据用户提供的内容{{#1732605362358.input#}}，创作一个现代孩子的日常生活场景，并巧妙地引入一个儿童故事角色或元素。
+
+            2.  **情节构建**：设计故事情节，故事情节内容可以与科学、安全教育、唐诗宋词、历史等元素融入。
+
+            3.  **教育意义与启示**：通过故事结尾，揭示故事的教育意义和人生哲理，与主题相呼应。
+
+            4.  **中文输出**：最终全中文输出故事内容。'
+        - id: 67465dba-cd9b-4c0c-b867-26ade80ac180
+          role: user
+          text: '{{#1732605362358.input#}}'
+        selected: false
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 119
+      id: '1732605368639'
+      position:
+        x: 378.32089721811883
+        y: 282
+      positionAbsolute:
+        x: 378.32089721811883
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        provider_id: audio
+        provider_name: audio
+        provider_type: builtin
+        selected: false
+        title: Text To Speech
+        tool_configurations:
+          model: tongyi#tts-1
+          voice#tongyi#tts-1: sambert-zhijia-v1
+        tool_label: Text To Speech
+        tool_name: tts
+        tool_parameters:
+          text:
+            type: mixed
+            value: '{{#1732605368639.text#}}'
+        type: tool
+      height: 142
+      id: '1732605537253'
+      position:
+        x: 719.3322646291226
+        y: 223.81150854591522
+      positionAbsolute:
+        x: 719.3322646291226
+        y: 223.81150854591522
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1732605368639'
+          - text
+          variable: text
+        - value_selector:
+          - '1732605537253'
+          - files
+          variable: tts
+        - value_selector:
+          - '1733370507505'
+          - files
+          variable: image
+        selected: false
+        title: 结束
+        type: end
+      height: 174
+      id: '1732605556499'
+      position:
+        x: 1284.1749957390937
+        y: 223.81150854591522
+      positionAbsolute:
+        x: 1284.1749957390937
+        y: 223.81150854591522
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        author: 周辉
+        desc: ''
+        height: 263
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"输入用户提问的信息，比如“请为我编写一个关于‘勇气与成长’的儿童故事，我希望故事中的小主人公能面对自己的恐惧，并在过程中获得成长，内容字数不少500","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 308
+      height: 263
+      id: '1732611353713'
+      position:
+        x: -3832.37674370225
+        y: 544.3635304009266
+      positionAbsolute:
+        x: -3832.37674370225
+        y: 544.3635304009266
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 308
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1732605368639'
+          - text
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen2.5:latest
+          provider: ollama
+        prompt_template:
+        - id: 3441518e-ef31-450c-9491-06d6203f2348
+          role: system
+          text: 你是一位经验丰富的AI绘画prompt工程师。你的任务是根据{{#context#}}内容提炼出一条应用于AI绘画模型的prompt，prompt要包含儿童插画，这条prompt的目的是生成生成一幅故事内容相关的封面，最后将prompt翻译为英文输出
+        selected: false
+        title: LLM 2
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 119
+      id: '1733370461963'
+      position:
+        x: 719.3322646291226
+        y: 403.5991824773703
+      positionAbsolute:
+        x: 719.3322646291226
+        y: 403.5991824773703
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        provider_id: comfyui
+        provider_name: comfyui
+        provider_type: builtin
+        selected: false
+        title: 工作流
+        tool_configurations:
+          image_ids: null
+          seed_id: null
+          workflow_json: '{   "3": {     "inputs": {       "seed": 156680208700286,       "steps":
+            40,       "cfg": 4.5,       "sampler_name": "dpmpp_2m",       "scheduler":
+            "karras",       "denoise": 1,       "model": [         "10",         0       ],       "positive":
+            [         "6",         0       ],       "negative": [         "7",         0       ],       "latent_image":
+            [         "5",         0       ]     },     "class_type": "KSampler"   },   "5":
+            {     "inputs": {       "width": 768,       "height": 1024,       "batch_size":
+            1     },     "class_type": "EmptyLatentImage"   },   "6": {     "inputs":
+            {       "text": "",       "clip": [         "10",         1       ]     },     "class_type":
+            "CLIPTextEncode"   },   "7": {     "inputs": {       "text": "text, watermark",       "clip":
+            [         "10",         1       ]     },     "class_type": "CLIPTextEncode"   },   "8":
+            {     "inputs": {       "samples": [         "3",         0       ],       "vae":
+            [         "10",         2       ]     },     "class_type": "VAEDecode"   },   "9":
+            {     "inputs": {       "filename_prefix": "ComfyUI",       "images":
+            [         "8",         0       ]     },     "class_type": "SaveImage"   },   "10":
+            {     "inputs": {       "ckpt_name": {         "content": "SDXL/juggernautXL_juggXIByRundiffusion.safetensors",         "image":
+            "checkpoints/SDXL/juggernautXL_juggXIByRundiffusion.png"       },       "example":
+            "[none]"     },     "class_type": "CheckpointLoader|pysssss"   } }'
+        tool_label: 工作流
+        tool_name: workflow
+        tool_parameters:
+          positive_prompt:
+            type: mixed
+            value: '{{#1733370461963.text#}}'
+        type: tool
+      height: 174
+      id: '1733370507505'
+      position:
+        x: 972.62689581878
+        y: 403.5991824773703
+      positionAbsolute:
+        x: 972.62689581878
+        y: 403.5991824773703
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    viewport:
+      x: 72.4986395784149
+      y: 21.121405823836426
+      zoom: 0.5681896573697971

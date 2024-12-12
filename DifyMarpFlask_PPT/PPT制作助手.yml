@@ -1,0 +1,127 @@
+app:
+  description: PPT制作助手
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: agent-chat
+  name: PPT制作助手
+  use_icon_as_answer_icon: false
+kind: app
+model_config:
+  agent_mode:
+    enabled: true
+    max_iteration: 5
+    prompt: null
+    strategy: react
+    tools:
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: searxng
+      provider_name: searxng
+      provider_type: builtin
+      tool_label: SearXNG 搜索
+      tool_name: searxng_search
+      tool_parameters:
+        query: ''
+        search_type: ''
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: d62e3069-6f05-4bf2-9e5c-fd987386369b
+      provider_name: marp的PPT工具
+      provider_type: workflow
+      tool_label: marp的PPT工具
+      tool_name: save_marp_content
+      tool_parameters:
+        content: ''
+  annotation_reply:
+    enabled: false
+  chat_prompt_config: {}
+  completion_prompt_config: {}
+  dataset_configs:
+    datasets:
+      datasets: []
+    reranking_enable: true
+    retrieval_model: multiple
+    top_k: 4
+  dataset_query_variable: ''
+  external_data_tools: []
+  file_upload:
+    allowed_file_extensions:
+    - .JPG
+    - .JPEG
+    - .PNG
+    - .GIF
+    - .WEBP
+    - .SVG
+    - .MP4
+    - .MOV
+    - .MPEG
+    - .MPGA
+    allowed_file_types: []
+    allowed_file_upload_methods:
+    - remote_url
+    - local_file
+    enabled: false
+    image:
+      detail: high
+      enabled: false
+      number_limits: 3
+      transfer_methods:
+      - remote_url
+      - local_file
+    number_limits: 3
+  model:
+    completion_params:
+      stop: []
+    mode: chat
+    name: Qwen/Qwen2.5-72B-Instruct
+    provider: siliconflow
+  more_like_this:
+    enabled: false
+  opening_statement: ''
+  pre_prompt: '你是一个顶尖的PPT制作专家，专注于根据用户的多样化需求打造专业且富有吸引力的PPT内容。你的工作流程严谨而高效，旨在确保每一步都精准满足用户的期望。具体流程如下：
+
+    一、需求理解与大纲生成
+
+    你擅长倾听并深入理解用户的具体PPT制作需求，无论是主题、风格还是内容要点，你都能准确把握。若用户未提出明确需求或需求不严谨，你将运用自身丰富的经验和专业知识，主动为其构思并生成一份结构清晰、逻辑连贯的大纲。这一步骤为后续PPT制作奠定了坚实基础，确保内容策划的方向正确无误。
+
+    二、大纲确认与内容搜索
+
+    在生成大纲后，你会与用户进行确认，确保其满足用户的期望。一旦用户对大纲无异议，你将立即进入内容搜索阶段。你精通使用searxng工具，能够高效搜索互联网上的最新、最相关信息，确保PPT内容既准确又具时效性。你擅长按照用户的需求或已确认的大纲进行内容的筛选、整合和优化，使其与PPT主题和用户需求完美契合。
+
+    三、PPT内容生成与确认
+
+    根据已确认的大纲和searxng工具检索出的内容，你将逐步生成PPT内容。每页内容都经过精心设计和编排，确保视觉效果和信息传递效果最佳。你注重内容的精炼和简洁，每页内容不超过5行，以提高观众的阅读体验和注意力集中度。完成所有PPT页内容的生成后，你会与用户进行确认，并根据其反馈进行必要的修改，直至用户完全满意。
+
+    四、格式调整与问答沟通
+
+    在与用户沟通的过程中，你始终使用普通PPT格式给出内容，避免使用Marp等特定格式，以确保沟通的顺畅性和用户的理解度。你擅长根据用户的反馈和意见，对PPT的排版、结构和显示内容进行合理调整，确保PPT整体风格统一、排版优美、结构清晰。
+
+    需要合理分页，合理控制每页的显示内容，避免内容超出边界，确保观众能够轻松阅读和理解。
+
+    五、最终生成与交付
+
+    当用户对PPT内容完全确认后，你会询问其是否需要生成PPT文件。若用户确认需要，你将按照Marp格式要求生成最终内容，并调用save_marp_content进行保存。随后，你会将生成的PPT文件链接及时提供给用户，确保其能够顺利获取和使用。同时，你也会提供必要的操作指南或建议，以帮助用户更好地理解和利用PPT内容。
+
+    六、专业能力与服务态度
+
+    你具备深厚的PPT制作经验和专业知识，能够应对各种复杂需求，确保PPT内容的专业性和准确性。你始终保持耐心和细心，关注用户的反馈和需求变化，及时调整和优化PPT内容。你注重与用户的沟通和合作，尊重其意见和建议，共同打造出真正符合用户需求的PPT作品。'
+  prompt_type: simple
+  retriever_resource:
+    enabled: true
+  sensitive_word_avoidance:
+    configs: []
+    enabled: false
+    type: ''
+  speech_to_text:
+    enabled: false
+  suggested_questions: []
+  suggested_questions_after_answer:
+    enabled: false
+  text_to_speech:
+    enabled: false
+    language: ''
+    voice: ''
+  user_input_form: []
+version: 0.1.4

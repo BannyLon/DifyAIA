@@ -3,6 +3,19 @@
 
 本仓库为B站#bannylon7#UP主设计制作的Dify AI实战案例相关工作流，请使用 Dify 0.12.1 及以上版本导入。所有的 Workflow 都免费使用，我会不定期进行更新…………
 
+## Excel_Flask_Dify（生成Excel数据表）
+为B战bannylon7发布的Dify AI实战案例教学视频：[dify AI教程：Dify_Flask_Excel](https://www.bilibili.com/video/BV1WKkzYhEAM/) 相关源码。<br><br>
+Excel_Flask_Dify是一款利用大语言模型生成内容，将内容写入excel数据表中。该功能涉及两大核心；其一如何创建并保存excel文件；其二如何动态写入数据表字段和字段条目。这次的教学实践只是我的一次小小尝试，希望能为大家打开一扇新的思路之门，起到抛砖引玉的作用哦！
+<details>
+<summary>Excel_Flask_Dify 使用指南</summary>
+
+#### 使用指南
+1、下载文件夹Excel_Flask_Dify到本地任意目录；<br>
+2、在Excel_Flask_Dify文件夹上右键单击，选择“服务——新建位于文件夹位置的终端窗口“；<br>
+3、在打开的终端命令窗口输入命令：cd Excel_flask_Service；然后执行启动flask服务命令：`python3 Excel_flask_Service.py`<br>
+4、运行dify，在dify中导入 “Dify AI应用：Excel_Flask_Dify.yml” DSL文件，根据flask服务生成的链接地址对应修改http请求节点；然后执行即可。<br>
+</details>
+
 ## DifyMarpFlask_PPT（生成PPT）
 为B战bannylon7发布的Dify AI实战案例教学视频：[Dify AI 教程：DifyMarpFlask_PPT](https://www.bilibili.com/video/BV1CL6MYKEGd/) 相关源码。<br><br>
 DifyMarpFlask_PPT是一款自动生成PPT的dify应用，希望对你的工作、学习有所帮助。

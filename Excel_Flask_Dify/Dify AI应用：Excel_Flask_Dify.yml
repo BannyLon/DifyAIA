@@ -1,0 +1,247 @@
+app:
+  description: 生成excel表
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: Excel_Flask_Dify
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.4
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: http-request
+        targetType: end
+      id: 1734580476646-source-1733911223392-target
+      selected: false
+      source: '1734580476646'
+      sourceHandle: source
+      target: '1733911223392'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: llm
+      id: 1733911211555-source-1734586771596-target
+      selected: false
+      source: '1733911211555'
+      sourceHandle: source
+      target: '1734586771596'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: http-request
+      id: 1734586771596-source-1734580476646-target
+      source: '1734586771596'
+      sourceHandle: source
+      target: '1734580476646'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables: []
+      height: 65
+      id: '1733911211555'
+      position:
+        x: 354.311506858477
+        y: 201.97163681793995
+      positionAbsolute:
+        x: 354.311506858477
+        y: 201.97163681793995
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1734580476646'
+          - body
+          variable: body
+        selected: false
+        title: 结束
+        type: end
+      height: 110
+      id: '1733911223392'
+      position:
+        x: 1250.3990779302885
+        y: 201.97163681793995
+      positionAbsolute:
+        x: 1250.3990779302885
+        y: 201.97163681793995
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data:
+          - id: key-value-421
+            key: ''
+            type: text
+            value: "{\n  \"fields\": [\"姓名\", \"年龄\", \"职业\", \"姓名A\", \"年龄A\", \"\
+              职业A\"],\n  \"values\": {{#1734586771596.text#}}\n}"
+          type: json
+        desc: ''
+        headers: Content-Type:application/json
+        method: post
+        params: ''
+        selected: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: HTTP 请求
+        type: http-request
+        url: http://192.168.0.134:9000/create_excel
+        variables: []
+      height: 135
+      id: '1734580476646'
+      position:
+        x: 930.1019218318593
+        y: 201.97163681793995
+      positionAbsolute:
+        x: 930.1019218318593
+        y: 201.97163681793995
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            format: json
+            temperature: 0.7
+          mode: chat
+          name: qwen2.5:latest
+          provider: ollama
+        prompt_template:
+        - id: d3863d16-2329-4faf-a0c7-b425d40d0f57
+          role: system
+          text: '请根据以下描述生成一个包含30个条目的JSON对象，每个条目有六个字段："姓名"、"年龄"、"职业"、"姓名A"、"年龄A"和"职业A"。具体要求如下：
+
+
+            - "姓名"字段应包含30个不同的中国名字。
+
+            - "年龄"字段应包含30个介于20到65之间的整数。
+
+            - "职业"字段应包含30个常见的职业名称，可以从以下列表中随机选择："工程师", "医生", "教师", "律师", "设计师", "会计师",
+            "程序员", "科学家", "艺术家", "作家"。
+
+            - "姓名A"字段应包含30个不同的中国名字。
+
+            - "年龄A"字段应包含30个介于20到65之间的整数。
+
+            - "职业A"字段应包含30个常见的职业名称，可以从以下列表中随机选择："工程师", "医生", "教师", "律师", "设计师", "会计师",
+            "程序员", "科学家", "艺术家", "作家"。
+
+
+
+            请确保生成的内容是一个单一的、有效的JSON对象，并按照以下格式组织：
+
+             
+
+            ```json
+
+            {
+
+            "姓名": ["张三", "李四", "王五", ...], // 30个不同的中国名字
+
+            "年龄": [23, 34, 45, ...], // 30个介于20到65之间的整数
+
+            "职业": ["工程师", "医生", "教师", ...],  // 30个常见的职业名称
+
+            "姓名A": ["张三", "李四", "王五", ...], // 30个不同的中国名字
+
+            "年龄A": [23, 34, 45, ...], // 30个介于20到65之间的整数
+
+            "职业A": ["工程师", "医生", "教师", ...] // 30个常见的职业名称
+
+            }'
+        selected: true
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 120
+      id: '1734586771596'
+      position:
+        x: 637.3195454248513
+        y: 201.97163681793995
+      positionAbsolute:
+        x: 637.3195454248513
+        y: 201.97163681793995
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: -399.52155069306355
+      y: -4.37840219936345
+      zoom: 1.0409776263072898

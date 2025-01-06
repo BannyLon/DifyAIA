@@ -1,0 +1,316 @@
+app:
+  description: 输入一个词汇，自动生成一个短篇故事并配上 AI 生成的插图
+  icon: 📚
+  icon_background: '#FEF7C3'
+  mode: workflow
+  name: 词汇故事生成器-1
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.5
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions: []
+      allowed_file_types: []
+      allowed_file_upload_methods: []
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods: []
+      number_limits: 3
+    opening_statement: 请输入一个词汇,我将为您生成一个有趣的故事和配图
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: llm
+      id: start-llm1
+      selected: false
+      source: start
+      sourceHandle: source
+      target: llm1
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: llm
+      id: llm1-llm2
+      selected: false
+      source: llm1
+      sourceHandle: source
+      target: llm2
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: answer
+        targetType: end
+      id: answer-source-1735202046637-target
+      source: answer
+      sourceHandle: source
+      target: '1735202046637'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: answer
+      id: 1735202132673-source-answer-target
+      source: '1735202132673'
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: tool
+      id: llm2-source-1735202132673-target
+      source: llm2
+      sourceHandle: source
+      target: '1735202132673'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - label: 词汇
+          max_length: 48
+          options: []
+          required: true
+          type: text-input
+          variable: query
+      height: 109
+      id: start
+      position:
+        x: 722.3155638402603
+        y: 280.0366283265195
+      positionAbsolute:
+        x: 722.3155638402603
+        y: 280.0366283265195
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen2.5:latest
+          provider: ollama
+        prompt_template:
+        - id: 71212cb3-23ab-4b8f-898b-f980c8b1cf84
+          role: system
+          text: '你是一个专业的故事创作者。请基于用户输入的关键词创作一个简短的故事，字数控制在300字以内。故事要有完整的情节，包含开头、发展、高潮和结尾。语言要生动有趣。
+
+
+            用户输入: {{#start.query#}}'
+        selected: false
+        title: 生成故事
+        type: llm
+        vision:
+          enabled: false
+      height: 119
+      id: llm1
+      position:
+        x: 1026.3155638402604
+        y: 280.0366283265195
+      positionAbsolute:
+        x: 1026.3155638402604
+        y: 280.0366283265195
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - llm1
+          - text
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen2.5:latest
+          provider: ollama
+        prompt_template:
+        - id: 6c963368-46c3-4cd5-965b-3a2380613989
+          role: system
+          text: '请基于以下故事内容，生成一段简短的图片描述，用于AI绘图。描述要具体且富有视觉感，长度控制在50字以内。不要包含抽象概念，只描述具体可见的视觉元素。
+
+
+            故事内容：{{#llm1.text#}}
+
+
+            请用英文输出图片描述。'
+        selected: false
+        title: 生成图片描述
+        type: llm
+        vision:
+          enabled: false
+      height: 119
+      id: llm2
+      position:
+        x: 1308.7239306352044
+        y: 282
+      positionAbsolute:
+        x: 1308.7239306352044
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '这是根据"{{#start.query#}}"生成的故事：
+
+
+          {{#llm1.text#}}
+
+
+          配图：
+
+          {{#1735202132673.files#}}
+
+          '
+        desc: ''
+        selected: false
+        title: 回复
+        type: answer
+      height: 200
+      id: answer
+      position:
+        x: 1896.8267633979594
+        y: 282
+      positionAbsolute:
+        x: 1896.8267633979594
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - llm1
+          - text
+          variable: story
+        - value_selector:
+          - '1735202132673'
+          - files
+          variable: images
+        selected: false
+        title: 结束
+        type: end
+      height: 142
+      id: '1735202046637'
+      position:
+        x: 2187.493258514397
+        y: 282
+      positionAbsolute:
+        x: 2187.493258514397
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        provider_id: comfyui
+        provider_name: comfyui
+        provider_type: builtin
+        selected: false
+        title: 工作流
+        tool_configurations:
+          image_ids: null
+          seed_id: null
+          workflow_json: '{   "3": {     "inputs": {       "seed": 156680208700286,       "steps":
+            20,       "cfg": 8,       "sampler_name": "dpmpp_2m",       "scheduler":
+            "karras",       "denoise": 1,       "model": [         "4",         0       ],       "positive":
+            [         "6",         0       ],       "negative": [         "7",         0       ],       "latent_image":
+            [         "5",         0       ]     },     "class_type": "KSampler",     "_meta":
+            {       "title": "K采样器"     }   },   "4": {     "inputs": {       "ckpt_name":
+            "SDXL/juggernautXL_juggXIByRundiffusion.safetensors"     },     "class_type":
+            "CheckpointLoaderSimple",     "_meta": {       "title": "Checkpoint加载器(简易)"     }   },   "5":
+            {     "inputs": {       "width": 768,       "height": 1024,       "batch_size":
+            1     },     "class_type": "EmptyLatentImage",     "_meta": {       "title":
+            "空Latent"     }   },   "6": {     "inputs": {       "text": "beautiful
+            scenery nature glass bottle landscape, , purple galaxy bottle,",       "clip":
+            [         "4",         1       ]     },     "class_type": "CLIPTextEncode",     "_meta":
+            {       "title": "CLIP文本编码器"     }   },   "7": {     "inputs": {       "text":
+            "text, watermark",       "clip": [         "4",         1       ]     },     "class_type":
+            "CLIPTextEncode",     "_meta": {       "title": "CLIP文本编码器"     }   },   "8":
+            {     "inputs": {       "samples": [         "3",         0       ],       "vae":
+            [         "4",         2       ]     },     "class_type": "VAEDecode",     "_meta":
+            {       "title": "VAE解码"     }   },   "9": {     "inputs": {       "filename_prefix":
+            "ComfyUI",       "images": [         "8",         0       ]     },     "class_type":
+            "SaveImage",     "_meta": {       "title": "保存图像"     }   } }'
+        tool_label: 工作流
+        tool_name: workflow
+        tool_parameters:
+          positive_prompt:
+            type: mixed
+            value: '{{#llm2.text#}}'
+        type: tool
+      height: 174
+      id: '1735202132673'
+      position:
+        x: 1600
+        y: 282
+      positionAbsolute:
+        x: 1600
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    viewport:
+      x: -575.0560716630507
+      y: 33.11080453208319
+      zoom: 0.8148107281043515

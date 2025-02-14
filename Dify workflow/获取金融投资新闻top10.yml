@@ -1,0 +1,527 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: 获取金融投资新闻top10
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.5
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: code
+      id: 1739247873118-source-1739247876689-target
+      source: '1739247873118'
+      sourceHandle: source
+      target: '1739247876689'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: tool
+      id: 1739247876689-source-1739248078699-target
+      source: '1739247876689'
+      sourceHandle: source
+      target: '1739248078699'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: tool
+      id: 1739247876689-source-1739248185140-target
+      source: '1739247876689'
+      sourceHandle: source
+      target: '1739248185140'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: llm
+      id: 1739248078699-source-1739248251833-target
+      source: '1739248078699'
+      sourceHandle: source
+      target: '1739248251833'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: llm
+      id: 1739248185140-source-1739248406429-target
+      source: '1739248185140'
+      sourceHandle: source
+      target: '1739248406429'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: code
+      id: 1739248251833-source-1739248468102-target
+      source: '1739248251833'
+      sourceHandle: source
+      target: '1739248468102'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: code
+      id: 1739248406429-source-1739248468102-target
+      source: '1739248406429'
+      sourceHandle: source
+      target: '1739248468102'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: end
+      id: 1739248468102-source-1739248558398-target
+      source: '1739248468102'
+      sourceHandle: source
+      target: '1739248558398'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables: []
+      height: 64
+      id: '1739247873118'
+      position:
+        x: 80
+        y: 282
+      positionAbsolute:
+        x: 80
+        y: 282
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "function main() {\n    const date = new Date(new Date().toLocaleString(\"\
+          en-US\", {timeZone: \"Asia/Shanghai\"}));\n    date.setDate(date.getDate()\
+          \ - 1);\n    \n    // Ensuring the month and day are always two digits\n\
+          \    const day = String(date.getDate()).padStart(2, '0');\n    const month\
+          \ = String(date.getMonth() + 1).padStart(2, '0'); // getMonth() returns\
+          \ 0-11, so add 1\n    const year = date.getFullYear();\n    \n    const\
+          \ monthNames = [\"january\", \"february\", \"march\", \"april\", \"may\"\
+          , \"june\", \"july\", \"august\", \"september\", \"october\", \"november\"\
+          , \"december\"];\n    const tduDate = `tdu-${monthNames[date.getMonth()]}-${day}-${year}`;\
+          \ // Updated line\n    const mbDate = `${monthNames[date.getMonth()].toUpperCase().substring(0,\
+          \ 3)} ${date.getDate()}, ${date.getFullYear()}`;\n    const ejDate = `${month}/${day}/${year}`;\
+          \ // Already updated in your code\n    \n    return {\n                tduDate:\
+          \ tduDate,\n                mbDate: mbDate,\n                ejDate: ejDate\n\
+          \    };\n}"
+        code_language: javascript
+        desc: ''
+        outputs:
+          ejDate:
+            children: null
+            type: string
+          mbDate:
+            children: null
+            type: string
+          tduDate:
+            children: null
+            type: string
+        selected: false
+        title: 日期获取
+        type: code
+        variables: []
+      height: 64
+      id: '1739247876689'
+      position:
+        x: 384.6471820563121
+        y: 282
+      positionAbsolute:
+        x: 384.6471820563121
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        provider_id: firecrawl
+        provider_name: firecrawl
+        provider_type: builtin
+        selected: false
+        title: DAILYUPSIDE
+        tool_configurations:
+          excludeTags: .wp-block-image.size-large,wp-block-tdu-newsletters-newsletter-header,.wp-block-group.has-global-padding.is-layout-constrained.wp-block-group-is-layout-constrained,.wp-block-tdu-newsletters-just-for-fun,.wp-block-image
+          formats: markdown
+          headers: null
+          includeTags: .entry-content.tdu-newsletter-content.wp-block-post-content
+          onlyMainContent: 0
+          prompt: null
+          schema: null
+          systemPrompt: null
+          timeout: 30000
+          waitFor: 0
+        tool_label: 单页面抓取
+        tool_name: scrape
+        tool_parameters:
+          url:
+            type: mixed
+            value: https://www.thedailyupside.com/newsletter/[tduDate]/
+        type: tool
+      height: 402
+      id: '1739248078699'
+      position:
+        x: 720.1023528379928
+        y: 72.51411828090133
+      positionAbsolute:
+        x: 720.1023528379928
+        y: 72.51411828090133
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        provider_id: firecrawl
+        provider_name: firecrawl
+        provider_type: builtin
+        selected: false
+        title: EDWARD JONES
+        tool_configurations:
+          excludeTags: .paragraph.paragraph--type--_-4-panel
+          formats: markdown
+          headers: null
+          includeTags: '#sneakParent > div.container.grid.grid-cols-12.gap-6.lg\:space-y-0
+            > section > section'
+          onlyMainContent: 0
+          prompt: null
+          schema: null
+          systemPrompt: null
+          timeout: 30000
+          waitFor: 0
+        tool_label: 单页面抓取
+        tool_name: scrape
+        tool_parameters:
+          url:
+            type: mixed
+            value: https://www.edwardjones.com/us-en/market-news-insights/stock-market-news/daily-market-recap
+        type: tool
+      height: 402
+      id: '1739248185140'
+      position:
+        x: 731.9559017111782
+        y: 551.5255545138538
+      positionAbsolute:
+        x: 731.9559017111782
+        y: 551.5255545138538
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1739248078699'
+          - text
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.3
+          mode: chat
+          name: deepseek-chat
+          provider: deepseek
+        prompt_template:
+        - id: 3f3bf85a-da3a-484c-bfe0-c646705127f7
+          role: system
+          text: '<instructions>
+
+            根据提供的Markdown英文新闻，你的任务是列出新闻并逐一进行总结。
+
+
+            英文行文按照如下格式来提供，其中[Title], [Content], [NewsType]为占位符：
+
+            [NewsType(auto, economics, indicators, inflation)]\n
+
+            # [Title]
+
+            [Content]
+
+            以及
+
+            ## Extra Upside
+
+            - **[Title]:** [Content]
+
+
+            对于每一条新闻，你需要使用以下模板创建中文总结：
+
+
+            标题：xxx
+
+            内容：xxx
+
+            \n\n---\n\n
+
+            标题：xxx
+
+            内容：xxx
+
+
+            标题与内容应该为中文。并且标题应具有吸引力，并涵盖新闻中的三个要素：谁、何时、发生了什么。内容应是对新闻的概括性陈述。
+
+
+            以下是需要遵循的步骤：
+
+
+            1. 阅读提供的Markdown英文新闻。
+
+            2. 剔除最后有“\*”的“新闻”，因为该“新闻”是广告
+
+            2. 识别每条新闻中的关键要素：谁、何时、发生了什么。
+
+            3. 为每条新闻创建一个包含这些关键要素的吸引人的标题。
+
+            4. 撰写一条概括性陈述，总结每条新闻的内容。
+
+            5. 对于内容中提到关键数据、成果、举措或事件以及任何吸引眼的内容，通过markdown bold语法进行重点展示。
+
+
+            请确保你的输出不包含任何XML标签。
+
+            </instructions>'
+        - id: 8f5e043a-bfb6-4363-8194-cfc6d423d9e7
+          role: user
+          text: '{{#context#}}'
+        selected: false
+        title: DAILYUPSIDE REPORTER
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 119
+      id: '1739248251833'
+      position:
+        x: 1051.9037001013173
+        y: 72.51411828090133
+      positionAbsolute:
+        x: 1051.9037001013173
+        y: 72.51411828090133
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1739248185140'
+          - text
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.3
+          mode: chat
+          name: deepseek-chat
+          provider: deepseek
+        prompt_template:
+        - id: fe82af65-755d-416b-8192-ed8c7d23cdb1
+          role: system
+          text: '<instructions>
+
+            根据提供的Markdown英文新闻，你的任务是列出新闻并逐一进行总结。
+
+
+            英文行文按照如下格式来提供，其中[Title], [Content], [NewsType]为占位符：
+
+            **[Date(Thursday, 01/30/2025 a.m.)]**\n\n
+
+            **[Title] –** [Content] ...
+
+
+            对于每一条新闻，你需要使用以下模板创建中文总结：
+
+
+            标题：xxx
+
+            内容：xxx
+
+            \n\n---\n\n
+
+            标题：xxx
+
+            内容：xxx
+
+
+            标题与内容应该为中文。并且标题应具有吸引力，并涵盖新闻中的三个要素：谁、何时、发生了什么。内容应是对新闻的概括性陈述。
+
+
+            以下是需要遵循的步骤：
+
+
+            1. 请选择日期为{{#1739247876689.ejDate#}}的新闻进行阅读，不要阅读日期为其他事件的新闻内容。
+
+            2. 阅读提供的Markdown英文新闻。
+
+            3. 识别每条新闻中的关键要素：谁、何时、发生了什么。
+
+            4. 为每条新闻创建一个包含这些关键要素的吸引人的标题。
+
+            5. 撰写一条概括性陈述，总结每条新闻的内容。
+
+            5. 对于内容中提到关键数据、成果、举措或事件以及任何吸引眼的内容，通过markdown bold语法进行重点展示。
+
+
+            请确保你的输出不包含任何XML标签。
+
+            </instructions>'
+        - id: 6ab50ce2-f45e-49de-9599-d7b5ab13a709
+          role: user
+          text: '{{#context#}}'
+        selected: false
+        title: EDWARD JONES REPORTER
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 119
+      id: '1739248406429'
+      position:
+        x: 1034.9559017111783
+        y: 551.5255545138538
+      positionAbsolute:
+        x: 1034.9559017111783
+        y: 551.5255545138538
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "\ndef main(daily_upside: str, edward_jones: str) -> dict:\n    return\
+          \ {\n        \"result\": daily_upside +\"\\n\\n---\\n\\n\"+ edward_jones,\n\
+          \    }"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 输出格式整理
+        type: code
+        variables:
+        - value_selector:
+          - '1739248078699'
+          - text
+          variable: daily_upside
+        - value_selector:
+          - '1739248185140'
+          - text
+          variable: edward_jones
+      height: 64
+      id: '1739248468102'
+      position:
+        x: 1356.5508821576293
+        y: 72.51411828090133
+      positionAbsolute:
+        x: 1356.5508821576293
+        y: 72.51411828090133
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1739248468102'
+          - result
+          variable: output
+        selected: false
+        title: 结束
+        type: end
+      height: 109
+      id: '1739248558398'
+      position:
+        x: 1659.5508821576293
+        y: 72.51411828090133
+      positionAbsolute:
+        x: 1659.5508821576293
+        y: 72.51411828090133
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    viewport:
+      x: 20.083666804967606
+      y: 102.74830712914559
+      zoom: 0.6888311107398889

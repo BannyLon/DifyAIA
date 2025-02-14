@@ -85,6 +85,7 @@ BillPic2Web—AI智读票据，它能够实现票据图片的自动解析并生�
 Dify workflow将存储我精心整理的所有与学习相关的Dify工作流。我会不定期进行更新，确保你能找到所需的工作流。
 | 文件名称 | 文件描述 |文件图示 |
 | :-------------: | :----------: | :------------: |
+| [获取金融投资新闻top10.yml] |   运用大模型抓取 两个信息源（the daily upside 和 Edward Jones）的新闻原始数据，进行分析和理解，并进行总结。《The Daily Upside》‌是一个专注于金融顾问新闻、市场洞察和投资策略的媒体平台（https://www.thedailyupside.com/）；Edward Jones是一家总部位于美国的金融服务公司，专注于为个人投资者提供投资管理、财务咨询服务等。（https://www.edwardjones.com/）   |![](./Dify%20workflow/IME/1739502431373.jpg?raw=true)|
 | [词汇故事生成器.yml] |   输入一个词汇，自动生成一个短篇故事并配上 AI 生成的插图，工作流用到的生图节点是comfyui，因为我本地部署的有comfyui，就比较方便，如果你没有，你可以选择其它生图节点！   |![](./Dify%20workflow/IME/1736135410314.jpg?raw=true)|
 | [RedCanvas.yml](https://www.bilibili.com/video/BV1jTyeYGE8q/) |   一键生成吸引眼球的小红书文案和配图，让您的每篇内容都成为焦点！   |![](./Dify%20workflow/IME/RedCanvas.jpg?raw=true)|
 | [Twitter 账号分析助手.yml](https://www.bilibili.com/video/BV1Vw2QY4Ezf/)        |    根据用户提供的Twitter账户ID，利用HTTP请求和外部爬虫工具来抓取该ID的推文内容，并使用先进的LLM（Large Language Model，大型语言模型）技术对抓取到的社交平台数据进行深度分析。最终，我们将基于分析结果，模拟该用户的写作风格，撰写出符合我们要求的推文内容。     |        ![](./Dify%20workflow/IME/Twitter.jpg?raw=true) |

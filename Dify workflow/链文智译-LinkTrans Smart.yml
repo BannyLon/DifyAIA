@@ -1,0 +1,683 @@
+app:
+  description: 链文智译是一款基于大型语言模型的智能助手，其核心功能是通过提交网页链接即可自动获取网页内容并智能翻译为高质量的中文。
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: 链文智译-LinkTrans Smart
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/ollama:0.0.3@9ded90ac00e8510119a24be7396ba77191c9610d5e1e29f59d68fa1229822fc7
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/firecrawl:0.0.3@d668b3ad841e8bb27f735a8500568e44f9673156d1d4db72c304d0437bf80fd7
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/siliconflow:0.0.7@8b9d2f57d314120744c245b6fe4f8701e1a7490a500d9fb74e9e9dceeaea5f70
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/gemini:0.0.6@19b3c40f143a6bf4898d5c929984ef3fb961ef6dc5ef9e32f756264b2ba8c984
+kind: app
+version: 0.1.5
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: tool
+      id: 1739416823091-source-1739416889031-target
+      source: '1739416823091'
+      sourceHandle: source
+      target: '1739416889031'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: llm
+      id: 1739416889031-source-1739417108713-target
+      source: '1739416889031'
+      sourceHandle: source
+      target: '1739417108713'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: llm
+      id: 1739417108713-source-1739591458587-target
+      source: '1739417108713'
+      sourceHandle: source
+      target: '1739591458587'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: llm
+      id: 1739591458587-source-1739418260707-target
+      source: '1739591458587'
+      sourceHandle: source
+      target: '1739418260707'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: llm
+      id: 1739417108713-source-1739591481332-target
+      source: '1739417108713'
+      sourceHandle: source
+      target: '1739591481332'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: llm
+      id: 1739417108713-source-1739591485269-target
+      source: '1739417108713'
+      sourceHandle: source
+      target: '1739591485269'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: llm
+      id: 1739591481332-source-1739418260707-target
+      source: '1739591481332'
+      sourceHandle: source
+      target: '1739418260707'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: llm
+      id: 1739591485269-source-1739418260707-target
+      source: '1739591485269'
+      sourceHandle: source
+      target: '1739418260707'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: llm
+      id: 1739418260707-source-1739591515940-target
+      source: '1739418260707'
+      sourceHandle: source
+      target: '1739591515940'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: end
+      id: 1739591515940-source-1739419827927-target
+      source: '1739591515940'
+      sourceHandle: source
+      target: '1739419827927'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: 输入文章链接
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - label: 网页地址
+          max_length: 256
+          options: []
+          required: true
+          type: text-input
+          variable: url
+      height: 140
+      id: '1739416823091'
+      position:
+        x: 30
+        y: 396.5
+      positionAbsolute:
+        x: 30
+        y: 396.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: 使用 FireCrawl 抓取页面，返回 markdown 格式
+        provider_id: firecrawl
+        provider_name: firecrawl
+        provider_type: builtin
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 1000
+        selected: true
+        title: 单页面抓取
+        tool_configurations:
+          excludeTags: null
+          formats: markdown
+          headers: null
+          includeTags: null
+          onlyMainContent: 1
+          prompt: null
+          schema: null
+          systemPrompt: 提取该网页的主要内容，转换成大语言模型容易理解的 markdown 格式
+          timeout: 30000
+          waitFor: 0
+        tool_label: 单页面抓取
+        tool_name: scrape
+        tool_parameters:
+          url:
+            type: mixed
+            value: '{{#1739416823091.url#}}'
+        type: tool
+      height: 476
+      id: '1739416889031'
+      position:
+        x: 334
+        y: 396.5
+      positionAbsolute:
+        x: 334
+        y: 396.5
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1739416889031'
+          - text
+        desc: 使用 Google Gemini2.0 Flash 初步改写，并去除文章无关部分
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gemini-2.0-flash-exp
+          provider: langgenius/gemini/google
+        prompt_template:
+        - id: 8347e254-453e-4878-ad31-8c7bc35f77e3
+          role: system
+          text: "你是一位资深的语言专家，专精于将英文文章改写为高质量、地道的中文内容。你的任务不是简单的翻译，而是进行深度的内容重塑，在保持原文核心含义和信息完整性的前提下，使文本更符合中文读者的阅读习惯和表达方式。\n\
+            \n**任务目标：**\n\n1.  **深入理解原文，精准把握含义：**\n\n    *   **语境优先：** 始终将原文置于完整的语境中理解，包括上下文、段落关系和全文主旨，避免孤立地处理词句。\n\
+            \    *   **术语精译：** 准确识别并处理专业术语、行业术语，使用中文对应的规范表达，必要时可进行解释性翻译，确保目标读者理解。\n\
+            \    *   **文化转换：** 对于原文中的俚语、习语、双关语、典故等，进行意译和文化转换，传达原文的含义、情感和幽默感，避免生硬的直译。\n\
+            \    *   **信息补全：** 基于上下文和常识，合理推断原文中未直接表达但隐含的信息，并在改写中进行适当补充，使内容更连贯、易懂。\n\
+            \n2.  **中文表达，地道自然：**\n\n    *   **语序调整：** 根据中文的主谓宾结构和表达习惯，灵活调整原文语序，使改写后的文本流畅自然，符合中文语法。\n\
+            \    *   **长句拆分：** 将复杂的英文长句拆分为多个简洁的中文短句，或使用恰当的关联词进行连接，避免改写后的文本冗长、晦涩。\n\
+            \    *   **词汇精选：** 选用符合中文表达习惯、贴合语境的词汇，避免生硬的翻译腔，力求表达地道、精准、生动。\n    *  \
+            \ **语气匹配：** 准确把握原文的语气和情感（如正式、非正式、幽默、严肃、讽刺等），并在改写中自然呈现，避免语气不一致。\n    *\
+            \   **灵活意译：** 避免逐字逐句的机械翻译，提倡在理解原文含义的基础上进行灵活的意译，使改写后的文本更符合中文表达习惯。\n   \
+            \ *   **标点规范：** 严格遵循中文标点符号的使用规范，正确使用逗号、句号、问号、感叹号、引号、括号、破折号、省略号等。\n\n3.\
+            \  **信息完整，准确传达：**\n\n    *   **全面覆盖：** 确保改写后的文本完整、准确地传达原文的所有关键信息，不得遗漏、增添或歪曲任何事实、观点或细节。\n\
+            \    *   **重点突出：** 在保持信息完整性的前提下，可根据中文表达习惯，对原文信息的呈现顺序和方式进行调整，突出重点，使内容更易于理解。\n\
+            \n4.  **内容审查，去芜存菁：**\n\n    *   **无关信息剔除：** 重点审查文章的头部和尾部，识别并删除与文章正文核心内容无关的部分，例如：\n\
+            \        *   网页的 header/导航栏\n        *   作者信息（如果与文章主题无关）\n        *  \
+            \ 分享按钮、评论区、广告等\n        *   其他与正文无关的内容\n    *   **核心内容保留：** 确保最终输出的改写文本只包含文章的核心内容，简洁明了，重点突出。\n\
+            \n5.  **润色校对，精益求精：**\n\n    *   **多轮审查：** 改写完成后，进行多轮通读和审查，检查是否存在语法错误、逻辑不通、表达不清、用词不当等问题。\n\
+            \    *   **持续优化：** 对改写后的文本进行润色和优化，使其更符合中文表达习惯，更具可读性和吸引力。\n    *   **目标读者视角:**\
+            \ 站在目标读者的角度审视改写的内容, 确保其易于理解和接受.\n\n**输出要求：**\n\n*   输出的中文改写文本应流畅、自然、易懂、地道，完全符合中文的表达习惯和语法规范。\n\
+            *   改写文本应准确、完整地传达原文的含义、情感和所有关键信息，不得遗漏、增添或歪曲。\n*   专业术语必须使用中文对应的规范表达，必要时可进行解释性翻译。\n\
+            *   如原文适用于社交媒体等需要口语化的场景，改写时应注重口语化表达，并可适当调整原文结构。\n*   **输出格式：** Markdown\
+            \ 代码格式\n*   **Markdown 元素保留与调整：**\n    *   **保留：**\n        *   **图片：**\
+            \ 保留图片的链接和描述（`![alt text](image_url)`）。\n        *   **链接：** 保留超链接的文本和\
+            \ URL（`[link text](link_url)`）。\n        *   **代码块：** 完整保留代码块的格式和内容。\n\
+            \        *   **文本格式：** 保留加粗（`**bold**`）、斜体（`*italic*`）、删除线（`~~strikethrough~~`）等基本格式。\n\
+            \        *   **列表：**保留无序列表（`- item`）和有序列表（`1. item`）。\n        *   **标题：**\
+            \ 保留各级标题（`# H1`, `## H2`, `### H3` 等）。\n        *   **引用块**: 保留引用块 (`>\
+            \ quote`)\n    *   **调整：**\n        *   如果原文中的某些 Markdown 元素（如不相关的图片、链接）与改写内容无关，或者会影响中文阅读体验，可以删除或进行适当调整。\n\
+            \        *   可以根据中文排版习惯，对 Markdown 格式进行微调，例如增加空行、调整标题层级等，以提升阅读体验。\n  \
+            \  * **表格**: 如果原文是表格, 尽量将其转换为适合中文阅读的格式, 可以是重新设计的表格, 也可以是列表, 甚至是纯文本, 取决于表格的内容和复杂程度."
+        - id: 030c9cd8-f8de-45ce-9139-c4b6c98a1987
+          role: user
+          text: '**英文原文：**
+
+
+            {{#1739416889031.text#}}'
+        selected: false
+        title: 初步改写
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+            variable_selector: []
+          enabled: false
+      height: 156
+      id: '1739417108713'
+      position:
+        x: 638
+        y: 396.5
+      positionAbsolute:
+        x: 638
+        y: 396.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: 使用 Gemini 2.0 对原文和三个翻译版本进行综合分析，输出高质量的最终版本
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gemini-2.0-flash-exp
+          provider: langgenius/gemini/google
+        prompt_template:
+        - id: 65413034-effc-45f0-9b87-83c52c09c522
+          role: system
+          text: "你是一位资深的技术编辑和语言专家，擅长整合多方意见，对文本进行综合改进和优化。你的任务是：基于英文原文、初步改写稿以及三个评审 LLM\
+            \ 的意见，生成一份最终改进版的中文改写文章。\n\n**输入信息：**\n\n输入为一个 XML 结构，包含以下内容：\n\n```xml\n\
+            <article>\n  <source lang=\"en\">\n    <content><![CDATA[英文原文]]></content>\n\
+            \  </source>\n  <rewritten lang=\"zh\">\n    <draft><![CDATA[初步改写结果]]></draft>\n\
+            \    <review>\n      <llm1><![CDATA[LLM 1 的评审意见]]></llm1>\n      <llm2><![CDATA[LLM\
+            \ 2 的评审意见]]></llm2>\n      <llm3><![CDATA[LLM 3 的评审意见]]></llm3>\n    </review>\n\
+            \  </rewritten>\n</article>\n```\n\n*   `<source>`：英文原文。\n*   `<draft>`：初步改写稿。\n\
+            *   `<llm1>`：LLM 1 的评审意见（侧重语言流畅性和地道性）。\n*   `<llm2>`：LLM 2 的评审意见（侧重内容准确性和逻辑性）。\n\
+            *   `<llm3>`：LLM 3 的评审意见（侧重风格一致性和目标读者适配性）。\n\n**任务目标：**\n\n生成一份最终改进版的中文改写文章，该文章应：\n\
+            \n1.  **准确、完整地传达原文的所有信息。**\n2.  **语言流畅、地道、自然，符合中文表达习惯。**\n3.  **逻辑清晰、严谨，论证充分。**\n\
+            4.  **风格一致，符合目标读者（技术相关人员和对 AI、编程、产品、商业等领域感兴趣的一般读者）的阅读习惯。**\n5.  **最大程度的整合三个评审\
+            \ LLM 的合理建议。**\n\n**重要规则与注意事项：**\n\n1.  **全面评估评审意见：**\n    *   认真评估三个评审\
+            \ LLM 提出的所有意见。\n    *   优先采纳那些 *具体、明确、可操作* 的建议。\n    *   对于不同 LLM 提出的\
+            \ *相互矛盾* 的建议，请根据你的专业判断进行权衡和取舍，选择最有利于提升整体质量的方案。\n    *   如果某些建议不合理（例如，与原文意思不符、与目标读者不符、会导致逻辑错误等），可以\
+            \ *不采纳*，但请在最终报告中简要说明理由。\n\n2.  **保持文章结构稳定：**\n    *   *不要* 对文章的整体结构进行大幅度调整（例如，改变段落顺序、增删段落）。\n\
+            \    *   可以在 *段落内部* 进行句子顺序的微调，以优化表达。\n\n3.  **优先改进表达方式：**\n    *   重点关注\
+            \ *语言表达* 的优化（流畅性、地道性、自然度、用词、句式等）。\n    *   在保持原文信息完整、准确的前提下，对句子结构进行必要的调整，使表达更符合中文习惯。\n\
+            \n4.  **平衡技术性和通俗性：**\n    *   文章面向的读者既包括技术人员，也包括一般读者。\n    *   在保证专业术语准确使用的前提下，尽量使表达方式\
+            \ *通俗易懂*，避免过于专业或晦涩。\n    *   可以适当增加对专业术语的简要解释（如果初步改写稿中没有）。\n\n5. **保持与原文的一致性**:\n\
+            \    *  在改进过程中, 始终以原文为基准, 确保改写后的内容没有偏离原文的含义.\n\n6. **润色和校对**\n    * 在整合所有修改后,\
+            \ 进行全面的润色和校对, 确保最终的改写文章在各方面都达到最佳状态.\n\n**输出要求：**\n\n1.  **改进后的改写文章：**\n\
+            \    *   以 Markdown 格式输出最终改进版的中文改写文章。\n    *   格式规范，排版清晰，易于阅读。\n\n2. \
+            \ **修改说明（可选，但建议提供）：**\n    *   如果对某些评审意见进行了取舍，或者没有采纳某些建议，请简要说明理由。\n  \
+            \  *   可以列出主要的修改点，以及修改的依据（来自哪个 LLM 的建议，或你自己的专业判断）。\n    *   这个部分不是必须的,\
+            \ 但是如果提供, 将有助于人工审核人员理解你的修改思路.\n\n**示例（修改说明部分）：**\n\n```markdown\n**修改说明：**\n\
+            \n*   根据 LLM 1 的建议，修改了第2段第3句的表达，使其更地道。\n*   根据 LLM 2 的建议，更正了第4段的数据引用错误。\n\
+            *   没有采纳 LLM 3 关于调整文章开头的建议，因为我认为目前的开头方式更符合技术文章的惯例。\n*   根据自己的判断，在第3段增加了一个关于“XXX”术语的简要解释，以方便一般读者理解。\n\
+            ```"
+        - id: 34780038-abac-4839-9b8e-53a80b3af3ae
+          role: user
+          text: "<article>\n  <source lang=\"en\">\n    <content><![CDATA[{{#1739416889031.text#}}]]></content>\n\
+            \  </source>\n  <rewritten lang=\"zh\">\n    <draft><![CDATA[{{#1739417108713.text#}}]]></draft>\n\
+            \    <review>\n      <llm1><![CDATA[{{#1739591458587.text#}}]]></llm1>\n\
+            \      <llm2><![CDATA[{{#1739591481332.text#}}]]></llm2>\n      <llm3><![CDATA[{{#1739591485269.text#}}]]></llm3>\n\
+            \    </review>\n  </rewritten>\n</article>"
+        selected: false
+        title: 综合改进
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+            variable_selector: []
+          enabled: false
+      height: 172
+      id: '1739418260707'
+      position:
+        x: 1246
+        y: 578.5
+      positionAbsolute:
+        x: 1246
+        y: 578.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: 输出翻译后的 markdown 文章
+        outputs:
+        - value_selector:
+          - '1739591515940'
+          - text
+          variable: text
+        selected: false
+        title: 结束
+        type: end
+      height: 140
+      id: '1739419827927'
+      position:
+        x: 1854
+        y: 578.5
+      positionAbsolute:
+        x: 1854
+        y: 578.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: 专精于评估中文文本的流畅性、地道性和自然度
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen2.5:latest
+          provider: langgenius/ollama/ollama
+        prompt_template:
+        - id: 261afa39-2f8b-4d66-bbb3-6a72e12b4fe3
+          role: system
+          text: "你是一位资深的中文语言专家和技术编辑，专精于评估中文文本的流畅性、地道性和自然度。请仔细阅读以下由英文改写而来的中文技术文章（`draft`部分），并从语言表达的角度进行细致的评审，找出所有可能影响中文读者阅读体验的问题。\n\
+            \n**文章领域：** AI、编程、产品、商业等技术领域。\n**目标读者：** 技术相关人员和对这些领域感兴趣的一般读者。\n\n**评审重点（请务必全面考虑以下方面，重点关注表达方式和句子结构）：**\n\
+            \n1.  **流畅性（Fluency）：**\n\n    *   **句子流畅度：** 文本是否通顺易读，句子内部的词语顺序和成分组合是否符合中文习惯？\n\
+            \    *   **句子衔接：** 句子之间、段落之间的衔接是否自然、连贯？是否存在逻辑跳跃、指代不明或过渡生硬的情况？ *但请注意，尽量不要建议调整段落顺序或增删段落。*\n\
+            \    *   **语法正确性：** 是否存在语序不当、句式杂糅、成分残缺或赘余等语法问题？\n\n2.  **地道性（Idiomaticity）：**\n\
+            \n    *   **词汇选择：** 用词是否符合现代标准汉语的规范和习惯，以及技术领域的常用表达？是否存在生僻词、过时词语、网络用语滥用或“翻译腔”（不自然的直译）？\n\
+            \    *   **搭配习惯：** 动词与宾语、形容词与名词、副词与动词等的搭配是否符合中文表达习惯和技术领域的惯用搭配？是否存在搭配不当或中式英语的情况？\n\
+            \    *   **句式结构：** 句式结构（如主动/被动语态、长句/短句的使用）是否符合中文语法规范和技术文章的表达习惯？\n\n3.\
+            \  **自然度（Naturalness）：**\n\n    *   **整体风格：** 整体语言风格是否自然流畅，读起来是否像母语人士撰写的地道中文技术文章，而不是翻译作品？\n\
+            \    *   **书面/口语：** 文本的语言风格是偏书面语还是口语？是否与技术文章的类型和目标读者相符？是否存在过于书面化（文绉绉）或过于口语化（不够正式）的问题？\n\
+            \    *   **语气情感：** 语气和情感表达是否自然、贴切、得体？是否与原文的语气情感保持一致，并在中文语境下进行了恰当的转换？\n\
+            \n**重要约束：**\n\n*   **不随意修改文章结构：** 评审的重点是 *表达方式和句子结构* 的优化，请 *不要* 随意建议改变文章的段落结构、增删段落或大幅度调整内容顺序。\n\
+            * **可以微调段落内句子顺序**: 如果段落内的句子顺序调整能明显提升流畅性, 可以在 *段落内部* 进行句子顺序的微调.\n\n**具体建议（请务必提供）：**\n\
+            \n请针对文本中存在的 *任何* 影响流畅性、地道性和自然度的问题，给出 *具体、明确、可操作* 的改进建议。请明确指出：\n\n*   **问题位置：**\
+            \ 具体是哪一段、哪一句、甚至哪个词语存在问题。\n*   **问题描述：** 简要说明问题所在（例如：表达不地道、句子不通顺、搭配不当、语气不自然等）。\n\
+            *   **修改建议：** 提供修改后的文本（词语、短语、句子或段落）。\n\n**示例：**\n\n*   “第2段第3句‘……’表达不够地道，建议修改为‘……’。”\n\
+            *   “第4段整体语言风格过于正式，建议调整为更轻松、自然的口吻，例如将‘……’改为‘……’。”\n*   \"第1段的'XXX'一词使用不当，建议更换为更符合上下文语境和技术领域的'YYY'。\"\
+            \n*    \"第3段中，'A句'和'B句'的顺序调换后，逻辑更流畅，建议将'A句'放在'B句'之后。\" (段落内句子顺序微调)\n\n\
+            **输入格式说明：**\n\n输入为一个 XML 结构，其中 `<draft>` 标签内包含需要评审的中文改写文本：\n\n```xml\n\
+            <article>\n  <source lang=\"en\">\n    <content><![CDATA[原文内容]]></content>\n\
+            \  </source>\n  <rewritten lang=\"zh\">\n    <draft><![CDATA[初步改写结果]]></draft>\n\
+            \  </rewritten>\n</article>\n```\n\n**输出要求：**\n\n*   以 Markdown 格式输出评审意见和改进建议。\n\
+            *   务必做到 *条理清晰、具体明确、具有可操作性*。\n*   请 *逐条列出* 发现的问题和相应的改进建议，方便后续处理。\n*  \
+            \ 如果认为文本在某方面表现出色, 也可以简要指出."
+        - id: 30ce6464-dfd7-4231-b5aa-18ff402722ee
+          role: user
+          text: "<article>\n  <source lang=\"en\">\n    <content><![CDATA[{{#1739416889031.text#}}]]></content>\n\
+            \  </source>\n  <rewritten lang=\"zh\">\n    <draft><![CDATA[{{#1739417108713.text#}}]]></draft>\n\
+            \  </rewritten>\n</article>"
+        selected: false
+        title: 语言流畅性与地道性评审
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 156
+      id: '1739591458587'
+      position:
+        x: 942
+        y: 396.5
+      positionAbsolute:
+        x: 942
+        y: 396.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: 专精于评估文本的内容准确性、逻辑性和完整性
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-ai/DeepSeek-V3
+          provider: langgenius/siliconflow/siliconflow
+        prompt_template:
+        - id: d1047bfe-c22c-4634-bf73-0634d6e414ee
+          role: system
+          text: "你是一位资深的学术编辑、技术内容审核专家和事实核查员，专精于评估文本的内容准确性、逻辑性和完整性。请仔细阅读以下由英文改写而来的中文技术文章（`<rewritten>`\
+            \ 部分的 `<draft>` 标签内），并与原始英文文本（`<source>` 部分的 `<content>` 标签内）进行对比，从内容和逻辑的角度进行严格的评审。\n\
+            \n**文章领域：** AI、编程、产品、商业等技术领域。\n**目标读者：** 技术相关人员和对这些领域感兴趣的一般读者。\n\n**评审重点（请务必全面考虑以下方面，重点关注表达方式和句子结构）：**\n\
+            \n1.  **准确性（Accuracy）：**\n\n    *   **信息一致性：** 改写后的中文文本是否准确、完整地传达了原文的所有事实、观点、数据、细节和论证？不得遗漏、增添或歪曲任何信息。\n\
+            \    *   **术语准确性：** 专业术语、行业术语的翻译和使用是否准确、规范、一致？是否符合目标领域的通用标准和惯例？\n    *\
+            \   **事实核查：** 文中引用的事实、数据、案例等是否准确可靠？是否存在事实性错误或潜在的误导性信息？\n\n2.  **逻辑性（Logic）：**\n\
+            \n    *   **整体结构：** 文本的整体逻辑结构是否清晰、合理、严谨？论点是否明确，论据是否充分，论证是否有效？ *但请注意，评审的重点不是文章结构，而是句子和段落内部的逻辑。*\n\
+            \    *   **段落关系：** *在不改变段落顺序的前提下*，评估段落内部以及相邻段落之间的逻辑关系是否顺畅、连贯？是否存在逻辑跳跃、因果关系混乱、推理错误或论证不充分的情况？\n\
+            \    *   **概念一致性:** 文中使用的概念是否清晰, 定义是否明确, 是否存在概念混淆或自相矛盾的情况?\n\n3.  **完整性（Completeness）**:\
+            \ 考虑到目标读者可能包含一般读者,\n    * **背景信息**: 是否提供了充分的背景信息, 使不了解相关领域的读者也能理解文章内容?\
+            \ *但请注意, 不建议增加大段的背景介绍, 而是关注现有内容是否清晰易懂.*\n    *   **论证完整**: 论证过程是否完整, 是否有缺失的关键环节或必要的解释说明?\
+            \ *但请注意, 不建议增加新的论证部分, 而是关注现有论证是否清晰.*\n    *   **信息覆盖**: 是否涵盖了原文中所有重要的信息点,\
+            \ 是否有遗漏或省略?\n\n**重要约束：**\n\n*   **不随意修改文章结构：** 评审的重点是 *表达方式和句子结构* 的优化，以及\
+            \ *现有内容* 的准确性、逻辑性和完整性。请 *不要* 建议改变文章的段落结构、增删段落或大幅度调整内容顺序。\n\n**具体建议（请务必提供）：**\n\
+            \n请针对文本中存在的 *任何* 影响内容准确性、逻辑性或完整性的问题，给出 *具体、明确、可操作* 的改进建议。请明确指出：\n\n* \
+            \  **问题位置：** 具体是哪一段、哪一句、甚至哪个词语或短语存在问题。\n*   **问题描述：** 简要说明问题所在（例如：与原文不符、事实错误、逻辑矛盾、论据不足、缺少必要的解释等）。\n\
+            *   **修改建议：** 提供修改后的文本（词语、短语、句子），或明确指出需要如何调整现有表述。 *请尽量在不改变原文整体结构的前提下进行修改。*\n\
+            \n**示例：**\n\n*   “第3段第2句‘……’与原文意思不符，根据原文‘……’，建议修改为‘……’。”\n*   \"第5段中，'因为A，所以B'的因果关系不成立，建议修改为'虽然A，但是B'。\"\
+            \n*   \"第2段中，'XXX'这个术语对于一般读者可能难以理解，建议在术语后增加一个简短的解释，例如：'XXX（……）'。\"\n*\
+            \   \"第4段引用的数据'...'可能存在错误, 建议核实数据来源, 并更正为'...' (如果能提供正确的数据和来源)\"\n\n**输入格式说明：**\n\
+            \n输入为一个 XML 结构：\n\n```xml\n<article>\n  <source lang=\"en\">\n    <content><![CDATA[原文内容]]></content>\n\
+            \  </source>\n  <rewritten lang=\"zh\">\n    <draft><![CDATA[初步改写结果]]></draft>\n\
+            \  </rewritten>\n</article>\n```\n**输出要求：**\n\n*   以 Markdown 格式输出评审意见和改进建议。\n\
+            *   务必做到 *条理清晰、具体明确、具有可操作性*。\n*   请 *逐条列出* 发现的问题和相应的改进建议，方便后续处理。\n*  \
+            \ 如果认为文本在某方面表现出色（例如，某一段落的逻辑非常清晰），也可以简要指出。"
+        - id: 1b489dcb-6d16-401c-9d49-4f1feb10b657
+          role: user
+          text: "<article>\n  <source lang=\"en\">\n    <content><![CDATA[{{#1739416889031.text#}}]]></content>\n\
+            \  </source>\n  <rewritten lang=\"zh\">\n    <draft><![CDATA[{{#1739417108713.text#}}]]></draft>\n\
+            \  </rewritten>\n</article>"
+        selected: false
+        title: 内容准确性与逻辑性评审
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 156
+      id: '1739591481332'
+      position:
+        x: 942
+        y: 578.5
+      positionAbsolute:
+        x: 942
+        y: 578.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: 专精于评估文本的风格一致性、目标读者适配性和整体表达效果
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gemini-2.0-flash-exp
+          provider: langgenius/gemini/google
+        prompt_template:
+        - id: 285974ac-a79d-445c-919f-0ea1a052a809
+          role: system
+          text: "你是一位资深的文案策划、技术传播专家和用户体验研究员，专精于评估文本的风格一致性、目标读者适配性和整体表达效果。请仔细阅读以下由英文改写而来的中文技术文章（`<rewritten>`\
+            \ 部分的 `<draft>` 标签内），从风格、受众和传播效果的角度进行全面评审。\n\n**文章领域：** AI、编程、产品、商业等技术领域。\n\
+            **目标读者：** 技术相关人员和对这些领域感兴趣的一般读者。\n\n**评审重点（请务必全面考虑以下方面，重点关注表达方式和句子结构）：**\n\
+            \n1.  **风格一致性（Style Consistency）：**\n\n    *   **整体风格：** 文本的整体语言风格（如正式/非正式、严肃/幽默、客观/主观等）是否一致、统一？\n\
+            \    *   **语气语调：** 语气、语调是否在全文中保持一致？是否存在前后不一致或 হঠাৎ转变的情况？\n    *   **用词造句：**\
+            \ 用词风格、句式选择（如长句/短句、主动/被动）是否在全文中保持一致？是否存在风格混杂的情况？\n    *   **行文节奏**: 文章的行文节奏是否一致,\
+            \ 是否有忽快忽慢的情况? *但请注意，不要建议改变文章的整体节奏，重点关注句子和段落内部的节奏。*\n\n2.  **目标读者适配性（Target\
+            \ Audience Appropriateness）：**\n\n    *   **读者画像：**  目标读者为技术相关人员和对 AI、编程、产品、商业等领域感兴趣的一般读者。\n\
+            \    *   **语言难度：** 文本的语言难度（词汇、句式、专业术语的使用等）是否符合目标读者的理解能力？是否在技术深度和通俗易懂之间取得了平衡？\n\
+            \    *   **内容深度：** 文本的内容深度、信息量是否符合目标读者的需求和兴趣？ *但请注意，不要建议增删内容，重点关注现有内容的呈现方式。*\n\
+            \    *   **表达方式：** 文本的表达方式（如案例、比喻、图表的使用）是否符合目标读者的阅读习惯和偏好？是否有利于技术内容的理解和吸收？\n\
+            \    *   **情感共鸣 **: 文本是否能够引发目标读者的情感共鸣, 激发他们的兴趣或认同感?\n\n3.  **表达效果（Overall\
+            \ Effectiveness）：**\n\n    *   **吸引力：** 文本是否能够有效吸引目标读者的注意力，并激发他们的阅读兴趣？开头是否引人入胜？\
+            \ *但请注意，不要建议改变文章的开头方式，重点关注现有开头的表达是否清晰。*\n    *   **清晰度：** 文本是否能够清晰、准确、简洁地传达核心信息？是否存在表达不清、语义模糊或信息冗余的情况？\n\
+            \    *   **说服力：** 如果文本有说服意图（如产品介绍、观点论证），是否具有说服力？论证是否充分有力？ *但请注意，不要建议增加新的论证，重点关注现有论证的表达是否清晰。*\n\
+            \    *   **记忆点：** 文本是否能够给读者留下深刻印象？是否具有独特的记忆点或亮点？ *但请注意，不要建议增加新的记忆点，重点关注现有内容的呈现方式。*\n\
+            \    *  **行动号召**:如果文本有行动号召，是否明确有效？\n\n**重要约束：**\n\n*   **不随意修改文章结构：**\
+            \ 评审的重点是 *表达方式和句子结构* 的优化，以及 *现有内容* 对目标读者的适配性。请 *不要* 建议改变文章的段落结构、增删段落或大幅度调整内容顺序。\n\
+            \n**具体建议（请务必提供）：**\n\n请针对文本中存在的 *任何* 影响风格一致性、目标读者适配性或表达效果的问题，给出 *具体、明确、可操作*\
+            \ 的改进建议。请明确指出：\n\n*   **问题位置：** 具体是哪一段、哪一句、甚至哪个部分存在问题。\n*   **问题描述：**\
+            \ 简要说明问题所在（例如：风格不一致、语气突变、不适合目标读者、表达不清、缺乏吸引力等）。\n*   **修改建议：** 提供具体的修改建议，例如调整语言风格、更换词语、调整句子结构、调整表达方式等。\
+            \ *请尽量在不改变原文整体结构的前提下进行修改。*\n\n**示例：**\n\n*   “第1段和第4段的语言风格不一致，前者过于口语化，后者过于正式，建议统一调整为更符合技术文章风格的……风格。”\n\
+            *   \"考虑到目标读者包含一般读者，第2段中'XXX'、'YYY'等术语的使用可能过于专业，建议在术语后增加简短的解释，或者替换为更通俗的说法。\"\
+            \n*   “第3段的表达方式比较抽象，建议增加一个具体的案例或比喻，以帮助读者更好地理解。”\n*    \"第5段的句子过长, 建议拆分为几个短句,\
+            \ 使表达更清晰.\"\n\n**输入格式说明：**\n\n输入为一个 XML 结构：\n\n```xml\n<article>\n  <source\
+            \ lang=\"en\">\n    <content><![CDATA[原文内容]]></content>\n  </source>\n\
+            \  <rewritten lang=\"zh\">\n    <draft><![CDATA[初步改写结果]]></draft>\n  </rewritten>\n\
+            </article>\n```\n\n**输出要求：**\n\n*   以 Markdown 格式输出评审意见和改进建议。\n*   务必做到\
+            \ *条理清晰、具体明确、具有可操作性*。\n*   请 *逐条列出* 发现的问题和相应的改进建议，方便后续处理。\n*   如果认为文本在某方面表现出色（例如，某一段落的表达非常生动有趣），也可以简要指出。"
+        - id: ba6e7382-2fc4-4fd9-b4a5-8691174b4770
+          role: user
+          text: "<article>\n  <source lang=\"en\">\n    <content><![CDATA[{{#1739416889031.text#}}]]></content>\n\
+            \  </source>\n  <rewritten lang=\"zh\">\n    <draft><![CDATA[{{#1739417108713.text#}}]]></draft>\n\
+            \  </rewritten>\n</article>"
+        selected: false
+        title: 风格一致性与目标读者适配性评审
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+            variable_selector:
+            - '1739416889031'
+            - files
+          enabled: true
+      height: 156
+      id: '1739591485269'
+      position:
+        x: 942
+        y: 760.5
+      positionAbsolute:
+        x: 942
+        y: 760.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: 专精于文本的润色、校对和一致性检查
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gemini-2.0-flash-exp
+          provider: langgenius/gemini/google
+        prompt_template:
+        - id: a588de02-b52b-47a1-b230-a62e8a826925
+          role: system
+          text: "你是一位资深的语言专家、技术编辑和校对员，专精于文本的润色、校对和一致性检查。请仔细阅读以下经过多轮评审和改进的中文技术文章（`revised`\
+            \ 部分），进行最后的润色和一致性检查，确保文章达到最佳质量。\n\n**文章领域：** AI、编程、产品、商业等技术领域。\n**目标读者：**\
+            \ 技术相关人员和对这些领域感兴趣的一般读者。\n\n**任务目标：**\n\n对文章进行最后的润色和一致性检查，确保：\n\n1.  **语言流畅、地道、自然：**\
+            \ 文本没有任何语言表达上的瑕疵，读起来像母语人士撰写的地道中文。\n2.  **内容准确、逻辑清晰：** 文本没有任何事实性错误、逻辑漏洞或表达不清之处。\n\
+            3.  **风格一致、排版规范：** 文本在语言风格、术语使用、标点符号、格式等方面保持高度一致。\n4.  **符合目标读者阅读习惯：**\
+            \ 文本的语言难度、表达方式等符合目标读者的理解能力和阅读偏好。\n\n**检查重点（请务必全面考虑以下方面）：**\n\n1.  **语言润色：**\n\
+            \n    *   **词汇：** 检查是否有更精准、更地道、更符合语境的词语可以替换。\n    *   **句式：** 检查是否有更简洁、更流畅、更符合中文表达习惯的句式可以替换。\n\
+            \    *   **语气：** 检查语气是否自然、得体，是否与文章整体风格和目标读者相符。\n    *   **节奏：** 检查文章的整体节奏是否流畅，是否存在忽快忽慢或过于单调的情况。\n\
+            \n2.  **内容校对：**\n\n    *   **事实性错误：** 再次核查文中引用的事实、数据、案例等是否准确无误。\n    *\
+            \   **逻辑漏洞：** 再次检查文章的整体逻辑和段落内部的逻辑是否严密，是否存在推理错误或论证不充分的情况。\n    *   **表达不清：**\
+            \ 检查是否存在语义模糊、指代不明或容易引起歧义的表达。\n\n3.  **一致性检查：**\n\n    *   **术语一致性：** 确保全文中同一概念使用相同的术语，避免同义词混用。\n\
+            \    *   **风格一致性：** 确保全文的语言风格（正式/非正式、严肃/幽默等）保持一致。\n    *   **标点符号一致性：**\
+            \ 确保全文的标点符号使用规范、统一。\n    *   **格式一致性：** 确保全文的标题层级、列表、引用、代码块等格式保持一致。\n\
+            \    * **专有名词一致性:** 确保全文中使用的专有名词(如公司名, 产品名, 人名等)拼写和大小写保持一致.\n\n4.  **读者适配性：**\n\
+            \n    *   **语言难度：** 从目标读者的角度出发，再次评估文本的语言难度是否适中。\n    *   **表达方式：** 检查表达方式是否有利于目标读者理解和接受。\n\
+            \      * **专业性**: 检查专业术语是否过多, 或者解释是否不足.\n\n**重要说明:**\n\n*   此次是最后一次润色,\
+            \ 在此阶段, 应该只做 *微调*, 不再做大的改动.\n*   如果发现文章存在 *严重问题*（例如，与原文意思严重不符、存在明显的逻辑错误等），请在“修改说明”中指出，\
+            \ *不要* 直接修改。\n\n**输入信息：**\n输入为一个XML 结构：\n\n```xml\n<article>\n    <rewritten\
+            \ lang=\"zh\">\n        <revised><![CDATA[改进后的改写文章]]></revised>\n    </rewritten>\n\
+            </article>\n```\n\n**输出要求：**\n\n1.  **润色后的文章：**\n    *   以 Markdown 格式输出经过最后润色和一致性检查的最终版中文文章。\n\
+            \    *   格式规范，排版清晰，易于阅读。\n\n2.  **修改说明（可选，但建议提供）：**\n    *   如果进行了任何修改，请简要说明修改的内容和理由。\n\
+            \    *   如果发现了任何 *严重问题*，请明确指出，但 *不要* 直接修改。\n\n**示例（修改说明部分）：**\n\n```markdown\n\
+            **修改说明：**\n\n*   将第3段第2句的“XX”改为“YY”，使表达更精准。\n*   统一了全文中“人工智能”和“AI”的用法，全部使用“人工智能”。\n\
+            *   修正了第5段的一处标点符号错误。\n*   发现第4段的数据引用可能存在问题（与我了解到的信息不符），建议进一步核实。*（严重问题，未直接修改）*\n\
+            ```"
+        - id: 0520e390-d01e-42a5-a2be-c2d2c1df238c
+          role: user
+          text: "<article>\n    <rewritten lang=\"zh\">\n        <revised><![CDATA[{{#1739418260707.text#}}]]></revised>\n\
+            \    </rewritten>\n</article>"
+        selected: false
+        title: 最后润色和一致性检查
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 140
+      id: '1739591515940'
+      position:
+        x: 1550
+        y: 578.5
+      positionAbsolute:
+        x: 1550
+        y: 578.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    viewport:
+      x: -61.57433003013284
+      y: -180.39542321196814
+      zoom: 0.7199909215094902

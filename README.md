@@ -85,6 +85,7 @@ BillPic2Web—AI智读票据，它能够实现票据图片的自动解析并生�
 Dify workflow将存储我精心整理的所有与学习相关的Dify工作流。我会不定期进行更新，确保你能找到所需的工作流。
 | 文件名称 | 文件描述 |文件图示 |
 | :-------------: | :----------: | :------------: |
+| [出题组卷.yml] |   "出题组卷"是一款AI驱动的教学辅助智能体，专注将教案内容智能转化为结构化的测评试卷。教师可自定义题型配比（判断/单选/填空），系统自动解析教材重点生成双版本试卷：含标准答案的教师版与纯净试题的学生版，实现教学测评全流程智能化。  |![](./Dify%20workflow/IME/chutizujuan.png?raw=true)|
 | [链文智译-LinkTrans Smart.yml] |   链文智译是一款基于大型语言模型的智能助手，其核心功能是通过提交网页链接即可自动获取网页内容并智能翻译为高质量的中文。  |![](./Dify%20workflow/IME/zl41889FY.png?raw=true)|
 | [获取金融投资新闻top10.yml] |   运用大模型抓取 两个信息源（the daily upside 和 Edward Jones）的新闻原始数据，进行分析和理解，并进行总结。《The Daily Upside》‌是一个专注于金融顾问新闻、市场洞察和投资策略的媒体平台（https://www.thedailyupside.com/）；Edward Jones是一家总部位于美国的金融服务公司，专注于为个人投资者提供投资管理、财务咨询服务等。（https://www.edwardjones.com/）   |![](./Dify%20workflow/IME/1739502431373.jpg?raw=true)|
 | [词汇故事生成器.yml] |   输入一个词汇，自动生成一个短篇故事并配上 AI 生成的插图，工作流用到的生图节点是comfyui，因为我本地部署的有comfyui，就比较方便，如果你没有，你可以选择其它生图节点！   |![](./Dify%20workflow/IME/1736135410314.jpg?raw=true)|

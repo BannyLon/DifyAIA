@@ -1,0 +1,828 @@
+app:
+  description: '"出题组卷"是一款AI驱动的教学辅助智能体，专注将教案内容智能转化为结构化的测评试卷。教师可自定义题型配比（判断/单选/填空），系统自动解析教材重点生成双版本试卷：含标准答案的教师版与纯净试题的学生版，实现教学测评全流程智能化。'
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: 出题组卷
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/siliconflow:0.0.8@217f973bd7ced1b099c2f0c669f1356bdf4cc38b8372fd58d7874f9940b95de3
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/gemini:0.0.8@420e755f870062b3da528617d2c0439a599ce1cbbb00645492c3bdb2b360afb6
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openrouter:0.0.5@55ddb36a03717ec8c10945eca203f066ef53d8ab692a17050fdc730000ba1e0a
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/feishu_document:0.0.1@5c16426317d871a0abf4d81bec1d1ef1a5b7f34491d429a453c13bdc1fb2fa82
+kind: app
+version: 0.1.5
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: template-transform
+      id: 1742383635487-source-1742388574493-target
+      selected: false
+      source: '1742383635487'
+      sourceHandle: source
+      target: '1742388574493'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: template-transform
+        targetType: llm
+      id: 1742388574493-source-1742388580563-target
+      selected: false
+      source: '1742388574493'
+      sourceHandle: source
+      target: '1742388580563'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: end
+      id: 1742388682433-source-1742389902730-target
+      selected: false
+      source: '1742388682433'
+      sourceHandle: source
+      target: '1742389902730'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: llm
+      id: 1742388580563-source-1742391616523-target
+      selected: false
+      source: '1742388580563'
+      sourceHandle: source
+      target: '1742391616523'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: document-extractor
+      id: 1742380119082-source-1742391693629-target
+      selected: false
+      source: '1742380119082'
+      sourceHandle: source
+      target: '1742391693629'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: tool
+      id: 1742391616523-source-17423917834550-target
+      selected: false
+      source: '1742391616523'
+      sourceHandle: source
+      target: '17423917834550'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: tool
+      id: 17423942502370-source-1742388682433-target
+      selected: false
+      source: '17423942502370'
+      sourceHandle: source
+      target: '1742388682433'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: tool
+      id: 17423942441560-source-17423942239130-target
+      selected: false
+      source: '17423942441560'
+      sourceHandle: source
+      target: '17423942239130'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: tool
+      id: 17423942058920-source-17423942502370-target
+      selected: false
+      source: '17423942058920'
+      sourceHandle: source
+      target: '17423942502370'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: document-extractor
+        targetType: llm
+      id: 1742391693629-source-17423969023960-target
+      selected: false
+      source: '1742391693629'
+      sourceHandle: source
+      target: '17423969023960'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: tool
+      id: 17423969023960-source-1742383635487-target
+      selected: false
+      source: '17423969023960'
+      sourceHandle: source
+      target: '1742383635487'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: llm
+      id: 1742388580563-source-17423942441560-target
+      source: '1742388580563'
+      sourceHandle: source
+      target: '17423942441560'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: llm
+      id: 1742388580563-source-17423942058920-target
+      source: '1742388580563'
+      sourceHandle: source
+      target: '17423942058920'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: tool
+      id: 17423917834550-source-1742388682433-target
+      source: '17423917834550'
+      sourceHandle: source
+      target: '1742388682433'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: tool
+      id: 17423942239130-source-1742388682433-target
+      source: '17423942239130'
+      sourceHandle: source
+      target: '1742388682433'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - allowed_file_extensions:
+          - doc
+          allowed_file_types:
+          - document
+          allowed_file_upload_methods:
+          - local_file
+          - remote_url
+          label: 月度教案内容
+          max_length: 48
+          options: []
+          required: true
+          type: file
+          variable: TeachingPlan
+        - label: 判断题数量
+          max_length: 48
+          options: []
+          required: false
+          type: text-input
+          variable: pdt
+        - label: 填空题数量
+          max_length: 48
+          options: []
+          required: false
+          type: text-input
+          variable: tkt
+        - label: 选择题数量
+          max_length: 48
+          options: []
+          required: false
+          type: text-input
+          variable: xzt
+      height: 207
+      id: '1742380119082'
+      position:
+        x: -710.4071507796666
+        y: 287.6588087338317
+      positionAbsolute:
+        x: -710.4071507796666
+        y: 287.6588087338317
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        provider_id: feishu_document
+        provider_name: feishu_document
+        provider_type: builtin
+        selected: false
+        title: 创建飞书文档
+        tool_configurations: {}
+        tool_label: 创建飞书文档
+        tool_name: create_document
+        tool_parameters:
+          content:
+            type: mixed
+            value: 出题老师：苏撒
+          folder_token:
+            type: mixed
+            value: ''
+          title:
+            type: mixed
+            value: '{{#17423969023960.text#}}'
+        type: tool
+      height: 64
+      id: '1742383635487'
+      position:
+        x: 69.28050877569675
+        y: 287.6588087338317
+      positionAbsolute:
+        x: 69.28050877569675
+        y: 287.6588087338317
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        selected: false
+        template: '{{ arg1 }}'
+        title: 获取飞书唯一标识符
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1742383635487'
+          - json
+          variable: arg1
+      height: 64
+      id: '1742388574493'
+      position:
+        x: 333.7423927694621
+        y: 287.6588087338317
+      positionAbsolute:
+        x: 333.7423927694621
+        y: 287.6588087338317
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1742388574493'
+          - output
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: deepseek/deepseek-chat-v3-0324:free
+          provider: langgenius/openrouter/openrouter
+        prompt_template:
+        - id: 20d6da45-63cb-4e6a-8dbc-0990b16df5ab
+          role: system
+          text: 提取{{#1742388574493.output#}} 的url部分的内容 只输出http地址，只输出http结果，不输出json格式，纯字符串
+        selected: false
+        title: 输出飞书唯一标识
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 109
+      id: '1742388580563'
+      position:
+        x: 594.7044406597813
+        y: 287.6588087338317
+      positionAbsolute:
+        x: 594.7044406597813
+        y: 287.6588087338317
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        provider_id: feishu_document
+        provider_name: feishu_document
+        provider_type: builtin
+        selected: false
+        title: 获取飞书云文档的内容
+        tool_configurations:
+          lang: '0'
+          mode: text
+        tool_label: 获取飞书云文档的内容
+        tool_name: get_document_content
+        tool_parameters:
+          document_id:
+            type: mixed
+            value: '{{#1742388580563.text#}}'
+        type: tool
+      height: 142
+      id: '1742388682433'
+      position:
+        x: 1636.9241642143734
+        y: 287.6588087338317
+      positionAbsolute:
+        x: 1636.9241642143734
+        y: 287.6588087338317
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1742388682433'
+          - text
+          variable: output
+        - value_selector:
+          - '1742388580563'
+          - text
+          variable: text
+        - value_selector:
+          - '1742388682433'
+          - json
+          variable: output1
+        - value_selector:
+          - '17423969023960'
+          - text
+          variable: output2
+        selected: true
+        title: 结束
+        type: end
+      height: 207
+      id: '1742389902730'
+      position:
+        x: 1923.1552399316079
+        y: 287.6588087338317
+      positionAbsolute:
+        x: 1923.1552399316079
+        y: 287.6588087338317
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1742380119082'
+          - pdt
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: deepseek/deepseek-chat-v3-0324:free
+          provider: langgenius/openrouter/openrouter
+        prompt_template:
+        - id: e609bd0e-2b3e-4f10-a326-a28103da6859
+          role: system
+          text: 你是一个考试类的专家，可以为老师生成质量高的试卷内容，并且能按要求输出
+        - id: 15e29f14-cc68-43e8-8993-450ca409888d
+          role: user
+          text: '根据 {{#1742391693629.text#}}的内容，按照下面的格式，生成{{#1742380119082.pdt#}}道判断题：
+
+            #参考格式
+
+            一、判断题
+
+            在标准大气压下，冰水混合物的温度是 0℃。（  ）​
+
+            【答案】：正确​
+
+            【解析】：在标准大气压下，冰水混合物的温度被定义为 0℃。​
+
+            同一种晶体的熔点和凝固点相同。（  ）​
+
+            【答案】：正确​
+
+            【解析】：同一种晶体的熔点和凝固点是相同的，这是晶体的重要特性。
+
+            ### 内容中不要输出 “好的，以下是根据你提供的文档”'
+        selected: false
+        title: 判断题出题专家
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 109
+      id: '1742391616523'
+      position:
+        x: 917.1370301063419
+        y: 125.3298892387491
+      positionAbsolute:
+        x: 917.1370301063419
+        y: 125.3298892387491
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        is_array_file: false
+        selected: false
+        title: 文档提取器
+        type: document-extractor
+        variable_selector:
+        - '1742380119082'
+        - TeachingPlan
+      height: 107
+      id: '1742391693629'
+      position:
+        x: -444.16161608792106
+        y: 287.6588087338317
+      positionAbsolute:
+        x: -444.16161608792106
+        y: 287.6588087338317
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        provider_id: feishu_document
+        provider_name: feishu_document
+        provider_type: builtin
+        selected: false
+        title: 在飞书文档中新增内容 (1)
+        tool_configurations:
+          position: end
+        tool_label: 在飞书文档中新增内容
+        tool_name: write_document
+        tool_parameters:
+          content:
+            type: mixed
+            value: '{{#1742391616523.text#}}'
+          document_id:
+            type: mixed
+            value: '{{#1742388580563.text#}}'
+        type: tool
+      height: 109
+      id: '17423917834550'
+      position:
+        x: 1244.4315517824948
+        y: 125.3298892387491
+      positionAbsolute:
+        x: 1244.4315517824948
+        y: 125.3298892387491
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: deepseek/deepseek-chat-v3-0324:free
+          provider: langgenius/openrouter/openrouter
+        prompt_template:
+        - id: e609bd0e-2b3e-4f10-a326-a28103da6859
+          role: system
+          text: 你是一个考试类的专家，可以为老师生成质量高的试卷内容，并且能按要求输出
+        - id: 15e29f14-cc68-43e8-8993-450ca409888d
+          role: user
+          text: '根据 {{#1742391693629.text#}} 的内容，按照下面的格式，生成 {{#1742380119082.tkt#}}道填空题：
+
+
+            #参考格式
+
+            三、填空题
+
+            1、题干内容（含空白处，用下划线或括号表示）
+
+            [答案：正确答案内容（词语、短语或数值）]
+
+            [解析：对答案的解释（可包含知识点、逻辑推导或易错点）]
+
+
+            示例：
+
+            1、中国的首都是______。
+
+            [答案：北京]
+
+            [解析：北京是中华人民共和国的首都，自 1949 年新中国成立以来即为政治、文化中心。]
+
+
+            ### 严格按照参考格式输出
+
+            ### 内容中不要输出 “好的，以下是根据你提供的文档”'
+        selected: false
+        title: '填空题出题专家 '
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 109
+      id: '17423942058920'
+      position:
+        x: 917.1370301063419
+        y: 449.6402820864454
+      positionAbsolute:
+        x: 917.1370301063419
+        y: 449.6402820864454
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        provider_id: feishu_document
+        provider_name: feishu_document
+        provider_type: builtin
+        selected: false
+        title: 在飞书文档中新增内容 (2)
+        tool_configurations:
+          position: end
+        tool_label: 在飞书文档中新增内容
+        tool_name: write_document
+        tool_parameters:
+          content:
+            type: mixed
+            value: '{{#17423942441560.text#}}'
+          document_id:
+            type: mixed
+            value: '{{#1742388580563.text#}}'
+        type: tool
+      height: 109
+      id: '17423942239130'
+      position:
+        x: 1244.4315517824948
+        y: 287.6588087338317
+      positionAbsolute:
+        x: 1244.4315517824948
+        y: 287.6588087338317
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: gemini-2.0-flash-exp
+          provider: langgenius/gemini/google
+        prompt_template:
+        - id: e609bd0e-2b3e-4f10-a326-a28103da6859
+          role: system
+          text: 你是一个考试类的专家，可以为老师生成质量高的试卷内容，并且能按要求输出
+        - id: 15e29f14-cc68-43e8-8993-450ca409888d
+          role: user
+          text: '##依据 {{#1742391693629.text#}}的内容，按照以下格式，生成  {{#1742380119082.xzt#}}道选择题；
+
+            参考格式：
+
+            二、选择题
+
+            1、题干内容（疑问句或不完整陈述句）
+
+            A.选项一内容
+
+            B.选项二内容
+
+            C.选项三内容
+
+            D.选项四内容
+
+            【正确答案】：正确选项字母
+
+            【解析】：对正确答案的详细解释（可包含知识点、逻辑、推导过程或错误选项排除原因）
+
+            示例：
+
+            1、在标准大气压下，冰水混合物的温度是多少摄氏度？
+
+            A. 0℃
+
+            B. 100℃
+
+            C. -18℃
+
+            D. 37℃
+
+            【正确答案】：A
+
+            【解析】：在标准大气压下，冰水混合物的温度定义为0℃。
+
+            2、关于熔点和凝固点的关系，以下说法正确的是：
+
+            A. 同一种晶体的熔点和凝固点相同。
+
+            B. 同一种晶体的熔点和凝固点不同。
+
+            C. 晶体的熔点总是高于其凝固点。
+
+            D. 晶体的熔点总是低于其凝固点。
+
+            【正确答案】：A
+
+            【解析】：同一种晶体的熔点和凝固点是相同的，这是晶体的一个重要特性。
+
+            ## 严格按照参考格式输出
+
+            ## 内容中不要输出 “好的，以下是根据你提供的文档生成的 XXX 道 XXX 题：”'
+        selected: false
+        title: 选择题出题专家 (2)
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 109
+      id: '17423942441560'
+      position:
+        x: 917.1370301063419
+        y: 287.6588087338317
+      positionAbsolute:
+        x: 917.1370301063419
+        y: 287.6588087338317
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        provider_id: feishu_document
+        provider_name: feishu_document
+        provider_type: builtin
+        selected: false
+        title: 在飞书文档中新增内容 (3)
+        tool_configurations:
+          position: end
+        tool_label: 在飞书文档中新增内容
+        tool_name: write_document
+        tool_parameters:
+          content:
+            type: mixed
+            value: '{{#17423942058920.text#}}'
+          document_id:
+            type: mixed
+            value: '{{#1742388580563.text#}}'
+        type: tool
+      height: 109
+      id: '17423942502370'
+      position:
+        x: 1244.4315517824948
+        y: 449.6402820864454
+      positionAbsolute:
+        x: 1244.4315517824948
+        y: 449.6402820864454
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: Qwen/Qwen2.5-72B-Instruct
+          provider: langgenius/siliconflow/siliconflow
+        prompt_template:
+        - id: 20d6da45-63cb-4e6a-8dbc-0990b16df5ab
+          role: system
+          text: '创建一个简短且围绕文档主题的考试试卷名称，不超过20字。请根据{{#1742391693629.text#}}的内容提炼核心主题，并用简洁有力的语言表达出来。
+
+
+            步骤说明：
+
+            1. 分析输入文本，找出主要关键词或核心主题。
+
+            2. 基于这些关键词，构造一个简短且具有代表性的试卷名称。
+
+            3. 确保名称在20字以内，并且能够准确反映文档的主题。'
+        selected: false
+        title: 试卷名称生成
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 109
+      id: '17423969023960'
+      position:
+        x: -182.64541548091916
+        y: 287.6588087338317
+      positionAbsolute:
+        x: -182.64541548091916
+        y: 287.6588087338317
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    viewport:
+      x: -221.67471835936885
+      y: 20.3108938254868
+      zoom: 0.8345760645206856

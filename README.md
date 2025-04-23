@@ -5,6 +5,7 @@
 # **更新于2025年4月23日，上传了两个工作流：知识图解（KnowGraph） & 智学规划师（Smart Study Planner）**
 
 
+
 本仓库为B站#bannylon7#UP主设计制作的Dify AI实战案例相关工作流，请使用 Dify 0.12.1 及以上版本导入。所有的 Workflow 都免费使用，我会不定期进行更新…………
 
 ## Excel_Flask_Dify（生成Excel数据表）

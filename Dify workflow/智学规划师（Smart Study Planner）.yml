@@ -1,0 +1,2285 @@
+app:
+  description: 智能化地帮助你规划学习路径。
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: 智学规划师（Smart Study Planner）
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/siliconflow:0.0.8@217f973bd7ced1b099c2f0c669f1356bdf4cc38b8372fd58d7874f9940b95de3
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/ollama:0.0.5@cc38c90a58d4b4e43c9a821d352829b2c2a8d6d742de9fec9e61e6b34865b496
+kind: app
+version: 0.1.5
+workflow:
+  conversation_variables:
+  - description: 学习计划总结
+    id: ffbab786-3a2e-4ca9-a470-f12aa66ae730
+    name: Learning_plan
+    selector:
+    - conversation
+    - Learning_plan
+    value: ''
+    value_type: string
+  - description: 用户的兴趣领域
+    id: 37bcd1b6-8176-48bc-baa3-e62d96be1ac6
+    name: Area_of_interest
+    selector:
+    - conversation
+    - Area_of_interest
+    value: ''
+    value_type: string
+  - description: 用户的学习目标
+    id: 069b64d2-be02-45db-9030-97b1ada62343
+    name: Learning_objective
+    selector:
+    - conversation
+    - Learning_objective
+    value: ''
+    value_type: string
+  - description: 用户的每日学习时长
+    id: 9efe8a94-cbce-4b05-8426-724a71bffae5
+    name: Learning_time
+    selector:
+    - conversation
+    - Learning_time
+    value: ''
+    value_type: string
+  - description: 用户的学习偏好（学习习惯）
+    id: fb3dfe0a-10af-403b-87ae-c1e66b84bcfe
+    name: Learning_preferences
+    selector:
+    - conversation
+    - Learning_preferences
+    value: ''
+    value_type: string
+  - description: 首轮对话
+    id: 0b30fe23-4d9f-45cc-9a26-e889e4eb28c1
+    name: is_first_mesage
+    selector:
+    - conversation
+    - is_first_mesage
+    value: 1
+    value_type: number
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions: []
+      allowed_file_types:
+      - image
+      - document
+      allowed_file_upload_methods:
+      - remote_url
+      - local_file
+      enabled: true
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 1
+    opening_statement: '# 智学规划师（Smart Study Planner）
+
+
+      您好，我是您的智学规划师 😊，将为您量身定制高效的自学提升方案，帮助您更科学、更轻松地达成学习目标！🎯 但在制定最适合您的学习路径之前，请先提供以下信息：✉️
+
+
+      学习方向：您想提升哪方面的知识？
+
+      学习时间：每天能投入多少时间学习？
+
+      学习习惯：您更喜欢视频课程还是阅读？
+
+      最终目标：希望通过学习达成什么成就？
+
+
+      📌 规划清晰，学习更高效！ 让我们一起开启自我提升之旅吧！🚀🚀🚀'
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: if-else
+      id: 1741710246507-source-1742500604206-target
+      selected: false
+      source: '1741710246507'
+      sourceHandle: source
+      target: '1742500604206'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: parameter-extractor
+      id: 1742500604206-true-1742501118093-target
+      selected: false
+      source: '1742500604206'
+      sourceHandle: 'true'
+      target: '1742501118093'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: parameter-extractor
+        targetType: assigner
+      id: 1742501118093-source-1742501678525-target
+      selected: false
+      source: '1742501118093'
+      sourceHandle: source
+      target: '1742501678525'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: assigner
+        targetType: code
+      id: 1742501678525-source-1742502157366-target
+      selected: false
+      source: '1742501678525'
+      sourceHandle: source
+      target: '1742502157366'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: assigner
+      id: 1742502157366-source-1742502140101-target
+      selected: false
+      source: '1742502157366'
+      sourceHandle: source
+      target: '1742502140101'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: assigner
+        targetType: if-else
+      id: 1742502140101-source-1742502313399-target
+      selected: false
+      source: '1742502140101'
+      sourceHandle: source
+      target: '1742502313399'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1742502859431-source-1742503562452-target
+      selected: false
+      source: '1742502859431'
+      sourceHandle: source
+      target: '1742503562452'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: if-else
+      id: 1742500604206-false-1742502313399-target
+      selected: false
+      source: '1742500604206'
+      sourceHandle: 'false'
+      target: '1742502313399'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1742502313399-true-1742503963018-target
+      selected: false
+      source: '1742502313399'
+      sourceHandle: 'true'
+      target: '1742503963018'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1742502313399-2a29cc34-6853-4767-b393-ca63a2e370b7-1742504000489-target
+      selected: false
+      source: '1742502313399'
+      sourceHandle: 2a29cc34-6853-4767-b393-ca63a2e370b7
+      target: '1742504000489'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1742502313399-fd9f2d90-d68c-43b5-8dc5-ed9babedd78a-1742504003789-target
+      selected: false
+      source: '1742502313399'
+      sourceHandle: fd9f2d90-d68c-43b5-8dc5-ed9babedd78a
+      target: '1742504003789'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1742502313399-454c22d8-0683-472e-8a59-f8a211269c9a-1742504005855-target
+      selected: false
+      source: '1742502313399'
+      sourceHandle: 454c22d8-0683-472e-8a59-f8a211269c9a
+      target: '1742504005855'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: assigner
+      id: 1742503963018-source-1742504439484-target
+      selected: false
+      source: '1742503963018'
+      sourceHandle: source
+      target: '1742504439484'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: assigner
+      id: 1742504000489-source-1742504446659-target
+      selected: false
+      source: '1742504000489'
+      sourceHandle: source
+      target: '1742504446659'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: assigner
+        targetType: llm
+      id: 1742504446659-source-1742503746781-target
+      selected: false
+      source: '1742504446659'
+      sourceHandle: source
+      target: '1742503746781'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: assigner
+      id: 1742504003789-source-1742504450499-target
+      selected: false
+      source: '1742504003789'
+      sourceHandle: source
+      target: '1742504450499'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: assigner
+        targetType: llm
+      id: 1742504450499-source-1742503752512-target
+      selected: false
+      source: '1742504450499'
+      sourceHandle: source
+      target: '1742503752512'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: assigner
+      id: 1742504005855-source-1742504453108-target
+      selected: false
+      source: '1742504005855'
+      sourceHandle: source
+      target: '1742504453108'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: assigner
+        targetType: llm
+      id: 1742504453108-source-1742503756689-target
+      selected: false
+      source: '1742504453108'
+      sourceHandle: source
+      target: '1742503756689'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: assigner
+        targetType: llm
+      id: 1742504439484-source-1742505126579-target
+      selected: false
+      source: '1742504439484'
+      sourceHandle: source
+      target: '1742505126579'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: variable-aggregator
+      id: 1742503746781-source-1742505917222-target
+      selected: false
+      source: '1742503746781'
+      sourceHandle: source
+      target: '1742505917222'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: variable-aggregator
+      id: 1742505126579-source-1742505917222-target
+      selected: false
+      source: '1742505126579'
+      sourceHandle: source
+      target: '1742505917222'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: variable-aggregator
+      id: 1742503752512-source-1742505917222-target
+      selected: false
+      source: '1742503752512'
+      sourceHandle: source
+      target: '1742505917222'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: variable-aggregator
+      id: 1742503756689-source-1742505917222-target
+      selected: false
+      source: '1742503756689'
+      sourceHandle: source
+      target: '1742505917222'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: variable-aggregator
+        targetType: if-else
+      id: 1742505917222-source-1742506015328-target
+      selected: false
+      source: '1742505917222'
+      sourceHandle: source
+      target: '1742506015328'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1742506015328-false-17425061966200-target
+      selected: false
+      source: '1742506015328'
+      sourceHandle: 'false'
+      target: '17425061966200'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: if-else
+      id: 1742502313399-false-1742506688628-target
+      selected: false
+      source: '1742502313399'
+      sourceHandle: 'false'
+      target: '1742506688628'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: assigner
+      id: 17425061966200-source-1742506709294-target
+      selected: false
+      source: '17425061966200'
+      sourceHandle: source
+      target: '1742506709294'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: assigner
+        targetType: template-transform
+      id: 1742506709294-source-1742506816352-target
+      selected: false
+      source: '1742506709294'
+      sourceHandle: source
+      target: '1742506816352'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: template-transform
+        targetType: answer
+      id: 1742506816352-source-1742506215673-target
+      selected: false
+      source: '1742506816352'
+      sourceHandle: source
+      target: '1742506215673'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1742506688628-true-1742502859431-target
+      selected: false
+      source: '1742506688628'
+      sourceHandle: 'true'
+      target: '1742502859431'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: question-classifier
+      id: 1742506688628-false-1742507082418-target
+      selected: false
+      source: '1742506688628'
+      sourceHandle: 'false'
+      target: '1742507082418'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: agent
+      id: 1742507082418-1-1742506911529-target
+      selected: false
+      source: '1742507082418'
+      sourceHandle: '1'
+      target: '1742506911529'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: code
+      id: 1742507082418-2-1742507313411-target
+      selected: false
+      source: '1742507082418'
+      sourceHandle: '2'
+      target: '1742507313411'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: code
+      id: 1742507313411-source-17425074494940-target
+      selected: false
+      source: '1742507313411'
+      sourceHandle: source
+      target: '17425074494940'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: assigner
+      id: 17425074494940-source-1742507437846-target
+      selected: false
+      source: '17425074494940'
+      sourceHandle: source
+      target: '1742507437846'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: agent
+        targetType: answer
+      id: 1742506911529-source-1742507733094-target
+      selected: false
+      source: '1742506911529'
+      sourceHandle: source
+      target: '1742507733094'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: assigner
+        targetType: answer
+      id: 1742507437846-source-1742507746131-target
+      selected: false
+      source: '1742507437846'
+      sourceHandle: source
+      target: '1742507746131'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: template-transform
+      id: 1742506015328-true-17425143257110-target
+      source: '1742506015328'
+      sourceHandle: 'true'
+      target: '17425143257110'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: template-transform
+        targetType: answer
+      id: 17425143257110-source-1742506149711-target
+      source: '17425143257110'
+      sourceHandle: source
+      target: '1742506149711'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: answer
+      id: 1742507082418-1742508132865-1742797953750-target
+      source: '1742507082418'
+      sourceHandle: '1742508132865'
+      target: '1742797953750'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables: []
+      height: 64
+      id: '1741710246507'
+      position:
+        x: -995.8143305550391
+        y: 391.4164836685198
+      positionAbsolute:
+        x: -995.8143305550391
+        y: 391.4164836685198
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: '='
+            id: e2692b2f-6386-4265-a18e-f70fa0fd5dd0
+            value: '1'
+            varType: number
+            variable_selector:
+            - conversation
+            - is_first_mesage
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 首轮判断
+        type: if-else
+      height: 154
+      id: '1742500604206'
+      position:
+        x: -701.8804783931143
+        y: 391.4164836685198
+      positionAbsolute:
+        x: -701.8804783931143
+        y: 391.4164836685198
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        instruction: '请根据用户的问题提取相关参数。
+
+          1.注意请仔细判断学习领域和学习目标的区别。
+
+          学习目标需要用户提供确切想要达到的技术高度，而非笼统的学习意向，如果是笼统的意向请忽略 Objectives 变量的提取。
+
+          2.注意判断学习偏好，如用户没提到任何与自身学习偏好（学习习惯）的相关内容请忽略Preference变量的提取'
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen2.5:latest
+          provider: langgenius/ollama/ollama
+        parameters:
+        - description: 用户的学习目标
+          name: Objectives
+          required: false
+          type: string
+        - description: 用户的平均学习时长
+          name: Time
+          required: false
+          type: string
+        - description: 用户感兴趣的学习领域
+          name: Field
+          required: false
+          type: string
+        - description: 用户的学习偏好（习惯）
+          name: Preference
+          required: false
+          type: string
+        query:
+        - sys
+        - query
+        reasoning_mode: prompt
+        selected: false
+        title: 对话信息提取
+        type: parameter-extractor
+        variables: []
+        vision:
+          enabled: false
+      height: 109
+      id: '1742501118093'
+      position:
+        x: -420.9717751538535
+        y: 52.669590539737044
+      positionAbsolute:
+        x: -420.9717751538535
+        y: 52.669590539737044
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1742501118093'
+          - Time
+          variable_selector:
+          - conversation
+          - Learning_time
+          write_mode: over-write
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1742501118093'
+          - Preference
+          variable_selector:
+          - conversation
+          - Learning_preferences
+          write_mode: over-write
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1742501118093'
+          - Field
+          variable_selector:
+          - conversation
+          - Area_of_interest
+          write_mode: over-write
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1742501118093'
+          - Objectives
+          variable_selector:
+          - conversation
+          - Learning_objective
+          write_mode: over-write
+        selected: false
+        title: 变量赋值
+        type: assigner
+        version: '2'
+      height: 206
+      id: '1742501678525'
+      position:
+        x: -147.08994163416153
+        y: 52.669590539737044
+      positionAbsolute:
+        x: -147.08994163416153
+        y: 52.669590539737044
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1742502157366'
+          - result
+          variable_selector:
+          - conversation
+          - is_first_mesage
+          write_mode: over-write
+        selected: false
+        title: 覆盖对话参数
+        type: assigner
+        version: '2'
+      height: 105
+      id: '1742502140101'
+      position:
+        x: 407.5503413096052
+        y: 52.669590539737044
+      positionAbsolute:
+        x: 407.5503413096052
+        y: 52.669590539737044
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "\ndef main():\n    message_num = 0\n    return {\n        \"result\"\
+          : message_num,\n    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: number
+        selected: false
+        title: 创建参数
+        type: code
+        variables: []
+      height: 64
+      id: '1742502157366'
+      position:
+        x: 133.24120248997008
+        y: 52.669590539737044
+      positionAbsolute:
+        x: 133.24120248997008
+        y: 52.669590539737044
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: empty
+            id: 2f13c9e1-ec35-4127-a076-b761f1d362dd
+            value: ''
+            varType: string
+            variable_selector:
+            - conversation
+            - Area_of_interest
+          - comparison_operator: contains
+            id: 09340ff0-463c-4727-a7d7-a678c15288f8
+            value: 'null'
+            varType: string
+            variable_selector:
+            - conversation
+            - Area_of_interest
+          id: 'true'
+          logical_operator: or
+        - case_id: 2a29cc34-6853-4767-b393-ca63a2e370b7
+          conditions:
+          - comparison_operator: empty
+            id: a1f8625c-f5f4-4601-9ef0-4b75250b6755
+            value: ''
+            varType: string
+            variable_selector:
+            - conversation
+            - Learning_time
+          - comparison_operator: contains
+            id: c02fab78-834b-412c-9272-c600d4399a40
+            value: 'null'
+            varType: string
+            variable_selector:
+            - conversation
+            - Learning_time
+          id: 2a29cc34-6853-4767-b393-ca63a2e370b7
+          logical_operator: or
+        - case_id: fd9f2d90-d68c-43b5-8dc5-ed9babedd78a
+          conditions:
+          - comparison_operator: empty
+            id: 5a752c7a-a28d-484e-8783-b0137e074936
+            value: ''
+            varType: string
+            variable_selector:
+            - conversation
+            - Learning_preferences
+          - comparison_operator: contains
+            id: de171e36-6a58-4347-b40c-f47416b24257
+            value: 'null'
+            varType: string
+            variable_selector:
+            - conversation
+            - Learning_preferences
+          id: fd9f2d90-d68c-43b5-8dc5-ed9babedd78a
+          logical_operator: or
+        - case_id: 454c22d8-0683-472e-8a59-f8a211269c9a
+          conditions:
+          - comparison_operator: empty
+            id: d8f48a84-3184-473b-bc1f-f3338ecaeb8f
+            value: ''
+            varType: string
+            variable_selector:
+            - conversation
+            - Learning_objective
+          - comparison_operator: contains
+            id: bb383807-b7b4-47c4-8a17-2a654a569487
+            value: 'null'
+            varType: string
+            variable_selector:
+            - conversation
+            - Learning_objective
+          id: 454c22d8-0683-472e-8a59-f8a211269c9a
+          logical_operator: or
+        desc: ''
+        selected: false
+        title: 判断信息收集情况
+        type: if-else
+      height: 464
+      id: '1742502313399'
+      position:
+        x: 729.4214900546219
+        y: 500.9771624656305
+      positionAbsolute:
+        x: 729.4214900546219
+        y: 500.9771624656305
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        memory:
+          query_prompt_template: 这是聊天历史记录：{{#sys.query#}}
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 50
+        model:
+          completion_params: {}
+          mode: chat
+          name: deepseek-r1:8b
+          provider: langgenius/ollama/ollama
+        prompt_template:
+        - id: 73664e7e-6e4e-4cd2-9f97-de2185218949
+          role: system
+          text: '<instructions>
+
+            1. 结合用户根据提供的学习领域、学习目标、每日平均学习时长、学习偏好为用户提供详细的自学提升规划。
+
+            2. 输出逻辑性较强的机构化结果，不要包含任何XML标签。
+
+            </instructions>'
+        - id: 04fcfd9d-e2cd-44da-8cf2-4771231632b5
+          role: user
+          text: '<用户信息>
+
+            学习领域：{{#conversation.Area_of_interest#}}
+
+            学习目标：{{#conversation.Learning_objective#}}
+
+            平均学习时长：{{#conversation.Learning_time#}}
+
+            学习偏好：{{#conversation.Learning_preferences#}}'
+        selected: false
+        title: 自学总结
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 109
+      id: '1742502859431'
+      position:
+        x: 1350.7477419952704
+        y: 1168.67621768993
+      positionAbsolute:
+        x: 1350.7477419952704
+        y: 1168.67621768993
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '{{#1742502859431.text#}}'
+        desc: ''
+        selected: false
+        title: 总结
+        type: answer
+        variables: []
+      height: 121
+      id: '1742503562452'
+      position:
+        x: 1714.2434255772714
+        y: 1168.67621768993
+      positionAbsolute:
+        x: 1714.2434255772714
+        y: 1168.67621768993
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: deepseek-r1:8b
+          provider: langgenius/ollama/ollama
+        prompt_template:
+        - id: 6515e924-3607-4f9a-a68b-259a6aae5cac
+          role: system
+          text: '<instructions>
+
+            1. 接收输入的 Area_of_interest, Learning_objective, Learning_time 和 Learning_preferences
+            变量。
+
+            2. 检查每个变量是否为空值。
+
+            3. 如果[Area_of_interest]为空，输出提醒用户提供自学兴趣领域相关信息。
+
+            4. 如果[Learning_objective]为空，输出提醒用户提供学习目标相关信息。
+
+            5. 如果 [Learning_time]为空，输出提醒用户提供自身每日平均学习时长相关信息。
+
+            6. 如果[Learning_preferences]为空，输出请提醒用户提供自身学习偏好（学习习惯）相关信息。
+
+            7. 如果所有变量都不为空，输出确认信息，表示所有必要信息都已提供。
+
+            8. 作为学习规划师，输出为礼貌且亲切的询问用户的口吻，且内容简洁明了，不应包含任何 XML 标签。
+
+            9.询问参考: “您还没说您的{学习偏好}是什么？请进一步详细描述您的{学习偏好}，以便我为您制定更适合您的学习计划😊”
+
+            </instructions>
+
+
+            '
+        - id: b4571df4-4f87-4483-94d3-73138e4880ea
+          role: user
+          text: '<用户信息>
+
+            学习领域：{{#conversation.Area_of_interest#}}
+
+            学习目标：{{#conversation.Learning_objective#}}
+
+            学习时长：{{#conversation.Learning_time#}}
+
+            学习偏好：{{#conversation.Learning_preferences#}}'
+        selected: false
+        title: 时长询问
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 109
+      id: '1742503746781'
+      position:
+        x: 1608.279878444383
+        y: 458.35309990613985
+      positionAbsolute:
+        x: 1608.279878444383
+        y: 458.35309990613985
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: deepseek-r1:8b
+          provider: langgenius/ollama/ollama
+        prompt_template:
+        - id: d6817d40-8a62-4090-aba7-1ecfd19e5da8
+          role: system
+          text: '<instructions>
+
+            1. 接收输入的 Area_of_interest, Learning_objective, Learning_time 和 Learning_preferences
+            变量。
+
+            2. 检查每个变量是否为空值。
+
+            3. 如果 Area_of_interest为空，输出提醒用户提供自学兴趣领域相关信息。
+
+            4. 如果 Learning_objective 为空，输出提醒用户提供学习目标相关信息。
+
+            5. 如果 Learning_time 为空，输出提醒用户提供自身每日平均学习时长相关信息。
+
+            6. 如果 Learning_preferences 为空，输出提醒用户提供自身学习偏好（学习习惯）相关信息。
+
+            7. 如果所有变量都不为空，输出确认信息，表示所有必要信息都已提供。
+
+            8. 作为学习规划师，输出为礼貌且亲切的询问用户的口吻，且内容简洁明了，不应包含任何 XML 标签。
+
+            9.询问参考: “您还没说您的{学习时长}每天大概有多久？请进一步详细描述您的{学习时长}，以便我为您制定更适合您的学习计划”
+
+            </instructions>'
+        - id: e3507f7a-b42b-4610-8155-f99b9a6c1163
+          role: user
+          text: '<用户信息>
+
+            学习领域：{{#conversation.Area_of_interest#}}
+
+            学习目标：{{#conversation.Learning_objective#}}
+
+            学习时长：{{#conversation.Learning_time#}}
+
+            学习偏好：{{#conversation.Learning_preferences#}}'
+        selected: false
+        title: 偏好询问
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 109
+      id: '1742503752512'
+      position:
+        x: 1608.279878444383
+        y: 624.5231392198531
+      positionAbsolute:
+        x: 1608.279878444383
+        y: 624.5231392198531
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: deepseek-r1:8b
+          provider: langgenius/ollama/ollama
+        prompt_template:
+        - id: f8deb3bf-6345-48c8-bdc2-a7a331009fc0
+          role: system
+          text: '<instructions>
+
+            1. 接收输入的 Area_of_interest, Learning_objective, Learning_time 和 Learning_preferences
+            变量。
+
+            2. 检查每个变量是否为空值。
+
+            3. 如果 Area_of_interest为空，输出提醒用户提供自学兴趣领域相关信息。
+
+            4. 如果 Learning_objective 为空，输出提醒用户提供学习目标相关信息。
+
+            5. 如果 Learning_time 为空，输出提醒用户提供自身每日平均学习时长相关信息。
+
+            6. 如果 Learning_preferences 为空，输出提醒用户提供自身学习偏好（学习习惯）相关信息。
+
+            7. 如果所有变量都不为空，输出确认信息，表示所有必要信息都已提供。
+
+            8. 作为学习规划师，输出为礼貌且亲切的询问用户的口吻，且内容简洁明了，不应包含任何 XML 标签。
+
+            9.询问参考: “您还没说您的{学习领域}是什么？请进一步详细描述您的{学习领域}，以便我为您制定更适合您的学习计划”
+
+            </instructions>'
+        - id: 6919fc42-64dc-48b3-8565-5ad5f89fea82
+          role: user
+          text: '<用户信息>
+
+            学习领域：{{#conversation.Area_of_interest#}}
+
+            学习目标：{{#conversation.Learning_objective#}}
+
+            学习时长：{{#conversation.Learning_time#}}
+
+            学习偏好：{{#conversation.Learning_preferences#}}'
+        selected: false
+        title: 目标询问
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 109
+      id: '1742503756689'
+      position:
+        x: 1608.279878444383
+        y: 794.9291515346388
+      positionAbsolute:
+        x: 1608.279878444383
+        y: 794.9291515346388
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 50
+        model:
+          completion_params: {}
+          mode: chat
+          name: qwen2.5:latest
+          provider: langgenius/ollama/ollama
+        prompt_template:
+        - id: 4e883372-1190-4a0f-945f-30da1bb2ea28
+          role: system
+          text: '<instructions>
+
+            1. 从聊天记录中提取用户提到的学习兴趣领域。
+
+            2. 如果用户在多条聊天记录中提到兴趣领域，提取最新的一条记录中的兴趣领域。
+
+            3. 如果聊天记录中没有提到兴趣领域，则输出null。
+
+            4. 输出结果时，不要包含任何XML标签。
+
+
+            注意事项：
+
+            - 确保提取的兴趣领域是用户明确提到的。
+
+            - 如果用户没有提到兴趣领域，输出null。
+
+            - 确保输出的格式清晰且易于理解。
+
+            </instructions>
+
+            '
+        selected: false
+        title: 兴趣提取
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 109
+      id: '1742503963018'
+      position:
+        x: 1091.3255981085038
+        y: 266.480893610333
+      positionAbsolute:
+        x: 1091.3255981085038
+        y: 266.480893610333
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 50
+        model:
+          completion_params: {}
+          mode: chat
+          name: qwen2.5:latest
+          provider: langgenius/ollama/ollama
+        prompt_template:
+        - id: c837bd43-8171-4d3b-9f03-d4051bca0548
+          role: system
+          text: '<instructions>
+
+            1. 从聊天记录中提取用户提到的学习时长。
+
+            2. 如果用户在多条聊天记录中提到学习时长，提取最新的一条记录中的学习时长。
+
+            3. 如果聊天记录中没有提到用户自己的每日学习时长，则输出null。
+
+            4. 输出结果时，不要包含任何XML标签。
+
+
+            注意事项：
+
+            - 确保提取的学习时长是用户明确提到的。
+
+            - 如果用户没有提到自身的学习时长，输出null。
+
+            - 确保输出的格式清晰且易于理解。
+
+            </instructions>'
+        selected: false
+        title: 时长提取
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 109
+      id: '1742504000489'
+      position:
+        x: 1091.3255981085038
+        y: 458.35309990613985
+      positionAbsolute:
+        x: 1091.3255981085038
+        y: 458.35309990613985
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 50
+        model:
+          completion_params: {}
+          mode: chat
+          name: qwen2.5:latest
+          provider: langgenius/ollama/ollama
+        prompt_template:
+        - id: 8e113cf9-2bc7-4e81-b762-50fe6ef1996f
+          role: system
+          text: '<instructions>
+
+            1. 从聊天记录中提取用户提到的学习偏好。
+
+            2. 如果用户在多条聊天记录中提到学习偏好，提取最新的一条记录中的学习偏好。
+
+            3. 如果聊天记录中没有提到用户自己的学习偏好，则输出null。
+
+            4. 输出结果时，不要包含任何XML标签。
+
+
+            注意事项：
+
+            - 确保提取是用户明确提到的自身每日学习偏好。
+
+            - 如果用户没有提到自身的学习偏好，输出null。
+
+            - 确保输出的格式清晰且易于理解。
+
+            </instructions>'
+        selected: false
+        title: 偏好提取
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 109
+      id: '1742504003789'
+      position:
+        x: 1091.3255981085038
+        y: 624.5231392198531
+      positionAbsolute:
+        x: 1091.3255981085038
+        y: 624.5231392198531
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 50
+        model:
+          completion_params: {}
+          mode: chat
+          name: qwen2.5:latest
+          provider: langgenius/ollama/ollama
+        prompt_template:
+        - id: 09bf8c8f-89fd-4c3e-b079-c60a87f82612
+          role: system
+          text: '<instructions>
+
+            1. 从聊天记录中提取用户提到的学习目标。
+
+            2. 如果用户在多条聊天记录中提到学习目标，提取最新的一条记录中的学习目标。
+
+            3. 如果聊天记录中没有提到用户自己的学习目标，则输出null。
+
+            4. 输出结果时，不要包含任何XML标签。
+
+
+            注意事项：
+
+            - 确保提取的学习目标是用户明确提到的。
+
+            - 如果用户没有提到自己的学习目标，输出null。
+
+            - 确保输出的格式清晰且易于理解。
+
+            </instructions>'
+        selected: false
+        title: 目标提取
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 109
+      id: '1742504005855'
+      position:
+        x: 1091.3255981085038
+        y: 794.9291515346388
+      positionAbsolute:
+        x: 1091.3255981085038
+        y: 794.9291515346388
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1742503963018'
+          - text
+          variable_selector:
+          - conversation
+          - Area_of_interest
+          write_mode: over-write
+        selected: false
+        title: 更新兴趣
+        type: assigner
+        version: '2'
+      height: 105
+      id: '1742504439484'
+      position:
+        x: 1350.7477419952704
+        y: 266.480893610333
+      positionAbsolute:
+        x: 1350.7477419952704
+        y: 266.480893610333
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1742504000489'
+          - text
+          variable_selector:
+          - conversation
+          - Learning_time
+          write_mode: over-write
+        selected: false
+        title: 更新时长
+        type: assigner
+        version: '2'
+      height: 105
+      id: '1742504446659'
+      position:
+        x: 1350.7477419952704
+        y: 458.35309990613985
+      positionAbsolute:
+        x: 1350.7477419952704
+        y: 458.35309990613985
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1742504003789'
+          - text
+          variable_selector:
+          - conversation
+          - Learning_preferences
+          write_mode: over-write
+        selected: false
+        title: 更新偏好
+        type: assigner
+        version: '2'
+      height: 105
+      id: '1742504450499'
+      position:
+        x: 1350.7477419952704
+        y: 624.5231392198531
+      positionAbsolute:
+        x: 1350.7477419952704
+        y: 624.5231392198531
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1742504005855'
+          - text
+          variable_selector:
+          - conversation
+          - Learning_objective
+          write_mode: over-write
+        selected: false
+        title: 更新目标
+        type: assigner
+        version: '2'
+      height: 105
+      id: '1742504453108'
+      position:
+        x: 1350.7477419952704
+        y: 794.9291515346388
+      positionAbsolute:
+        x: 1350.7477419952704
+        y: 794.9291515346388
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: deepseek-r1:8b
+          provider: langgenius/ollama/ollama
+        prompt_template:
+        - id: dc8b1f66-9d2c-4a2d-9f14-f185c31df906
+          role: system
+          text: '<instructions>
+
+            1. 接收输入的 Area_of_interest, Learning_objective, Learning_time 和 Learning_preferences
+            变量。
+
+            2. 检查每个变量是否为空值。
+
+            3. 如果 Area_of_interest为空，输出提醒用户提供自学兴趣领域相关信息。
+
+            4. 如果 Learning_objective 为空，输出提醒用户提供学习目标相关信息。
+
+            5. 如果 Learning_time 为空，输出提醒用户提供自身每日平均学习时长相关信息。
+
+            6. 如果 Learning_preferences 为空，输出提醒用户提供自身学习偏好（学习习惯）相关信息。
+
+            7. 如果所有变量都不为空，输出确认信息，表示所有必要信息都已提供。
+
+            8. 作为学习规划师，输出为礼貌且亲切的询问用户的口吻，且内容简洁明了，不应包含任何 XML 标签。
+
+            9.询问参考: “您还没说您的{学习偏好}是什么？请进一步详细描述您的{学习偏好}，以便我为您制定更适合您的学习计划”
+
+            </instructions>'
+        - id: 811eb58a-4e84-4ed9-9327-4fe7ef675891
+          role: user
+          text: '<用户信息>
+
+            学习领域：{{#conversation.Area_of_interest#}}
+
+            学习目标：{{#conversation.Learning_objective#}}
+
+            学习时长：{{#conversation.Learning_time#}}
+
+            学习偏好：{{#conversation.Learning_preferences#}}'
+        selected: false
+        title: 兴趣询问
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 109
+      id: '1742505126579'
+      position:
+        x: 1608.279878444383
+        y: 266.480893610333
+      positionAbsolute:
+        x: 1608.279878444383
+        y: 266.480893610333
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        output_type: string
+        selected: false
+        title: 询问聚合
+        type: variable-aggregator
+        variables:
+        - - '1742505126579'
+          - text
+        - - '1742503756689'
+          - text
+        - - '1742503752512'
+          - text
+        - - '1742503746781'
+          - text
+      height: 208
+      id: '1742505917222'
+      position:
+        x: 2052.512119416429
+        y: 266.480893610333
+      positionAbsolute:
+        x: 2052.512119416429
+        y: 266.480893610333
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: empty
+            id: 50114541-648d-4246-aee6-4c2b3ff3c5a5
+            value: ''
+            varType: string
+            variable_selector:
+            - conversation
+            - Area_of_interest
+          - comparison_operator: contains
+            id: 94e65f37-faf9-41b5-953a-cce76eed47fa
+            value: 'null'
+            varType: string
+            variable_selector:
+            - conversation
+            - Area_of_interest
+          - comparison_operator: empty
+            id: 416e3b5c-f2a1-4eea-8d4a-118f4569ad65
+            value: ''
+            varType: string
+            variable_selector:
+            - conversation
+            - Learning_objective
+          - comparison_operator: contains
+            id: 5fb409c3-5f66-47d8-a262-92057e047c54
+            value: 'null'
+            varType: string
+            variable_selector:
+            - conversation
+            - Learning_objective
+          - comparison_operator: empty
+            id: c164c751-40fe-4631-a782-62754d4291f4
+            value: ''
+            varType: string
+            variable_selector:
+            - conversation
+            - Learning_time
+          - comparison_operator: contains
+            id: 1e149d89-7ebf-4372-a930-09d79cfa24ff
+            value: 'null'
+            varType: string
+            variable_selector:
+            - conversation
+            - Learning_time
+          - comparison_operator: empty
+            id: 51a72dde-3ce6-4275-b02b-0b35359b0cee
+            value: ''
+            varType: string
+            variable_selector:
+            - conversation
+            - Learning_preferences
+          - comparison_operator: contains
+            id: a3167a3f-1ded-4c26-82bc-7ca91d0d0502
+            value: 'null'
+            varType: string
+            variable_selector:
+            - conversation
+            - Learning_preferences
+          id: 'true'
+          logical_operator: or
+        desc: ''
+        selected: false
+        title: 判断回答
+        type: if-else
+      height: 382
+      id: '1742506015328'
+      position:
+        x: 2333.550022019827
+        y: 266.480893610333
+      positionAbsolute:
+        x: 2333.550022019827
+        y: 266.480893610333
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '{{#17425143257110.output#}}'
+        desc: ''
+        selected: false
+        title: 最终询问
+        type: answer
+        variables: []
+      height: 121
+      id: '1742506149711'
+      position:
+        x: 2900.4939943751256
+        y: 307.04469549471986
+      positionAbsolute:
+        x: 2900.4939943751256
+        y: 307.04469549471986
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        memory:
+          query_prompt_template: 这是聊天历史记录：{{#sys.query#}}
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 50
+        model:
+          completion_params: {}
+          mode: chat
+          name: deepseek-r1:8b
+          provider: langgenius/ollama/ollama
+        prompt_template:
+        - id: 73664e7e-6e4e-4cd2-9f97-de2185218949
+          role: system
+          text: '<instructions>
+
+            1. 结合用户提供的学习领域、学习目标、每日平均学习时长、学习偏好为用户提供详细的自学提升规划。
+
+            2. 输出逻辑性较强的机构化结果，不要包含任何XML标签。
+
+            </instructions>'
+        - id: 04fcfd9d-e2cd-44da-8cf2-4771231632b5
+          role: user
+          text: '<用户信息>
+
+            学习领域：{{#conversation.Area_of_interest#}}
+
+            学习目标：{{#conversation.Learning_objective#}}
+
+            平均学习时长：{{#conversation.Learning_time#}}
+
+            学习偏好：{{#conversation.Learning_preferences#}}'
+        selected: false
+        title: 自学总结 (1)
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 109
+      id: '17425061966200'
+      position:
+        x: 2604.3772566173484
+        y: 593.3744984378972
+      positionAbsolute:
+        x: 2604.3772566173484
+        y: 593.3744984378972
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '{{#1742506816352.output#}}'
+        desc: ''
+        selected: false
+        title: 多轮总结回复
+        type: answer
+        variables: []
+      height: 121
+      id: '1742506215673'
+      position:
+        x: 3479.9629744556364
+        y: 593.3744984378972
+      positionAbsolute:
+        x: 3479.9629744556364
+        y: 593.3744984378972
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: empty
+            id: 30c5863f-5160-430b-82b3-db9de5b9d2fa
+            value: ''
+            varType: string
+            variable_selector:
+            - conversation
+            - Learning_plan
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 条件分支 4
+        type: if-else
+      height: 154
+      id: '1742506688628'
+      position:
+        x: 1091.3255981085038
+        y: 1275.1709995870203
+      positionAbsolute:
+        x: 1091.3255981085038
+        y: 1275.1709995870203
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '17425061966200'
+          - text
+          variable_selector:
+          - conversation
+          - Learning_plan
+          write_mode: over-write
+        selected: false
+        title: 总结赋值
+        type: assigner
+        version: '2'
+      height: 105
+      id: '1742506709294'
+      position:
+        x: 2900.4939943751256
+        y: 593.3744984378972
+      positionAbsolute:
+        x: 2900.4939943751256
+        y: 593.3744984378972
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        selected: false
+        template: '{{ plan }}'
+        title: 模板转换
+        type: template-transform
+        variables:
+        - value_selector:
+          - conversation
+          - Learning_plan
+          variable: plan
+      height: 64
+      id: '1742506816352'
+      position:
+        x: 3187.504085641743
+        y: 593.3744984378972
+      positionAbsolute:
+        x: 3187.504085641743
+        y: 593.3744984378972
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        agent_parameters:
+          instruction:
+            type: constant
+            value: 根据用户的询问进一步为用户解答自学提升的相关问题/
+          model:
+            type: constant
+            value:
+              completion_params: {}
+              mode: chat
+              model: deepseek-ai/DeepSeek-V3
+              model_type: llm
+              provider: langgenius/siliconflow/siliconflow
+              type: model-selector
+          query:
+            type: constant
+            value: '{{#sys.query#}}'
+          tools:
+            type: constant
+            value:
+            - enabled: true
+              extra:
+                description: ''
+              parameters:
+                query:
+                  auto: 1
+                  value: null
+              provider_name: langgenius/google/google
+              schemas:
+              - auto_generate: null
+                default: null
+                form: llm
+                human_description:
+                  en_US: used for searching
+                  ja_JP: used for searching
+                  pt_BR: used for searching
+                  zh_Hans: 用于搜索网页内容
+                label:
+                  en_US: Query string
+                  ja_JP: Query string
+                  pt_BR: Query string
+                  zh_Hans: 查询语句
+                llm_description: key words for searching
+                max: null
+                min: null
+                name: query
+                options: []
+                placeholder: null
+                precision: null
+                required: true
+                scope: null
+                template: null
+                type: string
+              settings: {}
+              tool_label: 谷歌搜索
+              tool_name: google_search
+              type: builtin
+        agent_strategy_label: FunctionCalling
+        agent_strategy_name: function_calling
+        agent_strategy_provider_name: langgenius/agent/agent
+        desc: ''
+        output_schema: null
+        plugin_unique_identifier: langgenius/agent:0.0.9@f16916b704a20067317dbe9030f62aa28f0832021a3ef6d4ce699504074c5e13
+        selected: false
+        title: Agent
+        type: agent
+      height: 234
+      id: '1742506911529'
+      position:
+        x: 1638.0755666133114
+        y: 1406.3114125694856
+      positionAbsolute:
+        x: 1638.0755666133114
+        y: 1406.3114125694856
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        classes:
+        - id: '1'
+          name: 用户针对当前学规划进行进一步细节上的询问，比如学习方法，学习安排，与学习路径
+        - id: '2'
+          name: 用户希望更新数据并重新拟定新的自学计划，比如新的学习领域，新的学习时间安排，或者新的学习偏好。
+        - id: '1742508132865'
+          name: 与自学提升不相关话题
+        desc: ''
+        instructions: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-ai/DeepSeek-V3
+          provider: langgenius/siliconflow/siliconflow
+        query_variable_selector:
+        - '1741710246507'
+        - sys.query
+        selected: false
+        title: 问题分类器
+        topics: []
+        type: question-classifier
+        vision:
+          enabled: false
+      height: 346
+      id: '1742507082418'
+      position:
+        x: 1350.7477419952704
+        y: 1507.72324050618
+      positionAbsolute:
+        x: 1350.7477419952704
+        y: 1507.72324050618
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "\ndef main():\n    ferist_massag = 0\n    return {\n        \"result\"\
+          : ferist_massag,\n    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: number
+        selected: false
+        title: 变量创建（massage）
+        type: code
+        variables: []
+      height: 64
+      id: '1742507313411'
+      position:
+        x: 1638.0755666133114
+        y: 1874.9399767140192
+      positionAbsolute:
+        x: 1638.0755666133114
+        y: 1874.9399767140192
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1742507313411'
+          - result
+          variable_selector:
+          - conversation
+          - is_first_mesage
+          write_mode: over-write
+        - input_type: variable
+          operation: over-write
+          value:
+          - '17425074494940'
+          - result
+          variable_selector:
+          - conversation
+          - Learning_plan
+          write_mode: over-write
+        - input_type: variable
+          operation: over-write
+          value:
+          - '17425074494940'
+          - result
+          variable_selector:
+          - conversation
+          - Area_of_interest
+          write_mode: over-write
+        - input_type: variable
+          operation: over-write
+          value:
+          - '17425074494940'
+          - result
+          variable_selector:
+          - conversation
+          - Learning_objective
+          write_mode: over-write
+        - input_type: variable
+          operation: over-write
+          value:
+          - '17425074494940'
+          - result
+          variable_selector:
+          - conversation
+          - Learning_time
+          write_mode: over-write
+        - input_type: variable
+          operation: over-write
+          value:
+          - '17425074494940'
+          - result
+          variable_selector:
+          - conversation
+          - Learning_preferences
+          write_mode: over-write
+        selected: false
+        title: 清除变量记录
+        type: assigner
+        version: '2'
+      height: 273
+      id: '1742507437846'
+      position:
+        x: 2175.8493295738785
+        y: 1874.9399767140192
+      positionAbsolute:
+        x: 2175.8493295738785
+        y: 1874.9399767140192
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "\ndef main():\n    str_null = \"null\"\n    return {\n        \"result\"\
+          : str_null,\n    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 变量创建（null）
+        type: code
+        variables: []
+      height: 64
+      id: '17425074494940'
+      position:
+        x: 1910.5559566006268
+        y: 1874.9399767140192
+      positionAbsolute:
+        x: 1910.5559566006268
+        y: 1874.9399767140192
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '{{#1742506911529.text#}}'
+        desc: ''
+        selected: false
+        title: 深入咨询
+        type: answer
+        variables: []
+      height: 121
+      id: '1742507733094'
+      position:
+        x: 1917.5057722888655
+        y: 1406.3114125694856
+      positionAbsolute:
+        x: 1917.5057722888655
+        y: 1406.3114125694856
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: "好的，没问题，请您重新提供您的自学规划信息：\n - 兴趣领域\n - 平均每日学习时长\n - 学习目标\n - 学习偏好"
+        desc: ''
+        selected: false
+        title: 重新开始
+        type: answer
+        variables: []
+      height: 180
+      id: '1742507746131'
+      position:
+        x: 2442.3147153687382
+        y: 1874.9399767140192
+      positionAbsolute:
+        x: 2442.3147153687382
+        y: 1874.9399767140192
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        selected: false
+        template: "\r\n### 更新信息\r\n领域：{{Area_of_interest}}\r\n目标：{{Learning_objective}}\r\
+          \n时间：{{Learning_time}}\r\n偏好：{{Learning_preferences}}\r\n\r\n### 信息确认\r\n\
+          {{output}}"
+        title: 变量赋值转换
+        type: template-transform
+        variables:
+        - value_selector:
+          - conversation
+          - Area_of_interest
+          variable: Area_of_interest
+        - value_selector:
+          - conversation
+          - Learning_objective
+          variable: Learning_objective
+        - value_selector:
+          - conversation
+          - Learning_time
+          variable: Learning_time
+        - value_selector:
+          - conversation
+          - Learning_preferences
+          variable: Learning_preferences
+        - value_selector:
+          - '1742505917222'
+          - output
+          variable: output
+      height: 64
+      id: '17425143257110'
+      position:
+        x: 2604.3772566173484
+        y: 307.04469549471986
+      positionAbsolute:
+        x: 2604.3772566173484
+        y: 307.04469549471986
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: 我是智学规划师，如果与学习规划无关的话题，我是很难回答你的哦！
+        desc: ''
+        selected: false
+        title: 直接回复 6
+        type: answer
+        variables: []
+      height: 160
+      id: '1742797953750'
+      position:
+        x: 1638.0755666133114
+        y: 2032.4832199318469
+      positionAbsolute:
+        x: 1638.0755666133114
+        y: 2032.4832199318469
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    viewport:
+      x: 250.5013983785375
+      y: 32.35586869881985
+      zoom: 0.3783459202611748

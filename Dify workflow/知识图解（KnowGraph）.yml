@@ -1,0 +1,1605 @@
+app:
+  description: 知识图解（KnowGraph） 是一款集 知识提取、智能总结、思维导图可视化 于一体的高效工具。用户仅需输入网页链接或上传文件（文档/图片），系统即可自动解析内容，精准提炼关键信息，并以直观的思维导图形式呈现。它让碎片化信息结构化、可视化，使知识获取更高效便捷，适用于学习研究、报告整理、商业分析等多种场景，让您的信息管理更智能、更清晰！
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: 知识图解（KnowGraph）
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/siliconflow:0.0.8@217f973bd7ced1b099c2f0c669f1356bdf4cc38b8372fd58d7874f9940b95de3
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/jina_tool:0.0.7@51cf3dfcc4ff002171f2378aa02ec7ce5390ddfe23c02ede532b08f48a75e82c
+kind: app
+version: 0.1.5
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: if-else
+      id: 1736154666967-source-1736154978507-target
+      source: '1736154666967'
+      sourceHandle: source
+      target: '1736154978507'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: variable-aggregator
+      id: 1736154691492-source-1736155054058-target
+      source: '1736154691492'
+      sourceHandle: source
+      target: '1736155054058'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: if-else
+      id: 1736154978507-true-1736156035531-target
+      source: '1736154978507'
+      sourceHandle: 'true'
+      target: '1736156035531'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: document-extractor
+        targetType: variable-aggregator
+      id: 1736156083226-source-1736155054058-target
+      source: '1736156083226'
+      sourceHandle: source
+      target: '1736155054058'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: template-transform
+        targetType: end
+      id: 1736156131859-source-1736155007811-target
+      source: '1736156131859'
+      sourceHandle: source
+      target: '1736155007811'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: variable-aggregator
+        targetType: code
+      id: 1736155054058-source-1737525558084-target
+      source: '1736155054058'
+      sourceHandle: source
+      target: '1737525558084'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: iteration
+      id: 1737525558084-source-1737525572883-target
+      source: '1737525558084'
+      sourceHandle: source
+      target: '1737525572883'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        iteration_id: '1737525572883'
+        sourceType: iteration-start
+        targetType: llm
+      id: 1737525572883start-source-1737525981604-target
+      source: 1737525572883start
+      sourceHandle: source
+      target: '1737525981604'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        iteration_id: '1737525572883'
+        sourceType: llm
+        targetType: code
+      id: 1737525981604-source-1737525997557-target
+      source: '1737525981604'
+      sourceHandle: source
+      target: '1737525997557'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        sourceType: iteration
+        targetType: code
+      id: 1737525572883-source-1737526850533-target
+      source: '1737525572883'
+      sourceHandle: source
+      target: '1737526850533'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: if-else
+      id: 1737526850533-source-1737527288492-target
+      source: '1737526850533'
+      sourceHandle: source
+      target: '1737527288492'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: template-transform
+      id: 1737527288492-false-1737527350276-target
+      selected: false
+      source: '1737527288492'
+      sourceHandle: 'false'
+      target: '1737527350276'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: template-transform
+        targetType: end
+      id: 1737527350276-source-1737527331221-target
+      selected: false
+      source: '1737527350276'
+      sourceHandle: source
+      target: '1737527331221'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1737527288492-true-1737527485524-target
+      source: '1737527288492'
+      sourceHandle: 'true'
+      target: '1737527485524'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: iteration
+      id: 1737527288492-de948a5d-0a61-42a2-95b8-fae617640ec8-1737527047149-target
+      source: '1737527288492'
+      sourceHandle: de948a5d-0a61-42a2-95b8-fae617640ec8
+      target: '1737527047149'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: end
+      id: 1737527485524-source-1737527595980-target
+      source: '1737527485524'
+      sourceHandle: source
+      target: '1737527595980'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        iteration_id: '1737527047149'
+        sourceType: iteration-start
+        targetType: llm
+      id: 1737527047149start-source-1737527614388-target
+      source: 1737527047149start
+      sourceHandle: source
+      target: '1737527614388'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        sourceType: iteration
+        targetType: llm
+      id: 1737527047149-source-1737527721500-target
+      source: '1737527047149'
+      sourceHandle: source
+      target: '1737527721500'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: end
+      id: 1737527721500-source-1737527755116-target
+      source: '1737527721500'
+      sourceHandle: source
+      target: '1737527755116'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: document-extractor
+      id: 1736156035531-true-1736156083226-target
+      source: '1736156035531'
+      sourceHandle: 'true'
+      target: '1736156083226'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1736156035531-2a2572fb-04af-4346-b4f5-f714374ba750-1737536538688-target
+      source: '1736156035531'
+      sourceHandle: 2a2572fb-04af-4346-b4f5-f714374ba750
+      target: '1737536538688'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: variable-aggregator
+      id: 1737536538688-source-1736155054058-target
+      source: '1737536538688'
+      sourceHandle: source
+      target: '1736155054058'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: template-transform
+      id: 1736156035531-false-1737536621959-target
+      source: '1736156035531'
+      sourceHandle: 'false'
+      target: '1737536621959'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: template-transform
+        targetType: end
+      id: 1737536621959-source-1737536612264-target
+      source: '1737536621959'
+      sourceHandle: source
+      target: '1737536612264'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: tool
+      id: 1736154978507-246a82d0-6d81-43d4-8d5c-f3666fc8cec3-1736154691492-target
+      source: '1736154978507'
+      sourceHandle: 246a82d0-6d81-43d4-8d5c-f3666fc8cec3
+      target: '1736154691492'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: template-transform
+      id: 1736154978507-false-1736156131859-target
+      source: '1736154978507'
+      sourceHandle: 'false'
+      target: '1736156131859'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1737527288492-true-1737623982128-target
+      source: '1737527288492'
+      sourceHandle: 'true'
+      target: '1737623982128'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: end
+      id: 1737623982128-source-1737527595980-target
+      source: '1737623982128'
+      sourceHandle: source
+      target: '1737527595980'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: iteration
+        targetType: llm
+      id: 1737527047149-source-1737624072289-target
+      selected: false
+      source: '1737527047149'
+      sourceHandle: source
+      target: '1737624072289'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: end
+      id: 1737624072289-source-1737527755116-target
+      selected: false
+      source: '1737624072289'
+      sourceHandle: source
+      target: '1737527755116'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - allowed_file_extensions: []
+          allowed_file_types:
+          - image
+          - document
+          allowed_file_upload_methods:
+          - local_file
+          label: 文件（可选）
+          max_length: 48
+          options: []
+          required: false
+          type: file
+          variable: file
+        - label: 网页链接
+          max_length: 256
+          options: []
+          required: false
+          type: text-input
+          variable: url
+        - label: 额外指令
+          max_length: 2048
+          options: []
+          required: false
+          type: paragraph
+          variable: instruction
+      height: 174
+      id: '1736154666967'
+      position:
+        x: -54.560167795561654
+        y: 421.22090969024293
+      positionAbsolute:
+        x: -54.560167795561654
+        y: 421.22090969024293
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        provider_id: jina
+        provider_name: jina
+        provider_type: builtin
+        selected: false
+        title: 获取单页面
+        tool_configurations:
+          gather_all_images_at_the_end: 0
+          gather_all_links_at_the_end: 0
+          image_caption: 0
+          max_retries: 3
+          no_cache: 0
+          proxy_server: null
+          remove_selector: null
+          retain_images: 1
+          summary: 0
+          target_selector: null
+          wait_for_selector: null
+          with_iframe: 0
+          with_shadow_dom: 0
+        tool_label: 获取单页面
+        tool_name: jina_reader
+        tool_parameters:
+          request_params:
+            type: mixed
+            value: ''
+          url:
+            type: mixed
+            value: '{{#1736154666967.url#}}'
+        type: tool
+      height: 499
+      id: '1736154691492'
+      position:
+        x: 560.7928902736176
+        y: 237.3944579607612
+      positionAbsolute:
+        x: 560.7928902736176
+        y: 237.3944579607612
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: exists
+            id: 7b0c387d-e206-44a9-af3b-68f9b891819e
+            value: ''
+            varType: file
+            variable_selector:
+            - '1736154666967'
+            - file
+          id: 'true'
+          logical_operator: and
+        - case_id: 246a82d0-6d81-43d4-8d5c-f3666fc8cec3
+          conditions:
+          - comparison_operator: not empty
+            id: 00f8ff7c-d691-42f4-88ce-6c8a5db7bf06
+            value: ''
+            varType: string
+            variable_selector:
+            - '1736154666967'
+            - url
+          id: 246a82d0-6d81-43d4-8d5c-f3666fc8cec3
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 参数存在判断
+        type: if-else
+      height: 214
+      id: '1736154978507'
+      position:
+        x: 203.4832192720679
+        y: 421.22090969024293
+      positionAbsolute:
+        x: 203.4832192720679
+        y: 421.22090969024293
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1736156131859'
+          - output
+          variable: output
+        selected: false
+        title: 结束
+        type: end
+      height: 109
+      id: '1736155007811'
+      position:
+        x: 828.0275999277214
+        y: 806.4871936241634
+      positionAbsolute:
+        x: 828.0275999277214
+        y: 806.4871936241634
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        output_type: string
+        selected: false
+        title: 变量聚合器
+        type: variable-aggregator
+        variables:
+        - - '1736154691492'
+          - text
+        - - '1736156083226'
+          - text
+        - - '1737536538688'
+          - text
+      height: 182
+      id: '1736155054058'
+      position:
+        x: 1293.088022611667
+        y: 237.3944579607612
+      positionAbsolute:
+        x: 1293.088022611667
+        y: 237.3944579607612
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: in
+            id: 8fff019a-89c8-4394-a9f0-df637adaa73d
+            value:
+            - document
+            varType: string
+            variable_selector:
+            - '1736154666967'
+            - file
+            - type
+          id: 'true'
+          logical_operator: and
+        - case_id: 2a2572fb-04af-4346-b4f5-f714374ba750
+          conditions:
+          - comparison_operator: in
+            id: 36f28d0e-fbbd-4ea0-9c26-320e8d5fefc7
+            value:
+            - image
+            varType: string
+            variable_selector:
+            - '1736154666967'
+            - file
+            - type
+          id: 2a2572fb-04af-4346-b4f5-f714374ba750
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 文件类型判断
+        type: if-else
+      height: 214
+      id: '1736156035531'
+      position:
+        x: 560.7928902736176
+        y: -133.56705696985125
+      positionAbsolute:
+        x: 560.7928902736176
+        y: -133.56705696985125
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        is_array_file: false
+        selected: false
+        title: 文档提取器
+        type: document-extractor
+        variable_selector:
+        - '1736154666967'
+        - file
+      height: 107
+      id: '1736156083226'
+      position:
+        x: 908.6263763486199
+        y: -133.56705696985125
+      positionAbsolute:
+        x: 908.6263763486199
+        y: -133.56705696985125
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        selected: false
+        template: 文件或网页链接必须存在至少一个！！！
+        title: 模板转换
+        type: template-transform
+        variables: []
+      height: 64
+      id: '1736156131859'
+      position:
+        x: 560.7928902736176
+        y: 806.4871936241634
+      positionAbsolute:
+        x: 560.7928902736176
+        y: 806.4871936241634
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "\ndef main(input_text: str) -> str:\n    token_limit = 4096\n    overlap\
+          \ = 128\n    chunk_size = int(token_limit * 6 * (4/3))\n\n    chunks = []\n\
+          \    start_index = 0\n    text_length = len(input_text)\n\n    while start_index\
+          \ < text_length:\n        if start_index > 0:\n            start_index -=\
+          \ overlap\n\n        end_index = start_index + chunk_size\n\n        if\
+          \ end_index > text_length:\n            end_index = text_length\n      \
+          \  \n        chunks.append(input_text[start_index:end_index])\n        start_index\
+          \ += chunk_size\n\n    return {\n        \"chunks\": chunks,\n    }\n"
+        code_language: python3
+        desc: 'token_limit = 4096
+
+          overlap = 128'
+        outputs:
+          chunks:
+            children: null
+            type: array[string]
+        selected: false
+        title: 文本切块
+        type: code
+        variables:
+        - value_selector:
+          - '1736155054058'
+          - output
+          variable: input_text
+      height: 111
+      id: '1737525558084'
+      position:
+        x: 1565.6960075372224
+        y: 242.58971264340028
+      positionAbsolute:
+        x: 1565.6960075372224
+        y: 242.58971264340028
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        error_handle_mode: terminated
+        height: 197
+        is_parallel: true
+        iterator_selector:
+        - '1737525558084'
+        - chunks
+        output_selector:
+        - '1737525997557'
+        - knowledge_list
+        output_type: array[string]
+        parallel_nums: 2
+        selected: false
+        start_node_id: 1737525572883start
+        title: 知识提取迭代
+        type: iteration
+        width: 634
+      height: 197
+      id: '1737525572883'
+      position:
+        x: 1827.7871329140155
+        y: 242.58971264340028
+      positionAbsolute:
+        x: 1827.7871329140155
+        y: 242.58971264340028
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 634
+      zIndex: 1
+    - data:
+        desc: ''
+        isInIteration: true
+        selected: false
+        title: ''
+        type: iteration-start
+      draggable: false
+      height: 60
+      id: 1737525572883start
+      parentId: '1737525572883'
+      position:
+        x: 24
+        y: 68
+      positionAbsolute:
+        x: 1851.7871329140155
+        y: 310.5897126434003
+      selectable: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-iteration-start
+      width: 55
+      zIndex: 1002
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        isInIteration: true
+        iteration_id: '1737525572883'
+        model:
+          completion_params: {}
+          mode: chat
+          name: deepseek-ai/DeepSeek-V3
+          provider: langgenius/siliconflow/siliconflow
+        prompt_template:
+        - id: 00a27bce-7c3c-433d-8938-c0567cba51a5
+          role: system
+          text: "Analyze this page as if you're studying from a book.\nSKIP content\
+            \ if the page contains:\n- Table of contents\n- Chapter listings\n- Index\
+            \ pages\n- Blank pages\n- Copyright information\n- Publishing details\n\
+            - References or bibliography\n- Acknowledgments\nDO extract knowledge\
+            \ if the page contains:\n- Preface content that explains important concepts\n\
+            - Actual educational content\n- Key definitions and concepts\n- Important\
+            \ arguments or theories\n- Examples and case studies\n- Significant findings\
+            \ or conclusions\n- Methodologies or frameworks\n- Critical analyses or\
+            \ interpretations\nFor valid content:\n- Set has_content to true\n- Extract\
+            \ detailed, learnable knowledge points\n- Include important quotes or\
+            \ key statements\n- Capture examples with their context\n- Preserve technical\
+            \ terms and definitions\nFor pages to skip:\n- Set has_content to false\n\
+            - Return empty knowledge list\n### Instructions\nSome extra information\
+            \ are provided below, You should always follow the instructions as possible.\n\
+            <instructions>\n{{#1736154666967.instruction#}}\n</instructions>\n###\
+            \ Output Structure\nHere is the structure of the expected output, You\
+            \ should always follow the output structure.\n{\n    \"has_content\":\
+            \ (type: boolean),\n    \"knowledge\": (type: array of string)\n}\n###\
+            \ Page text\nInside <text></text> XML tags, there is a text that you should\
+            \ extract knowledge and convert to a JSON object.\n<text>\n{{#1737525572883.item#}}\n\
+            </text>\n### Answer in Chinese\nYou should always output a valid JSON\
+            \ object. Output nothing other than the JSON object.\n```JSON"
+        selected: false
+        title: 知识提取
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 109
+      id: '1737525981604'
+      parentId: '1737525572883'
+      position:
+        x: 113.031310425637
+        y: 65
+      positionAbsolute:
+        x: 1940.8184433396525
+        y: 307.5897126434003
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+      zIndex: 1002
+    - data:
+        code: "import json\n\n\ndef main(text: str) -> dict:\n    knowledge_list =\
+          \ []\n    obj = extract_complete_json(text)\n    \n    if obj is not None\
+          \ and isinstance(obj, dict):\n        if 'has_content' in obj and obj['has_content']\
+          \ is True:\n            knowledge = obj['knowledge']\n            knowledge_list.extend(knowledge\
+          \ if isinstance(knowledge, list) else [knowledge])\n\n    return {\n   \
+          \     \"knowledge_list\": knowledge_list,\n    }\n\n\ndef extract_complete_json(result:\
+          \ str):\n        def extract_json(text):\n            stack = []\n     \
+          \       for i, c in enumerate(text):\n                if c in {\"{\", \"\
+          [\"}:\n                    stack.append(c)\n                elif c in {\"\
+          }\", \"]\"}:\n                    # check if stack is empty\n          \
+          \          if not stack:\n                        return text[:i]\n    \
+          \                # check if the last element in stack is matching\n    \
+          \                if (c == \"}\" and stack[-1] == \"{\") or (c == \"]\" and\
+          \ stack[-1] == \"[\"):\n                        stack.pop()\n          \
+          \              if not stack:\n                            return text[:\
+          \ i + 1]\n                    else:\n                        return text[:i]\n\
+          \            return None\n\n        for idx in range(len(result)):\n   \
+          \         if result[idx] == \"{\" or result[idx] == \"[\":\n           \
+          \     json_str = extract_json(result[idx:])\n                if json_str:\n\
+          \                    try:\n                        return json.loads(json_str)\n\
+          \                    except Exception:\n                        pass\n"
+        code_language: python3
+        desc: ''
+        isInIteration: true
+        iteration_id: '1737525572883'
+        outputs:
+          knowledge_list:
+            children: null
+            type: array[string]
+        selected: false
+        title: JSON转换
+        type: code
+        variables:
+        - value_selector:
+          - '1737525981604'
+          - text
+          variable: text
+      height: 64
+      id: '1737525997557'
+      parentId: '1737525572883'
+      position:
+        x: 370.7644517412432
+        y: 65
+      positionAbsolute:
+        x: 2198.551584655259
+        y: 307.5897126434003
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+      zIndex: 1002
+    - data:
+        code: "\ndef main(knowledge_list: list[str]) -> dict:\n    chunks = []\n \
+          \   \n    if len(knowledge_list) == 0:\n        return {\n            \"\
+          chunks\": chunks,\n            \"count\": 0,\n        }\n\n    input_text\
+          \ = \"\\n\\n\".join(knowledge_list)\n\n    token_limit = 4096\n    overlap\
+          \ = 128\n    chunk_size = int(token_limit * 6 * (4/3))\n\n    chunks = []\n\
+          \    start_index = 0\n    text_length = len(input_text)\n\n    while start_index\
+          \ < text_length:\n        if start_index > 0:\n            start_index -=\
+          \ overlap\n\n        end_index = start_index + chunk_size\n\n        if\
+          \ end_index > text_length:\n            end_index = text_length\n      \
+          \  \n        chunks.append(input_text[start_index:end_index])\n        start_index\
+          \ += chunk_size\n\n    return {\n        \"chunks\": chunks,\n        \"\
+          count\": len(chunks),\n    }\n"
+        code_language: python3
+        desc: 'token_limit = 4096
+
+          overlap = 128'
+        outputs:
+          chunks:
+            children: null
+            type: array[string]
+          count:
+            children: null
+            type: number
+        selected: false
+        title: 知识文本切块
+        type: code
+        variables:
+        - value_selector:
+          - '1737525572883'
+          - output
+          variable: knowledge_list
+      height: 111
+      id: '1737526850533'
+      position:
+        x: 2484.4096847824376
+        y: 237.3944579607612
+      positionAbsolute:
+        x: 2484.4096847824376
+        y: 237.3944579607612
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        error_handle_mode: terminated
+        height: 184
+        is_parallel: true
+        iterator_selector:
+        - '1737526850533'
+        - chunks
+        output_selector:
+        - '1737527614388'
+        - text
+        output_type: array[string]
+        parallel_nums: 2
+        selected: false
+        start_node_id: 1737527047149start
+        title: 知识总结迭代
+        type: iteration
+        width: 387
+      height: 184
+      id: '1737527047149'
+      position:
+        x: 3156
+        y: 438.9730009895781
+      positionAbsolute:
+        x: 3156
+        y: 438.9730009895781
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 387
+      zIndex: 1
+    - data:
+        desc: ''
+        isInIteration: true
+        selected: false
+        title: ''
+        type: iteration-start
+      draggable: false
+      height: 60
+      id: 1737527047149start
+      parentId: '1737527047149'
+      position:
+        x: 24
+        y: 68
+      positionAbsolute:
+        x: 3180
+        y: 506.9730009895781
+      selectable: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-iteration-start
+      width: 55
+      zIndex: 1002
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: '='
+            id: b5d676eb-cfeb-4683-947a-738434196b53
+            value: '1'
+            varType: number
+            variable_selector:
+            - '1737526850533'
+            - count
+          id: 'true'
+          logical_operator: and
+        - case_id: de948a5d-0a61-42a2-95b8-fae617640ec8
+          conditions:
+          - comparison_operator: '>'
+            id: b80076cc-85f1-4d6b-8d57-750cda934662
+            value: '1'
+            varType: number
+            variable_selector:
+            - '1737526850533'
+            - count
+          id: de948a5d-0a61-42a2-95b8-fae617640ec8
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 条件分支 5
+        type: if-else
+      height: 214
+      id: '1737527288492'
+      position:
+        x: 2760.1473224635206
+        y: 237.3944579607612
+      positionAbsolute:
+        x: 2760.1473224635206
+        y: 237.3944579607612
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1737527350276'
+          - output
+          variable: output
+        selected: false
+        title: 结束 2
+        type: end
+      height: 109
+      id: '1737527331221'
+      position:
+        x: 3424.2478640461622
+        y: 732.9346019568587
+      positionAbsolute:
+        x: 3424.2478640461622
+        y: 732.9346019568587
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        selected: false
+        template: 没有提取到有用的知识！！！
+        title: 提醒没有提取到知识
+        type: template-transform
+        variables: []
+      height: 64
+      id: '1737527350276'
+      position:
+        x: 3156
+        y: 732.9346019568587
+      positionAbsolute:
+        x: 3156
+        y: 732.9346019568587
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1737526850533'
+          - chunks
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: deepseek-ai/DeepSeek-V3
+          provider: langgenius/siliconflow/siliconflow
+        prompt_template:
+        - id: 9f8dae50-7cbd-45c1-af00-faa306fa625c
+          role: system
+          text: 'Create a comprehensive summary of the provided content in a concise
+            but detailed way, using markdown format.
+
+            Use markdown formatting:
+
+            - ## for main sections
+
+            - ### for subsections
+
+            - Bullet points for lists
+
+            - `code blocks` for any code or formulas
+
+            - **bold** for emphasis
+
+            - *italic* for terminology
+
+            - > blockquotes for important notes
+
+            Return only the markdown summary, nothing else. Do not say ''here is the
+            summary'' or anything like that before or after.
+
+            Instructions:
+
+            Some extra information are provided below, You should always follow the
+            instructions as possible.
+
+            <instructions>
+
+            {{#1736154666967.instruction#}}
+
+            </instructions>
+
+            Analyze this content:
+
+            <content>
+
+            {{#context#}}
+
+            </content>
+
+            Answer in Chinese:'
+        selected: false
+        title: 知识总结
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 109
+      id: '1737527485524'
+      position:
+        x: 3156
+        y: 116.66663797832456
+      positionAbsolute:
+        x: 3156
+        y: 116.66663797832456
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1737527485524'
+          - text
+          variable: summary
+        - value_selector:
+          - '1737623982128'
+          - text
+          variable: mindmap
+        selected: false
+        title: 结束 3
+        type: end
+      height: 142
+      id: '1737527595980'
+      position:
+        x: 3512.2350043036904
+        y: 203.77890430289057
+      positionAbsolute:
+        x: 3512.2350043036904
+        y: 203.77890430289057
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1737527047149'
+          - item
+        desc: ''
+        isInIteration: true
+        iteration_id: '1737527047149'
+        model:
+          completion_params: {}
+          mode: chat
+          name: deepseek-ai/DeepSeek-V3
+          provider: langgenius/siliconflow/siliconflow
+        prompt_template:
+        - id: 01bc16e0-6818-422c-8c67-ce4d1f760db9
+          role: system
+          text: 'Create a comprehensive summary of the provided content in a concise
+            but detailed way, using markdown format.
+
+            Use markdown formatting:
+
+            - ## for main sections
+
+            - ### for subsections
+
+            - Bullet points for lists
+
+            - `code blocks` for any code or formulas
+
+            - **bold** for emphasis
+
+            - *italic* for terminology
+
+            - > blockquotes for important notes
+
+            Return only the markdown summary, nothing else. Do not say ''here is the
+            summary'' or anything like that before or after.
+
+            Instructions:
+
+            Some extra information are provided below, You should always follow the
+            instructions as possible.
+
+            <instructions>
+
+            {{#1736154666967.instruction#}}
+
+            </instructions>
+
+            Analyze this content:
+
+            <content>
+
+            {{#context#}}
+
+            </content>
+
+            Answer in Chinese:'
+        selected: false
+        title: 分块的知识总结
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 109
+      id: '1737527614388'
+      parentId: '1737527047149'
+      position:
+        x: 95.14285714285734
+        y: 65
+      positionAbsolute:
+        x: 3251.1428571428573
+        y: 503.9730009895781
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+      zIndex: 1002
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1737527047149'
+          - output
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: deepseek-ai/DeepSeek-V3
+          provider: langgenius/siliconflow/siliconflow
+        prompt_template:
+        - id: 9385e596-a598-433d-820f-520cf4936663
+          role: system
+          text: 'Create a comprehensive summary of the provided content in a concise
+            but detailed way, using markdown format.
+
+            Use markdown formatting:
+
+            - ## for main sections
+
+            - ### for subsections
+
+            - Bullet points for lists
+
+            - `code blocks` for any code or formulas
+
+            - **bold** for emphasis
+
+            - *italic* for terminology
+
+            - > blockquotes for important notes
+
+            Return only the markdown summary, nothing else. Do not say ''here is the
+            summary'' or anything like that before or after.
+
+            Instructions:
+
+            Some extra information are provided below, You should always follow the
+            instructions as possible.
+
+            <instructions>
+
+            {{#1736154666967.instruction#}}
+
+            </instructions>
+
+            Analyze this content:
+
+            <content>
+
+            {{#context#}}
+
+            </content>
+
+            Answer in Chinese:'
+        selected: false
+        title: 最终的知识总结
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 109
+      id: '1737527721500'
+      position:
+        x: 3575.5992465822465
+        y: 438.9730009895781
+      positionAbsolute:
+        x: 3575.5992465822465
+        y: 438.9730009895781
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1737527721500'
+          - text
+          variable: summary
+        - value_selector:
+          - '1737624072289'
+          - text
+          variable: mindmap
+        selected: false
+        title: 结束 4
+        type: end
+      height: 142
+      id: '1737527755116'
+      position:
+        x: 3895.697937014661
+        y: 509.0300752799401
+      positionAbsolute:
+        x: 3895.697937014661
+        y: 509.0300752799401
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: Qwen/Qwen2.5-72B-Instruct
+          provider: langgenius/siliconflow/siliconflow
+        prompt_template:
+        - id: b8bc4876-4bf2-4fa9-b879-dbccb24342d4
+          role: system
+          text: 'Convert the provided image into Markdown format.
+
+            Ensure that all content from the page is included, such as headers, footers,
+            subtexts, images (with alt text if possible), tables, and any other elements.
+
+            Requirements:
+
+            - Output Only Markdown: Return solely the Markdown content without any
+            additional explanations or comments.
+
+            - No Delimiters: Do not use code fences or delimiters like \`\`\`markdown.
+
+            - Complete Content: Do not omit any part of the page, including headers,
+            footers, and subtext.
+
+            - Return the table content in the form of a markdown table.'
+        selected: false
+        title: VLM
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+            variable_selector:
+            - '1736154666967'
+            - file
+          enabled: false
+      height: 109
+      id: '1737536538688'
+      position:
+        x: 908.6263763486199
+        y: -7.651893205665743
+      positionAbsolute:
+        x: 908.6263763486199
+        y: -7.651893205665743
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1737536621959'
+          - output
+          variable: output
+        selected: false
+        title: 结束 5
+        type: end
+      height: 109
+      id: '1737536612264'
+      position:
+        x: 1293.088022611667
+        y: 116.66663797832456
+      positionAbsolute:
+        x: 1293.088022611667
+        y: 116.66663797832456
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        selected: false
+        template: 暂时只支持文件和图片！！！
+        title: 模板转换 3
+        type: template-transform
+        variables: []
+      height: 64
+      id: '1737536621959'
+      position:
+        x: 908.6263763486199
+        y: 116.66663797832456
+      positionAbsolute:
+        x: 908.6263763486199
+        y: 116.66663797832456
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1737526850533'
+          - chunks
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: deepseek-ai/DeepSeek-V3
+          provider: langgenius/siliconflow/siliconflow
+        prompt_template:
+        - id: 3f585fff-c086-4cf2-9573-071088db9dfb
+          role: system
+          text: 'Create a comprehensive summary mindmap of the provided content in
+            a concise but detailed way, using Mermaid format.
+
+            Return only the mermaid summary mindmap, nothing else. Do not say ''here
+            is the summary mindmap'' or anything like that before or after.
+
+            "A mind map is a diagram used to visually organize information into a
+            hierarchy, showing relationships among pieces of the whole. It is often
+            created around a single concept, drawn as an image in the center of a
+            blank page, to which associated representations of ideas such as images,
+            words and parts of words are added. Major ideas are connected directly
+            to the central concept, and other ideas branch out from those major ideas."
+            Wikipedia
+
+            Instructions:
+
+            Some extra information are provided below, You should always follow the
+            instructions as possible.
+
+            <instructions>
+
+            {{#1736154666967.instruction#}}
+
+            </instructions>
+
+            Analyze this content:
+
+            <content>
+
+            {{#context#}}
+
+            </content>
+
+            Answer in Chinese:'
+        selected: false
+        title: 思维导图
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 109
+      id: '1737623982128'
+      position:
+        x: 3156
+        y: 273.3259021716877
+      positionAbsolute:
+        x: 3156
+        y: 273.3259021716877
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1737527047149'
+          - output
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: deepseek-ai/DeepSeek-V3
+          provider: langgenius/siliconflow/siliconflow
+        prompt_template:
+        - id: 936a6f06-1d16-4ed0-a22b-405c5999349a
+          role: system
+          text: 'Create a comprehensive summary mindmap of the provided content in
+            a concise but detailed way, using Mermaid format.
+
+            Return only the mermaid summary mindmap, nothing else. Do not say ''here
+            is the summary mindmap'' or anything like that before or after.
+
+            "A mind map is a diagram used to visually organize information into a
+            hierarchy, showing relationships among pieces of the whole. It is often
+            created around a single concept, drawn as an image in the center of a
+            blank page, to which associated representations of ideas such as images,
+            words and parts of words are added. Major ideas are connected directly
+            to the central concept, and other ideas branch out from those major ideas."
+            Wikipedia
+
+            Instructions:
+
+            Some extra information are provided below, You should always follow the
+            instructions as possible.
+
+            <instructions>
+
+            {{#1736154666967.instruction#}}
+
+            </instructions>
+
+            Analyze this content:
+
+            <content>
+
+            {{#context#}}
+
+            </content>
+
+            Answer in Chinese:'
+        selected: false
+        title: 最终的思维导图
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 109
+      id: '1737624072289'
+      position:
+        x: 3575.5992465822465
+        y: 581.0104313552287
+      positionAbsolute:
+        x: 3575.5992465822465
+        y: 581.0104313552287
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        author: 苏撒
+        desc: ''
+        height: 320
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":1,"mode":"normal","style":"font-size:
+          14px;","text":"知识图解（KnowGraph）","type":"text","version":1},{"detail":0,"format":0,"mode":"normal","style":"font-size:
+          14px;","text":" 是一款集 ","type":"text","version":1},{"detail":0,"format":1,"mode":"normal","style":"font-size:
+          14px;","text":"知识提取、智能总结、思维导图可视化","type":"text","version":1},{"detail":0,"format":0,"mode":"normal","style":"font-size:
+          14px;","text":" 于一体的高效工具。用户仅需输入网页链接或上传文件（文档/图片），系统即可自动解析内容，精准提炼关键信息，并以直观的思维导图形式呈现。它让碎片化信息结构化、可视化，使知识获取更高效便捷，适用于学习研究、报告整理、商业分析等多种场景，让您的信息管理更智能、更清晰！","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":1,"textStyle":"font-size:
+          14px;"}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 240
+      height: 320
+      id: '1742803938223'
+      position:
+        x: -54.560167795561654
+        y: 51.2714124283674
+      positionAbsolute:
+        x: -54.560167795561654
+        y: 51.2714124283674
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 240
+    viewport:
+      x: -1464.2152017611706
+      y: 16.337424765263563
+      zoom: 0.7461971827104955

@@ -1,13 +1,22 @@
-# DifyAIA仓库-说明文档
+<div align="center">
+
+# Dify工作流DSL开源示例库 🚀 # Dify-Workflow-DSL-Examples
+<strong>Open Collaboration | Workflow-as-Code | Empower Developers. 开放协作·流程即代码·赋能开发者</strong>
 
 
+<a href="https://space.bilibili.com/3494355666995510/upload/video" target="_blank"><img src="https://github.com/BannyLon/DifyAIA/blob/main/Dify%20workflow/IME/112update.png" alt="B站bannylon7视频合集"/></a>
 
-# **更新于2025年4月23日，上传了两个工作流：知识图解（KnowGraph） & 智学规划师（Smart Study Planner）**
+</div>
+
+本仓库为B站 **bannylon7** UP主 设计制作的 **Dify工作流DSL开源示例库（Dify-Workflow-DSL-Examples）** ，这里开源的Dify工作流均是B站UP主 **bannylon7** 在学习Dify过程中构建的完整工作流示例，全部调试成功后才发布，但不保证随着dify版本升级以及大模型的选择使用而出现错误。所有示例均附带注释说明。欢迎通过Issue提交需求，也期待你的PR共同完善这个知识库！项目采用MIT开源协议，特别适合：
+
+✅ 刚接触Dify的开发者快速上手
+✅ 企业团队建立标准化流程规范
+✅ 教学场景演示工作流设计原理
+✅ 开源社区协作改进自动化方案
 
 
-
-本仓库为B站#bannylon7#UP主设计制作的Dify AI实战案例相关工作流，请使用 Dify 0.12.1 及以上版本导入。所有的 Workflow 都免费使用，我会不定期进行更新…………
-
+## DifyAIA仓库-工作流分储情况
 ## Excel_Flask_Dify（生成Excel数据表）
 为B战bannylon7发布的Dify AI实战案例教学视频：[dify AI教程：Dify_Flask_Excel](https://www.bilibili.com/video/BV1WKkzYhEAM/) 相关源码。<br><br>
 Excel_Flask_Dify是一款利用大语言模型生成内容，将内容写入excel数据表中。该功能涉及两大核心；其一如何创建并保存excel文件；其二如何动态写入数据表字段和字段条目。这次的教学实践只是我的一次小小尝试，希望能为大家打开一扇新的思路之门，起到抛砖引玉的作用哦！

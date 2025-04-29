@@ -16,7 +16,8 @@
 ✅ 开源社区协作改进自动化方案
 
 
-## DifyAIA仓库-工作流分储情况
+# DifyAIA仓库-工作流分储情况
+
 ## Excel_Flask_Dify（生成Excel数据表）
 为B战bannylon7发布的Dify AI实战案例教学视频：[dify AI教程：Dify_Flask_Excel](https://www.bilibili.com/video/BV1WKkzYhEAM/) 相关源码。<br><br>
 Excel_Flask_Dify是一款利用大语言模型生成内容，将内容写入excel数据表中。该功能涉及两大核心；其一如何创建并保存excel文件；其二如何动态写入数据表字段和字段条目。这次的教学实践只是我的一次小小尝试，希望能为大家打开一扇新的思路之门，起到抛砖引玉的作用哦！
@@ -122,10 +123,7 @@ Dify workflow将存储我精心整理的所有与学习相关的Dify工作流。
 <br><br><br><br><br><br>
 
 
-👨‍💼 作者：BannyLon7
-
-💚 微信：banny-pan
-
-🗨 微信公众号：嗯哌
-
+👨‍💼 作者：BannyLon7<br>
+💚 微信：banny-pan<br>
+🗨 微信公众号：嗯哌<br>
 🌍网站: https://www.npie.net

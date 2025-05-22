@@ -1,6 +1,6 @@
 <div align="center">
 
-# Dify工作流DSL开源示例库 🚀 # Dify-Workflow-DSL-Examples
+# Dify-Workflow-DSL-Examples 🚀 # Dify开源工作流示例库  
 <strong>Open Collaboration | Workflow-as-Code | Empower Developers. 开放协作·流程即代码·赋能开发者</strong>
 
 
@@ -14,6 +14,28 @@
 ✅ 企业团队建立标准化流程规范
 ✅ 教学场景演示工作流设计原理
 ✅ 开源社区协作改进自动化方案
+
+
+# VIP群（AIGC交流群）
+我准备筹建一个AIGC交流群:专注于人工智能生成内容(AIGC)技术的交流和学习。
+### 群友要求:
+群友可以是开发者、内容生产者、创业者和学习者等。
+### 群内交流:
+1. 群内主要交流和探讨 AIGC相关领域的知识、技术和应用。
+2. 分项讨论AIGC在实际场景中的落地应用，如Midjourney、ChatGPT、StableDiffusion等 AIGC产品的实际体验与应用场景;
+3. 分项讨论AI绘画技术和工具，如Dalle2、SD、MJ、AIGC等、
+4. 分项讨论大语言模型(LLM)的发展和应用落地，以及国内LLM的发展和市场研究。
+
+### 社群福利:
+1. 每日分享AIGC趋势!AIGC实战案例;
+2. 不定时分享最新精选的 AIGC工具;
+3. AI文本、图像、视频、音乐等工具等使用教程以及答疑;
+4. 分享最新 AI技术论文;分项最新的AIGC报告!4.
+5. 分享开源模型(图、文、视等)，只要你的硬盘足够大!
+
+## 交流群的建立旨在促进AIGC技术的普及和应用。让更多人喜欢A1，爱上AI，利用 A...
+![](https://raw.githubusercontent.com/BannyLon/DifyAIA/refs/heads/main/DifyWordBridg/1732613793721.jpg)
+
 
 
 # DifyAIA仓库-工作流分储情况

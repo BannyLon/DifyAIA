@@ -34,7 +34,7 @@
 5. 分享开源模型(图、文、视等)，只要你的硬盘足够大!
 
 ## 交流群的建立旨在促进AIGC技术的普及和应用。让更多人喜欢A1，爱上AI，利用 A...
-![](https://raw.githubusercontent.com/BannyLon/DifyAIA/refs/heads/main/DifyWordBridg/1732613793721.jpg)
+![](https://github.com/BannyLon/DifyAIA/blob/main/Dify%20workflow/IME/202505221432.png?raw=true)
 
 
 

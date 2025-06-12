@@ -1,0 +1,431 @@
+app:
+  description: 利用开源工具（doubao-image-and-video-generator）创建的文生视频，同理，可以创建图片生成视频。https://github.com/AllenWriter/doubao-image-and-video-generator
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: 文生视频
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/ollama:0.0.3@9ded90ac00e8510119a24be7396ba77191c9610d5e1e29f59d68fa1229822fc7
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/siliconflow:0.0.8@217f973bd7ced1b099c2f0c669f1356bdf4cc38b8372fd58d7874f9940b95de3
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: allenwriter/doubao_image:0.0.1@d9cb638d96848452b8fc2296c61ce93082a5ffa6968a114c15d008cbd4b3730b
+kind: app
+version: 0.3.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        sourceType: start
+        targetType: llm
+      id: 1749299020944-llm
+      source: '1749299020944'
+      sourceHandle: source
+      target: llm
+      targetHandle: target
+      type: custom
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: tool
+      id: llm-source-1749299057379-target
+      source: llm
+      sourceHandle: source
+      target: '1749299057379'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: llm
+      id: 1749299057379-source-1749299674463-target
+      source: '1749299057379'
+      sourceHandle: source
+      target: '1749299674463'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1749299674463-source-answer-target
+      source: '1749299674463'
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables: []
+      height: 64
+      id: '1749299020944'
+      position:
+        x: 80
+        y: 282
+      positionAbsolute:
+        x: 80
+        y: 282
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 10
+        model:
+          completion_params: {}
+          mode: chat
+          name: qwen3:latest
+          provider: langgenius/ollama/ollama
+        prompt_template:
+        - id: b48081a3-6f38-4c8a-ae66-a1608ef4157c
+          role: system
+          text: '适当扩充用户输入的文本，生成更加丰富的视频描述。字数不用太多。写的时候注意排除敏感内容。例如血腥元素。
+
+            这是用户输入的文本:{{#sys.query#}}'
+        selected: false
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 109
+      id: llm
+      position:
+        x: 380
+        y: 282
+      positionAbsolute:
+        x: 380
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '扩充的提示词：{{#llm.text#}}
+
+          输出的视频：{{#1749299057379.text#}}
+
+          '
+        desc: ''
+        selected: false
+        title: 直接回复
+        type: answer
+        variables: []
+      height: 162
+      id: answer
+      position:
+        x: 647.3454264824036
+        y: 738.210710049121
+      positionAbsolute:
+        x: 647.3454264824036
+        y: 738.210710049121
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        is_team_authorization: true
+        output_schema: null
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: The text prompt used to generate the video. Doubao will generate
+              a video based on this prompt.
+            ja_JP: The text prompt used to generate the video. Doubao will generate
+              a video based on this prompt.
+            pt_BR: The text prompt used to generate the video. Doubao will generate
+              a video based on this prompt.
+            zh_Hans: The text prompt used to generate the video. Doubao will generate
+              a video based on this prompt.
+          label:
+            en_US: Prompt
+            ja_JP: Prompt
+            pt_BR: Prompt
+            zh_Hans: Prompt
+          llm_description: This prompt text will be used to generate a video.
+          max: null
+          min: null
+          name: prompt
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: '16:9'
+          form: form
+          human_description:
+            en_US: The aspect ratio of the generated video.
+            ja_JP: The aspect ratio of the generated video.
+            pt_BR: The aspect ratio of the generated video.
+            zh_Hans: The aspect ratio of the generated video.
+          label:
+            en_US: Aspect Ratio
+            ja_JP: Aspect Ratio
+            pt_BR: Aspect Ratio
+            zh_Hans: Aspect Ratio
+          llm_description: ''
+          max: null
+          min: null
+          name: ratio
+          options:
+          - label:
+              en_US: 16:9 (Landscape)
+              ja_JP: 16:9 (Landscape)
+              pt_BR: 16:9 (Landscape)
+              zh_Hans: 16:9 (Landscape)
+            value: '16:9'
+          - label:
+              en_US: 9:16 (Portrait)
+              ja_JP: 9:16 (Portrait)
+              pt_BR: 9:16 (Portrait)
+              zh_Hans: 9:16 (Portrait)
+            value: '9:16'
+          - label:
+              en_US: 4:3 (Classic)
+              ja_JP: 4:3 (Classic)
+              pt_BR: 4:3 (Classic)
+              zh_Hans: 4:3 (Classic)
+            value: '4:3'
+          - label:
+              en_US: 1:1 (Square)
+              ja_JP: 1:1 (Square)
+              pt_BR: 1:1 (Square)
+              zh_Hans: 1:1 (Square)
+            value: '1:1'
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: '5'
+          form: form
+          human_description:
+            en_US: The duration of the generated video in seconds.
+            ja_JP: The duration of the generated video in seconds.
+            pt_BR: The duration of the generated video in seconds.
+            zh_Hans: The duration of the generated video in seconds.
+          label:
+            en_US: Duration (seconds)
+            ja_JP: Duration (seconds)
+            pt_BR: Duration (seconds)
+            zh_Hans: Duration (seconds)
+          llm_description: ''
+          max: null
+          min: null
+          name: duration
+          options:
+          - label:
+              en_US: 5 seconds
+              ja_JP: 5 seconds
+              pt_BR: 5 seconds
+              zh_Hans: 5 seconds
+            value: '5'
+          - label:
+              en_US: 10 seconds
+              ja_JP: 10 seconds
+              pt_BR: 10 seconds
+              zh_Hans: 10 seconds
+            value: '10'
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: doubao-seedance-1-0-lite-t2v-250428
+          form: form
+          human_description:
+            en_US: Model version to use for video generation.
+            ja_JP: Model version to use for video generation.
+            pt_BR: Model version to use for video generation.
+            zh_Hans: Model version to use for video generation.
+          label:
+            en_US: Model Version
+            ja_JP: Model Version
+            pt_BR: Model Version
+            zh_Hans: Model Version
+          llm_description: ''
+          max: null
+          min: null
+          name: model
+          options:
+          - label:
+              en_US: Doubao Seedance 1.0 Lite
+              ja_JP: Doubao Seedance 1.0 Lite
+              pt_BR: Doubao Seedance 1.0 Lite
+              zh_Hans: Doubao Seedance 1.0 Lite
+            value: doubao-seedance-1-0-lite-t2v-250428
+          - label:
+              en_US: Doubao Seaweed
+              ja_JP: Doubao Seaweed
+              pt_BR: Doubao Seaweed
+              zh_Hans: Doubao Seaweed
+            value: doubao-seaweed-241128
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        params:
+          duration: ''
+          model: ''
+          prompt: ''
+          ratio: ''
+        provider_id: allenwriter/doubao_image/doubao
+        provider_name: allenwriter/doubao_image/doubao
+        provider_type: builtin
+        selected: true
+        title: Text to Video
+        tool_configurations:
+          duration: '10'
+          model: doubao-seedance-1-0-lite-t2v-250428
+          ratio: '16:9'
+        tool_description: Generate videos with Doubao (豆包) AI.
+        tool_label: Text to Video
+        tool_name: text2video
+        tool_parameters:
+          prompt:
+            type: mixed
+            value: '{{#llm.text#}}'
+        type: tool
+      height: 174
+      id: '1749299057379'
+      position:
+        x: 680
+        y: 282
+      positionAbsolute:
+        x: 680
+        y: 282
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: Qwen/QVQ-72B-Preview
+          provider: langgenius/siliconflow/siliconflow
+        prompt_template:
+        - id: 732a6731-d5e3-4810-adee-4055f955edf8
+          role: system
+          text: '仅提取内容中的视频链接，然后变成 markdown 格式。
+
+            这是你看到的内容：{{#1749299057379.text#}}'
+        - id: 55a0e84d-fb0a-4362-923a-a206f72da60f
+          role: user
+          text: '{{#1749299057379.text#}}'
+        selected: false
+        title: LLM 2
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 109
+      id: '1749299674463'
+      position:
+        x: 664.936624313915
+        y: 569.7147683585047
+      positionAbsolute:
+        x: 664.936624313915
+        y: 569.7147683585047
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    viewport:
+      x: -19.58933477981862
+      y: -65.26854308542278
+      zoom: 0.8442808384939615

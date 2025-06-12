@@ -1,0 +1,506 @@
+app:
+  description: “文思泉涌”是一款基于 LLM 协同创作理念打造的自动化长文案生产工作流。它将复杂的写作任务解构为“策略规划、分段精撰、整合润色”三大核心步骤，模拟专业内容团队的协作模式。通过“大纲生成器”精准构筑文章骨架，再由“章节迭代器”并行处理各部分细节，最后经“总编辑”模块赋予全文灵魂。无论是深度行业报告、营销白皮书还是万字博客，文思泉涌都能高效、稳定地输出逻辑严谨、结构清晰、风格统一的高质量内容，将您的灵感瞬间化为杰作。
+  icon: ✍️
+  icon_background: '#E0F2FE'
+  mode: workflow
+  name: 文思泉涌
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/ollama:0.0.3@9ded90ac00e8510119a24be7396ba77191c9610d5e1e29f59d68fa1229822fc7
+kind: app
+version: 0.3.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: 欢迎使用智能分段写作系统。请输入文章主题和目标字数，系统将通过专业的流水线式写作流程，为您生成一篇结构完整、内容丰富的文章。
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: llm
+      id: start-to-outline
+      source: start
+      sourceHandle: source
+      target: outline_generator
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: iteration
+        targetType: llm
+      id: iteration-to-editor
+      source: section_iterator
+      sourceHandle: source
+      target: final_editor
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: section_iterator
+        sourceType: iteration-start
+        targetType: llm
+      id: section_iteratorstart0-source-1749443261566-target
+      source: section_iteratorstart0
+      sourceHandle: source
+      target: '1749443261566'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: outline_generator-source-1749449203563-target
+      source: outline_generator
+      sourceHandle: source
+      target: '1749449203563'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: iteration
+      id: 1749449203563-source-section_iterator-target
+      source: '1749449203563'
+      sourceHandle: source
+      target: section_iterator
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: end
+      id: final_editor-source-1749448335087-target
+      source: final_editor
+      sourceHandle: source
+      target: '1749448335087'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - label: 文章主题
+          required: true
+          type: text-input
+          variable: topic
+        - label: 目标字数
+          max_length: 48
+          required: true
+          type: text-input
+          variable: target_length
+        - label: 文章风格
+          options:
+          - 学术严谨
+          - 科技创新
+          - 商业分析
+          - 生活随笔
+          - 新闻报道
+          required: false
+          type: select
+          variable: style
+        - label: 目标读者
+          max_length: 250
+          options: []
+          required: true
+          type: text-input
+          variable: target_audience
+      height: 207
+      id: start
+      position:
+        x: 401.90026926950384
+        y: 486.7408933479527
+      positionAbsolute:
+        x: 401.90026926950384
+        y: 486.7408933479527
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: qwen3:latest
+          provider: langgenius/ollama/ollama
+        prompt_template:
+        - id: system-prompt
+          role: system
+          text: "你是一位资深的内容策略师，擅长制定清晰的内容框架和写作大纲。你的任务是为一篇长文制定详细的写作大纲。\n\n要求：\n1. 分析主题的关键维度和核心要点\n\
+            2. 设计逻辑严密的章节结构\n3. 每个章节都要有明确的写作方向和重点\n4. 考虑内容的连贯性和递进关系\n5. 根据目标字数合理分配各章节的篇幅\n\
+            6. 输出格式要规范，便于后续处理\n\n输出格式示例：\n{\n  \"title\": \"文章标题\",\n  \"sections\"\
+            : [\n    {\n      \"section_number\": 1,\n      \"title\": \"章节标题\",\n\
+            \      \"key_points\": [\"要点1\", \"要点2\"],\n      \"target_length\": 500\n\
+            \    }\n  ],\n  \"total_sections\": 5\n}\n"
+        - id: user-prompt
+          role: user
+          text: '请为以下主题制定写作大纲：
+
+            - 文章的核心主题：{{#start.topic#}}
+
+            - 目标读者：{{#start.target_audience#}}
+
+            - 预期的总字数：{{#start.target_length#}}
+
+            - 文案的风格和语调：{{#start.style#}}
+
+            '
+        selected: false
+        structured_output_enabled: false
+        title: 大纲生成器
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 109
+      id: outline_generator
+      position:
+        x: 665.4736898687406
+        y: 486.7408933479527
+      positionAbsolute:
+        x: 665.4736898687406
+        y: 486.7408933479527
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        error_handle_mode: terminated
+        height: 268
+        input_parameters:
+        - value_selector:
+          - outline_generator
+          - text
+          variable: outline
+        is_array_input: true
+        is_parallel: false
+        iterator_selector:
+        - '1749449203563'
+        - result
+        output_selector:
+        - '1749443261566'
+        - text
+        output_type: array[string]
+        parallel_nums: 10
+        selected: false
+        start_node_id: section_iteratorstart0
+        title: 章节迭代器
+        type: iteration
+        width: 497
+      height: 268
+      id: section_iterator
+      position:
+        x: 1209.9734511109368
+        y: 486.7408933479527
+      positionAbsolute:
+        x: 1209.9734511109368
+        y: 486.7408933479527
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 497
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: qwen3:latest
+          provider: langgenius/ollama/ollama
+        prompt_template:
+        - id: system-prompt
+          role: system
+          text: '你将扮演一位资深的中文总编辑。你的任务是，根据我提供的分散的章节草稿和总体要求，将它们整合成一篇逻辑连贯、行文流畅、结构完整的最终文章。
+
+
+            ### 原始材料
+
+
+            - 文章的核心主题：{{#start.topic#}}
+
+            - 目标读者：{{#start.target_audience#}}
+
+            - 预期的总字数：{{#start.target_length#}}
+
+            - 文案的风格和语调：{{#start.style#}}
+
+            3.  **原始大纲 (供参考)**:{{#outline_generator.text#}}
+
+            4.  **各章节独立撰写的内容 (已拼接)**:
+
+            {{{#section_iterator.output#}} | join(''\n\n---\n\n'')}}
+
+
+            ### 你的任务与执行步骤
+
+
+            1.  **撰写引言**: 根据总主题和目标受众，写一个大约200字的、吸引人的引言，概括全文核心价值。
+
+            2.  **整合主体**: 将上面提供的“各章节独立撰写的内容”自然地衔接起来。注意章节之间的过渡要平滑，而不是生硬地罗列。
+
+            3.  **撰写结论**: 根据全文内容，进行有力的总结，并可以提出号召性用语（Call to Action）或深刻的见解。
+
+            4.  **通篇润色**: 检查并统一全文的语气、风格，修正任何不通顺或逻辑不清晰的地方。
+
+            5.  **添加标题**: 在文章最前面，加上一个与主题和风格相符的、吸引人的总标题。
+
+
+            ### 输出要求
+
+
+            请直接输出最终完成的、完整的文章正文，从总标题开始。不要包含任何额外的解释或元信息。'
+        selected: true
+        title: 总编辑
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 109
+      id: final_editor
+      position:
+        x: 1385.656212163108
+        y: 833.4731210545426
+      positionAbsolute:
+        x: 1385.656212163108
+        y: 833.4731210545426
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        isInIteration: true
+        selected: false
+        title: ''
+        type: iteration-start
+      draggable: false
+      height: 60
+      id: section_iteratorstart0
+      parentId: section_iterator
+      position:
+        x: 24
+        y: 68
+      positionAbsolute:
+        x: 1233.9734511109368
+        y: 554.7408933479527
+      selectable: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-iteration-start
+      width: 55
+      zIndex: 1002
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        isInIteration: true
+        isInLoop: false
+        iteration_id: section_iterator
+        model:
+          completion_params: {}
+          mode: chat
+          name: qwen3:latest
+          provider: langgenius/ollama/ollama
+        prompt_template:
+        - id: 8bfb0906-76e8-46f3-858f-4132cecf9454
+          role: system
+          text: '# 角色
+
+            你是一位专业的文案撰稿人，擅长将一个具体的主题要点，扩展成内容丰富、逻辑清晰、引人入胜的段落。
+
+
+            # 任务
+
+            你的核心任务是，根据下面提供的“当前章节信息”，专注于撰写**这一个章节**的详细内容。
+
+
+            # 文章总体信息（供你参考风格和背景）
+
+            - 文章的核心主题：{{#start.topic#}}
+
+            - 目标读者：{{#start.target_audience#}}
+
+            - 预期的总字数：{{#start.target_length#}}
+
+            - 文案的风格和语调：{{#start.style#}}
+
+
+            # 当前章节信息（本次写作的唯一依据）
+
+            - 章节标题: {{#section_iterator.item#}}
+
+
+            # 写作要求
+
+            1.  **紧扣主题**：严格围绕“当前章节信息”给出的标题和要点展开，不要跑题或引入无关内容。
+
+            2.  **内容详实**：对核心要点进行充分的阐述、解释或举例。
+
+            3.  **独立成篇**：仅撰写本章节的正文，**不要**包含如“在本章中，我们将讨论...”或“总结一下，本章...”这类承上启下的句子。这些工作将由后续的“总编辑”完成。
+
+            4.  **直接输出**：请直接输出撰写好的正文内容，不要添加任何额外的标题或说明。'
+        selected: false
+        title: LLM 4
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 109
+      id: '1749443261566'
+      parentId: section_iterator
+      position:
+        x: 139
+        y: 67.07269804075315
+      positionAbsolute:
+        x: 1348.9734511109368
+        y: 553.8135913887058
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+      zIndex: 1002
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - final_editor
+          - text
+          variable: final_article
+        - value_selector:
+          - section_iterator
+          - output
+          variable: sections
+        selected: false
+        title: 结束
+        type: end
+      height: 142
+      id: '1749448335087'
+      position:
+        x: 1374.8045005525457
+        y: 978.5493669568815
+      positionAbsolute:
+        x: 1374.8045005525457
+        y: 978.5493669568815
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "import json\nimport re\n\ndef main(**kwargs) -> dict:\n  \"\"\"\n \
+          \ 加强版主函数：\n  1. 从可能混杂的文本中提取出最外层的 JSON 对象或数组。\n  2. 将提取出的 JSON 字符串解析为 Python\
+          \ 对象。\n  \"\"\"\n  outline_str = kwargs.get('outline_string', '')\n  \n\
+          \  parsed_json = None\n  \n  # 1. 使用正则表达式查找被 {} 或 [] 包围的最长字符串\n  #    这可以处理\
+          \ JSON 前后有无关文字或 markdown 标记的情况\n  match = re.search(r'(\\{.*\\}|\\[.*\\\
+          ])', outline_str, re.DOTALL)\n  \n  if match:\n    # 如果找到了匹配项，就用这个匹配到的干净字符串进行解析\n\
+          \    json_string = match.group(0)\n    try:\n      parsed_json = json.loads(json_string)\n\
+          \    except json.JSONDecodeError:\n      parsed_json = None # 解析失败\n  else:\n\
+          \    # 如果正则没找到，尝试直接解析整个原始字符串\n    try:\n      parsed_json = json.loads(outline_str)\n\
+          \    except json.JSONDecodeError:\n      parsed_json = None # 还是解析失败\n\n\
+          \  # 2. 检查解析结果并返回\n  #    我们的目标是获取 \"sections\" 里面的那个列表\n  final_list =\
+          \ []\n  if isinstance(parsed_json, dict) and 'sections' in parsed_json and\
+          \ isinstance(parsed_json['sections'], list):\n    # 如果解析结果是一个字典，并且里面有 'sections'\
+          \ 键，且其值是列表\n    final_list = parsed_json['sections']\n  elif isinstance(parsed_json,\
+          \ list):\n    # 如果解析结果本身就是一个列表（对应您最初的 Prompt）\n    final_list = parsed_json\n\
+          \n  return {\n    'result': final_list\n  }"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: array[object]
+        selected: false
+        title: 代码执行
+        type: code
+        variables:
+        - value_selector:
+          - outline_generator
+          - text
+          variable: outline_string
+      height: 64
+      id: '1749449203563'
+      position:
+        x: 937.9239083622927
+        y: 486.7408933479527
+      positionAbsolute:
+        x: 937.9239083622927
+        y: 486.7408933479527
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    viewport:
+      x: -279.1267287500343
+      y: -216.50467169097385
+      zoom: 0.6766689120332702

@@ -120,6 +120,12 @@ BillPic2Web—AI智读票据，它能够实现票据图片的自动解析并生�
 # Dify workflow(Dify精选工作流)
 
 DifyAIA库中的 **【Dify workflow】文件夹** 存储我精心整理的所有与学习相关的Dify工作流。我会不定期进行更新，确保你能找到所需的工作流。
+
+#### 2025年6月12日更新
+| 文件名称 | 文件描述 |文件图示 |
+| :-------------: | :----------: | :------------: |
+| [文生视频.yml]|   利用开源工具（doubao-image-and-video-generator）创建的文生视频，同理，可以创建图片生成视频。https://github.com/AllenWriter/doubao-image-and-video-generator   |![](./Dify%20workflow/IME/20250612090956.png?raw=true)|
+
 | 文件名称 | 文件描述 |文件图示 |
 | :-------------: | :----------: | :------------: |
 | [智能合同卫士.yml]|   智能合同卫士是AI驱动的智能合同审查与生成系统，它能自动扫描合同法律风险，优化条款以最大化主体利益。系统支持生成带修订批注的Word和PDF文件。   |![](./Dify%20workflow/IME/20250515134528.png?raw=true)|

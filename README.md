@@ -163,4 +163,5 @@ DifyAIA库中的 **【Dify workflow】文件夹** 存储我精心整理的所有
 👨‍💼 作者：BannyLon7<br>
 💚 微信：banny-pan<br>
 🗨 微信公众号：嗯哌<br>
-🌍网站: https://www.npie.net
+🌍网站: https://www.agidt.com/
+       https://www.npie.net/

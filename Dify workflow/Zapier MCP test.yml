@@ -1,0 +1,600 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: Zapier MCP test
+  use_icon_as_answer_icon: false
+dependencies: []
+kind: app
+version: 0.3.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: answer
+      id: 1753092211766-source-answer-target
+      source: '1753092211766'
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: tool
+      id: 1752744461650-source-1753092211766-target
+      source: '1752744461650'
+      sourceHandle: source
+      target: '1753092211766'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - label: 接收邮件
+          max_length: 255
+          options: []
+          required: true
+          type: text-input
+          variable: Receiving_Mail
+        - label: 标题
+          max_length: 255
+          options: []
+          required: true
+          type: text-input
+          variable: title
+        - label: 邮件正文
+          max_length: 2000
+          options: []
+          required: true
+          type: paragraph
+          variable: YJZW
+      height: 174
+      id: '1752744461650'
+      position:
+        x: -87.1033513187943
+        y: 282
+      positionAbsolute:
+        x: -87.1033513187943
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '{{#1753092211766.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复
+        type: answer
+        variables: []
+      height: 121
+      id: answer
+      position:
+        x: 473.03951584677395
+        y: 282
+      positionAbsolute:
+        x: 473.03951584677395
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        is_team_authorization: true
+        output_schema: null
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Instructions for running this tool. Any parameters that are not
+              given a value will be guessed based on the instructions.
+            ja_JP: Instructions for running this tool. Any parameters that are not
+              given a value will be guessed based on the instructions.
+            pt_BR: Instructions for running this tool. Any parameters that are not
+              given a value will be guessed based on the instructions.
+            zh_Hans: Instructions for running this tool. Any parameters that are not
+              given a value will be guessed based on the instructions.
+          label:
+            en_US: instructions
+            ja_JP: instructions
+            pt_BR: instructions
+            zh_Hans: instructions
+          llm_description: Instructions for running this tool. Any parameters that
+            are not given a value will be guessed based on the instructions.
+          max: null
+          min: null
+          name: instructions
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Can be comma separated. The user must provide a valid email address,
+              do not guess or use fake email addresses like @example.com. Perhaps
+              look it up in a CRM or contact book first?
+            ja_JP: Can be comma separated. The user must provide a valid email address,
+              do not guess or use fake email addresses like @example.com. Perhaps
+              look it up in a CRM or contact book first?
+            pt_BR: Can be comma separated. The user must provide a valid email address,
+              do not guess or use fake email addresses like @example.com. Perhaps
+              look it up in a CRM or contact book first?
+            zh_Hans: Can be comma separated. The user must provide a valid email address,
+              do not guess or use fake email addresses like @example.com. Perhaps
+              look it up in a CRM or contact book first?
+          label:
+            en_US: cc
+            ja_JP: cc
+            pt_BR: cc
+            zh_Hans: cc
+          llm_description: Can be comma separated. The user must provide a valid email
+            address, do not guess or use fake email addresses like @example.com. Perhaps
+            look it up in a CRM or contact book first?
+          max: null
+          min: null
+          name: cc
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Can be comma separated. The user must provide a valid email address,
+              do not guess or use fake email addresses like @example.com. Perhaps
+              look it up in a CRM or contact book first?
+            ja_JP: Can be comma separated. The user must provide a valid email address,
+              do not guess or use fake email addresses like @example.com. Perhaps
+              look it up in a CRM or contact book first?
+            pt_BR: Can be comma separated. The user must provide a valid email address,
+              do not guess or use fake email addresses like @example.com. Perhaps
+              look it up in a CRM or contact book first?
+            zh_Hans: Can be comma separated. The user must provide a valid email address,
+              do not guess or use fake email addresses like @example.com. Perhaps
+              look it up in a CRM or contact book first?
+          label:
+            en_US: to
+            ja_JP: to
+            pt_BR: to
+            zh_Hans: to
+          llm_description: Can be comma separated. The user must provide a valid email
+            address, do not guess or use fake email addresses like @example.com. Perhaps
+            look it up in a CRM or contact book first?
+          max: null
+          min: null
+          name: to
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Can be comma separated. The user must provide a valid email address,
+              do not guess or use fake email addresses like @example.com. Perhaps
+              look it up in a CRM or contact book first?
+            ja_JP: Can be comma separated. The user must provide a valid email address,
+              do not guess or use fake email addresses like @example.com. Perhaps
+              look it up in a CRM or contact book first?
+            pt_BR: Can be comma separated. The user must provide a valid email address,
+              do not guess or use fake email addresses like @example.com. Perhaps
+              look it up in a CRM or contact book first?
+            zh_Hans: Can be comma separated. The user must provide a valid email address,
+              do not guess or use fake email addresses like @example.com. Perhaps
+              look it up in a CRM or contact book first?
+          label:
+            en_US: bcc
+            ja_JP: bcc
+            pt_BR: bcc
+            zh_Hans: bcc
+          llm_description: Can be comma separated. The user must provide a valid email
+            address, do not guess or use fake email addresses like @example.com. Perhaps
+            look it up in a CRM or contact book first?
+          max: null
+          min: null
+          name: bcc
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Body
+            ja_JP: Body
+            pt_BR: Body
+            zh_Hans: Body
+          label:
+            en_US: body
+            ja_JP: body
+            pt_BR: body
+            zh_Hans: body
+          llm_description: Body
+          max: null
+          min: null
+          name: body
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Attachments
+            ja_JP: Attachments
+            pt_BR: Attachments
+            zh_Hans: Attachments
+          label:
+            en_US: file
+            ja_JP: file
+            pt_BR: file
+            zh_Hans: file
+          llm_description: Attachments
+          max: null
+          min: null
+          name: file
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: From
+            ja_JP: From
+            pt_BR: From
+            zh_Hans: From
+          label:
+            en_US: from
+            ja_JP: from
+            pt_BR: from
+            zh_Hans: from
+          llm_description: From
+          max: null
+          min: null
+          name: from
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Subject
+            ja_JP: Subject
+            pt_BR: Subject
+            zh_Hans: Subject
+          label:
+            en_US: subject
+            ja_JP: subject
+            pt_BR: subject
+            zh_Hans: subject
+          llm_description: Subject
+          max: null
+          min: null
+          name: subject
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Reply To
+            ja_JP: Reply To
+            pt_BR: Reply To
+            zh_Hans: Reply To
+          label:
+            en_US: reply_to
+            ja_JP: reply_to
+            pt_BR: reply_to
+            zh_Hans: reply_to
+          llm_description: Reply To
+          max: null
+          min: null
+          name: reply_to
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Body type
+            ja_JP: Body type
+            pt_BR: Body type
+            zh_Hans: Body type
+          label:
+            en_US: body_type
+            ja_JP: body_type
+            pt_BR: body_type
+            zh_Hans: body_type
+          llm_description: Body type
+          max: null
+          min: null
+          name: body_type
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: From Name
+            ja_JP: From Name
+            pt_BR: From Name
+            zh_Hans: From Name
+          label:
+            en_US: from_name
+            ja_JP: from_name
+            pt_BR: from_name
+            zh_Hans: from_name
+          llm_description: From Name
+          max: null
+          min: null
+          name: from_name
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Label or mailbox
+            ja_JP: Label or mailbox
+            pt_BR: Label or mailbox
+            zh_Hans: Label or mailbox
+          label:
+            en_US: label_ids
+            ja_JP: label_ids
+            pt_BR: label_ids
+            zh_Hans: label_ids
+          llm_description: Label or mailbox
+          max: null
+          min: null
+          name: label_ids
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Add signature default
+            ja_JP: Add signature default
+            pt_BR: Add signature default
+            zh_Hans: Add signature default
+          label:
+            en_US: signature
+            ja_JP: signature
+            pt_BR: signature
+            zh_Hans: signature
+          llm_description: Add signature default
+          max: null
+          min: null
+          name: signature
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Send message to Google Contacts Group/Label
+            ja_JP: Send message to Google Contacts Group/Label
+            pt_BR: Send message to Google Contacts Group/Label
+            zh_Hans: Send message to Google Contacts Group/Label
+          label:
+            en_US: send_to_groups
+            ja_JP: send_to_groups
+            pt_BR: send_to_groups
+            zh_Hans: send_to_groups
+          llm_description: Send message to Google Contacts Group/Label
+          max: null
+          min: null
+          name: send_to_groups
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        params:
+          bcc: ''
+          body: ''
+          body_type: ''
+          cc: ''
+          file: ''
+          from: ''
+          from_name: ''
+          instructions: ''
+          label_ids: ''
+          reply_to: ''
+          send_to_groups: ''
+          signature: ''
+          subject: ''
+          to: ''
+        provider_id: zapier-mcp-server
+        provider_name: zapier-MCP
+        provider_type: mcp
+        selected: true
+        title: gmail_send_email
+        tool_configurations: {}
+        tool_description: Create and send a new email message.
+        tool_label: gmail_send_email
+        tool_name: gmail_send_email
+        tool_parameters:
+          bcc:
+            type: mixed
+            value: null
+          body:
+            type: mixed
+            value: '{{#1752744461650.YJZW#}}'
+          body_type:
+            type: mixed
+            value: null
+          cc:
+            type: mixed
+            value: null
+          file:
+            type: mixed
+            value: null
+          from:
+            type: mixed
+            value: ''
+          from_name:
+            type: mixed
+            value: ''
+          instructions:
+            type: mixed
+            value: '{{#sys.query#}}'
+          label_ids:
+            type: mixed
+            value: null
+          reply_to:
+            type: mixed
+            value: null
+          send_to_groups:
+            type: mixed
+            value: null
+          signature:
+            type: mixed
+            value: null
+          subject:
+            type: mixed
+            value: '{{#1752744461650.title#}}'
+          to:
+            type: mixed
+            value: '{{#1752744461650.Receiving_Mail#}}'
+        type: tool
+        version: '2'
+      height: 104
+      id: '1753092211766'
+      position:
+        x: 198.5535261121462
+        y: 282
+      positionAbsolute:
+        x: 198.5535261121462
+        y: 282
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    viewport:
+      x: 116.72286069474019
+      y: 142.02186892306645
+      zoom: 0.6251274261678278

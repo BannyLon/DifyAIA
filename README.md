@@ -121,6 +121,11 @@ BillPic2Web—AI智读票据，它能够实现票据图片的自动解析并生�
 
 DifyAIA库中的 **【Dify workflow】文件夹** 存储我精心整理的所有与学习相关的Dify工作流。我会不定期进行更新，确保你能找到所需的工作流。
 
+## 2025年7月21日更新
+| 文件名称 | 文件描述 |文件图示 |
+| :-------------: | :----------: | :------------: |
+| [Zapier MCP test.yml](https://www.bilibili.com/video/BV1hjgNzVEBU/)|   用Zapier MCP + Gmail 实现自动发邮件！手把手带你三步配置专属Zapier MCP服务器，无缝调用Gmail“Send Email”，体验AI“动手”执行的魔力！  |![](./Dify%20workflow/IME/20250721202457.png?raw=true)|
+
 ## 2025年6月21日更新
 | 文件名称 | 文件描述 |文件图示 |
 | :-------------: | :----------: | :------------: |

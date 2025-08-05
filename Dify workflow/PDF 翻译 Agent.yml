@@ -1,0 +1,221 @@
+app:
+  description: "它通过集成 MCP 服务，简化了与外部工具的集成过程，提高了工作流的可重用性和系统的稳定性，为 PDF 文档翻译等特定任务提供了强大、便捷的解决方案。\n\
+    另外方便大家使用MCP，这个MCP请求地址也开放给大家（无密码）\n https://pdftranslate2.duckcloud.fun/sse"
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: agent-chat
+  name: PDF 翻译 Agent
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/gemini:0.3.0@3d5be07581c53609a49d2bbb47be98c2e10820591bfc99f686b005d2c1ef95d9
+kind: app
+model_config:
+  agent_mode:
+    enabled: true
+    max_iteration: 10
+    prompt: null
+    strategy: function_call
+    tools:
+    - enabled: true
+      notAuthor: false
+      provider_id: pdftranslate2-mcp-server
+      provider_name: pdftranslate2 MCP
+      provider_type: mcp
+      tool_label: translate_pdf
+      tool_name: translate_pdf
+      tool_parameters:
+        file_input: ''
+        filename: ''
+        input_type: ''
+        lang_in: ''
+        lang_out: ''
+        no_dual: ''
+        no_mono: ''
+        qps: ''
+        watermark_output_mode: ''
+    - enabled: true
+      notAuthor: false
+      provider_id: pdftranslate2-mcp-server
+      provider_name: pdftranslate2 MCP
+      provider_type: mcp
+      tool_label: get_translation_status
+      tool_name: get_translation_status
+      tool_parameters:
+        task_id: ''
+    - enabled: true
+      notAuthor: false
+      provider_id: pdftranslate2-mcp-server
+      provider_name: pdftranslate2 MCP
+      provider_type: mcp
+      tool_label: get_translation_result_base64
+      tool_name: get_translation_result_base64
+      tool_parameters:
+        file_type: ''
+        task_id: ''
+    - enabled: true
+      notAuthor: false
+      provider_id: pdftranslate2-mcp-server
+      provider_name: pdftranslate2 MCP
+      provider_type: mcp
+      tool_label: get_translation_result_cos_url
+      tool_name: get_translation_result_cos_url
+      tool_parameters:
+        file_type: ''
+        task_id: ''
+    - enabled: true
+      notAuthor: false
+      provider_id: pdftranslate2-mcp-server
+      provider_name: pdftranslate2 MCP
+      provider_type: mcp
+      tool_label: download_translation_result
+      tool_name: download_translation_result
+      tool_parameters:
+        file_type: ''
+        task_id: ''
+    - enabled: true
+      notAuthor: false
+      provider_id: pdftranslate2-mcp-server
+      provider_name: pdftranslate2 MCP
+      provider_type: mcp
+      tool_label: check_system_status
+      tool_name: check_system_status
+      tool_parameters: {}
+    - enabled: true
+      notAuthor: false
+      provider_id: pdftranslate2-mcp-server
+      provider_name: pdftranslate2 MCP
+      provider_type: mcp
+      tool_label: list_all_tasks
+      tool_name: list_all_tasks
+      tool_parameters: {}
+    - enabled: true
+      notAuthor: false
+      provider_id: pdftranslate2-mcp-server
+      provider_name: pdftranslate2 MCP
+      provider_type: mcp
+      tool_label: update_cos_config
+      tool_name: update_cos_config
+      tool_parameters:
+        cos_bucket: ''
+        cos_region: ''
+        cos_secret_id: ''
+        cos_secret_key: ''
+    - enabled: true
+      notAuthor: false
+      provider_id: pdftranslate2-mcp-server
+      provider_name: pdftranslate2 MCP
+      provider_type: mcp
+      tool_label: get_supported_languages
+      tool_name: get_supported_languages
+      tool_parameters: {}
+  annotation_reply:
+    enabled: false
+  chat_prompt_config: {}
+  completion_prompt_config: {}
+  dataset_configs:
+    datasets:
+      datasets: []
+    reranking_enable: false
+    retrieval_model: multiple
+    top_k: 4
+  dataset_query_variable: ''
+  external_data_tools: []
+  file_upload:
+    allowed_file_extensions:
+    - .JPG
+    - .JPEG
+    - .PNG
+    - .GIF
+    - .WEBP
+    - .SVG
+    - .MP4
+    - .MOV
+    - .MPEG
+    - .WEBM
+    allowed_file_types: []
+    allowed_file_upload_methods:
+    - remote_url
+    - local_file
+    enabled: false
+    image:
+      detail: high
+      enabled: false
+      number_limits: 3
+      transfer_methods:
+      - remote_url
+      - local_file
+    number_limits: 3
+  model:
+    completion_params:
+      stop: []
+    mode: chat
+    name: gemini-2.5-pro
+    provider: langgenius/gemini/google
+  more_like_this:
+    enabled: false
+  opening_statement: '您好！我是您的专属PDF翻译专家。
+
+
+    我致力于为您提供精准、高效的PDF文档翻译服务。只需上传您的文件并指定目标语言，我将自动为您处理翻译，并尽最大努力保留原始文档的格式与排版。
+
+
+    准备好开始了吗？请上传您的PDF文件吧！'
+  pre_prompt: "```xml\n<instruction>\n你是一位专业的PDF文档翻译专家。你的核心任务是接收用户上传的PDF文件，并使用 `pdftranslate2\
+    \ mcp` 工具将其翻译成指定的目标语言。在整个过程中，你必须确保翻译后的文档能够最大限度地保留原始文件的格式、布局和排版。\n\n**工作流程:**\n\
+    \n1.  **解析输入:** 从用户请求中识别以下关键信息：\n    *   `{{pdf_file_path}}`: 用户上传的待翻译PDF文件的路径。\n\
+    \    *   `{{target_language}}`: 用户希望将文档翻译成的目标语言。\n    *   `{{source_language}}`:\
+    \ 文档的原始语言。如果用户未指定，或该值为“auto”，则工具应自动检测源语言。\n\n2.  **调用工具:** 你必须调用 `pdftranslate2\
+    \ mcp` 工具来执行翻译任务。将上一步解析出的参数准确地传递给该工具。\n\n3.  **生成并提供结果:**\n    *   当 `pdftranslate2\
+    \ mcp` 工具成功完成翻译后，它会生成一个新的、已翻译的PDF文件。\n    *   你的最终回复应该是向用户确认翻译已完成，并提供一个清晰的、可供下载的翻译后文件的链接。\n\
+    \    *   如果翻译过程中出现任何错误，你需要向用户报告翻译失败，并简要说明可能的原因。\n\n**重要规则:**\n*   你的最终输出不应包含任何XML标签。\n\
+    *   严禁自行提取文本进行翻译，必须且只能使用 `pdftranslate2 mcp` 工具来完成整个PDF翻译任务。\n</instruction>\n\
+    \n<input_data>\n*   待翻译PDF文件路径: `{{pdf_file_path}}`\n*   目标语言: `{{target_language}}`\n\
+    *   源语言 (可选): `{{source_language}}`\n</input_data>\n\n<example>\n**场景: 用户上传一份中文技术手册，要求翻译成德语。**\n\
+    \n**输入变量值:**\n*   `pdf_file_path`: \"user_uploads/tech_manual_cn.pdf\"\n*   `target_language`:\
+    \ \"德语\"\n*   `source_language`: \"中文\"\n\n**AI的内部操作:**\n1.  解析用户意图和变量。\n2.  调用工具:\
+    \ `pdftranslate2 mcp(file_path=\"user_uploads/tech_manual_cn.pdf\", target_lang=\"\
+    de\", source_lang=\"zh\")`\n3.  工具返回成功，并生成翻译文件 \"translated_files/tech_manual_de.pdf\"\
+    。\n\n**AI对用户的最终输出 (注意：此输出不包含任何XML标签):**\n您的PDF技术手册已成功翻译成德语。请点击以下链接下载：[此处为生成的下载链接]\n\
+    </example>\n```"
+  prompt_type: simple
+  retriever_resource:
+    enabled: true
+  sensitive_word_avoidance:
+    configs: []
+    enabled: false
+    type: ''
+  speech_to_text:
+    enabled: false
+  suggested_questions: []
+  suggested_questions_after_answer:
+    enabled: false
+  text_to_speech:
+    enabled: false
+    language: ''
+    voice: ''
+  user_input_form:
+  - text-input:
+      default: ''
+      label: pdf_file_path
+      max_length: 256
+      required: true
+      variable: pdf_file_path
+  - select:
+      default: ''
+      label: target_language
+      options:
+      - 中文
+      - 日文
+      - 英语
+      required: true
+      variable: target_language
+  - text-input:
+      default: ''
+      label: source_language
+      max_length: 250
+      required: false
+      variable: source_language
+version: 0.3.1

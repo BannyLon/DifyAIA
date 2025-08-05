@@ -1,0 +1,955 @@
+app:
+  description: '「智票通 - 全时发票智能录入与飞书同步」 是一款专为财务人员设计的智能发票处理助手，深度融合多模态大模型与飞书电子表格自动化能力，支持在多轮对话中随时上传发票图片，并自动完成信息识别、结构化提取与云端归档。
+
+
+    本功能特别适用于报销初审、费用归集、进项管理等高频、分散的发票处理场景，真正实现“拍一拍、传一传、自动记账”的极简财务体验。
+
+    '
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: 智票通 - 批量发票智能解析
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/feishu_spreadsheet:0.0.1@6b4da2c3bcab1aace954e92a8120bf09692951bc68c993debbd64cfb398fd30d
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/siliconflow:0.0.20@a0297ff9ba92d57b12efa51dad87bbf68f6556979d2f32ed15fc833a3a1f4f39
+kind: app
+version: 0.3.1
+workflow:
+  conversation_variables: []
+  environment_variables:
+  - description: ''
+    id: 63306689-c9ef-4ae7-881e-db346ed6cb9b
+    name: fenshuurl
+    selector:
+    - env
+    - fenshuurl
+    value: https://wsscrk9nfw.feishu.cn/wiki/DKWPwppvmilESPkkPYScYlzWnTe?from=from_copylink
+    value_type: string
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      enabled: true
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 10
+    opening_statement: 你好，我是【智票通】，一款专为高效处理大量电子发票并自动记录到飞书电子表格的智能工具。我支持一次性上传多张发票图片。
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: tool
+      id: 17514479903070-source-1749116054395-target
+      selected: false
+      source: '17514479903070'
+      sourceHandle: source
+      target: '1749116054395'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: answer
+      id: 1749116054395-source-answer-target
+      selected: false
+      source: '1749116054395'
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: tool
+      id: 1749115381294-source-17514490270830-target
+      selected: false
+      source: '1749115381294'
+      sourceHandle: source
+      target: '17514490270830'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: answer
+      id: 17514490270830-source-answer-target
+      selected: false
+      source: '17514490270830'
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: 1749105824146-source-17514479903070-target
+      selected: false
+      source: '1749105824146'
+      sourceHandle: source
+      target: '17514479903070'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1751447829988-true-1749105824146-target
+      selected: false
+      source: '1751447829988'
+      sourceHandle: 'true'
+      target: '1749105824146'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: 17542127425600-source-1749115381294-target
+      selected: false
+      source: '17542127425600'
+      sourceHandle: source
+      target: '1749115381294'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1751447829988-false-17542127425600-target
+      selected: false
+      source: '1751447829988'
+      sourceHandle: 'false'
+      target: '17542127425600'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: if-else
+      id: 1754212275955-source-1751447829988-target
+      selected: false
+      source: '1754212275955'
+      sourceHandle: source
+      target: '1751447829988'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: if-else
+      id: 1749095874754-source-1754375238834-target
+      selected: false
+      source: '1749095874754'
+      sourceHandle: source
+      target: '1754375238834'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: answer
+      id: 1754375238834-true-17543752722170-target
+      selected: false
+      source: '1754375238834'
+      sourceHandle: 'true'
+      target: '17543752722170'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: code
+      id: 1754375238834-false-1754212275955-target
+      source: '1754375238834'
+      sourceHandle: 'false'
+      target: '1754212275955'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables: []
+      height: 52
+      id: '1749095874754'
+      position:
+        x: 750.5801422917975
+        y: 511.0876181312255
+      positionAbsolute:
+        x: 750.5801422917975
+        y: 511.0876181312255
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '{{#env.fenshuurl#}}
+
+          {{#1749105824146.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复
+        type: answer
+        variables: []
+      height: 103
+      id: answer
+      position:
+        x: 2675.0439874093213
+        y: 710.1191383271242
+      positionAbsolute:
+        x: 2675.0439874093213
+        y: 710.1191383271242
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: Qwen/Qwen2.5-VL-72B-Instruct
+          provider: langgenius/siliconflow/siliconflow
+        prompt_template:
+        - id: 5dc7034f-b1bb-4939-b644-f7eefa0c0c29
+          role: system
+          text: "# Role: 财务发票整理专家\n\n## Profile\n\n- 专业领域: 财务管理、发票处理\n- 专长: 电子发票信息提取、数据整理、JSON格式输出、特殊发票处理\n\
+            - 工作经验: 10年以上财务发票处理经验，包括各类特殊发票\n\n## Background\n\n你是一位经验丰富的财务发票整理专家，擅长处理各类电子发票，并能够准确提取关键信息。你的工作涉及大量发票数据的处理和整理，需要高度的准确性和一致性。你了解最新的发票格式变化，包括某些发票将发票代码和发票号码合并的情况，以及航空电子客运发票的特殊格式，以及新版火车票的税额计算方法。\n\
+            \n## Goals\n\n1. 准确提取电子发票中的关键信息\n2. 将提取的信息整理成统一的数据格式\n3. 以JSON格式输出处理后的发票数据\n\
+            4. 确保所有必要字段都被正确识别和填充\n5. 正确处理发票代码和发票号码合并的情况\n6. 适当处理航空电子客运发票的特殊格式\n7.\
+            \ 对于新版火车票，在无法直接提取税额时进行准确计算\n\n## Skills\n\n- 精通各类电子发票结构和内容，包括最新的格式变化和特殊发票类型\n\
+            - 熟练使用图像识别技术提取发票信息\n- 擅长数据整理和格式化\n- 熟悉JSON数据格式\n- 注重细节，保证数据的准确性和完整性\n\
+            - 能够灵活处理不同格式的发票信息，包括航空电子客运发票\n- 熟悉特殊发票的税额计算方法\n\n## Workflows\n\n1. 接收电子发票图像链接\n\
+            2. 使用图像识别工具提取发票信息\n3. 识别发票类型和格式\n4. 根据发票类型采取相应的信息提取策略：\n   - 普通发票：正常提取所有字段\n\
+            \   - 合并格式发票：将完整号码放入\"发票号码\"字段\n   - 航空电子客运发票：将电子客票号码放入\"发票号码\"字段\n  \
+            \ - 新版火车票：尝试提取税额，如果无法提取则根据金额计算\n5. 整理提取的信息，确保包含所有必要字段\n6. 对于新版火车票，如果税额未提取到，进行税额计算\n\
+            7. 将整理后的信息转换为JSON格式\n8. 检查输出数据的完整性和准确性\n9. 返回最终的JSON格式数据\n\n## Rules\n\
+            \n1. 必须提取的字段包括: \"发票代码\"、\"发票号码\"、\"开票日期\"、\"开票类目\"、\"金额\"、\"税额\"、\"发票类型\"\
+            \n2. 所有提取的信息必须准确无误\n3. 输出必须使用JSON格式\n4. 如果某个字段在发票中不存在，应在JSON中将该字段值设为\"\
+            \"\n5. 对于发票代码和发票号码合并的新格式发票：\n   - 将完整的合并号码填入\"发票号码\"字段\n   - \"发票代码\"\
+            字段应设置为\"\"\n6. 对于航空电子客运发票：\n   - 将电子客票号码填入\"发票号码\"字段\n   - \"发票代码\"字段应设置为\"\
+            \"\n7. 对于新版火车票：\n   - 如果无法直接提取税额，使用以下公式计算：\n     税额 = 票面金额 ÷ (1 + 9%)\
+            \ × 9%\n   - 计算结果保留两位小数\n8. \"发票类型\"字段应准确反映发票的类型，如\"增值税电子普通发票\"、\"航空电子客运发票\"\
+            、\"铁路电子客票\"等\n9. 保持数据格式的一致性，即使处理多张不同类型的发票\n\n## Output Format\n\n{\n \
+            \ \"发票代码\": \"string or  \",\n  \"发票号码\": \"string\",\n  \"开票日期\": \"\
+            string\",\n  \"开票类目\": \"string\",\n  \"金额\": \"number\",\n  \"税额\": \"\
+            number\",\n  \"发票类型\": \"string\"\n}\n\n## Initialization\n\n作为财务发票整理专家，我已准备好协助您处理各种类型的电子发票信息。我了解不同发票格式的特点，包括新格式发票将发票代码和发票号码合并的情况，以及航空电子客运发票只有电子客票号码的特殊情况。我会根据实际情况灵活处理这些信息，确保输出的JSON数据格式统一且准确。请提供需要处理的电子发票图像链接，我将为您提取关键信息并以JSON格式输出。如果您有任何特殊要求或额外的处理需求，请告诉我。让我们开始工作吧！"
+        - id: b071a2e9-7551-467d-8798-86220c5d8b2e
+          role: user
+          text: '{{#sys.files#}}'
+        selected: false
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+            variable_selector:
+            - sys
+            - files
+          enabled: true
+      height: 88
+      id: '1749105824146'
+      position:
+        x: 1832.52539414044
+        y: 650.4684952275279
+      positionAbsolute:
+        x: 1832.52539414044
+        y: 650.4684952275279
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "import json\n\ndef main(arg1: str) -> dict:\n    # 按 ```json 分割，取后半部分\n\
+          \    part = arg1.split('```json', 1)[-1]\n    # 再按 ``` 分割，取第一部分并去除首尾空白\n\
+          \    json_content = part.split('```', 1)[0].strip()\n    \n    try:\n  \
+          \      # 解析JSON内容\n        data = json.loads(json_content)\n        # 转换为表格格式\n\
+          \        table = []\n        for item in data:\n            # 为每个发票创建记录，包含所有字段\n\
+          \            invoice_data = [\n                item.get('发票代码', ''),\n \
+          \               item.get('发票号码', ''),\n                item.get('开票日期',\
+          \ ''),\n                item.get('开票类目', ''),\n                str(item.get('金额',\
+          \ '')),\n                str(item.get('税额', '')),\n                item.get('发票类型',\
+          \ '')\n            ]\n            table.append(invoice_data)\n\n       \
+          \ return {\n            \"result\": str(table).replace(\"'\", '\"')\n  \
+          \      }\n    except json.JSONDecodeError:\n        # 若JSON解析失败，返回原始内容\n\
+          \        return {\n            \"result\": [[\"错误\", \"JSON解析失败\"]]\n  \
+          \      }"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 批处理发票记录
+        type: code
+        variables:
+        - value_selector:
+          - '17542127425600'
+          - text
+          value_type: string
+          variable: arg1
+      height: 52
+      id: '1749115381294'
+      position:
+        x: 2099.1885519854736
+        y: 777.5486392164499
+      positionAbsolute:
+        x: 2099.1885519854736
+        y: 777.5486392164499
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        is_team_authorization: true
+        output_schema: null
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Spreadsheet token, supports input of spreadsheet URL.
+            ja_JP: Spreadsheet token, supports input of spreadsheet URL.
+            pt_BR: Spreadsheet token, supports input of spreadsheet URL.
+            zh_Hans: 电子表格 token，支持输入电子表格 url。
+          label:
+            en_US: spreadsheet_token
+            ja_JP: spreadsheet_token
+            pt_BR: spreadsheet_token
+            zh_Hans: 电子表格 token
+          llm_description: 电子表格 token，支持输入电子表格 url。
+          max: null
+          min: null
+          name: spreadsheet_token
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Sheet ID, either sheet_id or sheet_name must be filled.
+            ja_JP: Sheet ID, either sheet_id or sheet_name must be filled.
+            pt_BR: Sheet ID, either sheet_id or sheet_name must be filled.
+            zh_Hans: 工作表 ID，与 sheet_name 二者其一必填。
+          label:
+            en_US: sheet_id
+            ja_JP: sheet_id
+            pt_BR: sheet_id
+            zh_Hans: 工作表 ID
+          llm_description: 工作表 ID，与 sheet_name 二者其一必填。
+          max: null
+          min: null
+          name: sheet_id
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Sheet name, either sheet_id or sheet_name must be filled.
+            ja_JP: Sheet name, either sheet_id or sheet_name must be filled.
+            pt_BR: Sheet name, either sheet_id or sheet_name must be filled.
+            zh_Hans: 工作表名称，与 sheet_id 二者其一必填。
+          label:
+            en_US: sheet_name
+            ja_JP: sheet_name
+            pt_BR: sheet_name
+            zh_Hans: 工作表名称
+          llm_description: 工作表名称，与 sheet_id 二者其一必填。
+          max: null
+          min: null
+          name: sheet_name
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: form
+          human_description:
+            en_US: Number of rows to add, range (0-5000].
+            ja_JP: Number of rows to add, range (0-5000].
+            pt_BR: Number of rows to add, range (0-5000].
+            zh_Hans: 要增加行数，范围(0-5000]。
+          label:
+            en_US: length
+            ja_JP: length
+            pt_BR: length
+            zh_Hans: 要增加行数
+          llm_description: 要增加行数，范围(0-5000]。
+          max: null
+          min: null
+          name: length
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: number
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: 'Content of the new rows, array of objects in string format, each
+              array represents a row of table data, format like: [ [ "ID","Name","Age"
+              ],[ 1,"Zhang San",10 ],[ 2,"Li Si",11 ] ].
+
+              '
+            ja_JP: 'Content of the new rows, array of objects in string format, each
+              array represents a row of table data, format like: [ [ "ID","Name","Age"
+              ],[ 1,"Zhang San",10 ],[ 2,"Li Si",11 ] ].
+
+              '
+            pt_BR: 'Content of the new rows, array of objects in string format, each
+              array represents a row of table data, format like: [ [ "ID","Name","Age"
+              ],[ 1,"Zhang San",10 ],[ 2,"Li Si",11 ] ].
+
+              '
+            zh_Hans: 新增行的表格内容，数组对象字符串，每个数组一行表格数据，格式,如：[["编号","姓名","年龄"],[1,"张三",10],[2,"李四",11]]。
+          label:
+            en_US: values
+            ja_JP: values
+            pt_BR: values
+            zh_Hans: 新增行的表格内容
+          llm_description: 新增行的表格内容，数组对象字符串，每个数组一行表格数据，格式,如：[["编号","姓名","年龄"],[1,"张三",10],[2,"李四",11]]。
+          max: null
+          min: null
+          name: values
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        params:
+          length: ''
+          sheet_id: ''
+          sheet_name: ''
+          spreadsheet_token: ''
+          values: ''
+        provider_id: langgenius/feishu_spreadsheet/feishu_spreadsheet
+        provider_name: langgenius/feishu_spreadsheet/feishu_spreadsheet
+        provider_type: builtin
+        selected: false
+        title: 新增多行至工作表最后(1)
+        tool_configurations:
+          length:
+            type: constant
+            value: 1
+        tool_description: 新增多行至工作表最后
+        tool_label: 新增多行至工作表最后
+        tool_name: add_rows
+        tool_node_version: '2'
+        tool_parameters:
+          sheet_id:
+            type: mixed
+            value: ''
+          sheet_name:
+            type: mixed
+            value: ''
+          spreadsheet_token:
+            type: mixed
+            value: '{{#env.fenshuurl#}}'
+          values:
+            type: mixed
+            value: '{{#17514479903070.result#}}'
+        type: tool
+      height: 88
+      id: '1749116054395'
+      position:
+        x: 2362.493804647156
+        y: 650.4684952275279
+      positionAbsolute:
+        x: 2362.493804647156
+        y: 650.4684952275279
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: b822c15b-ce6c-4508-9c0c-e2009d6cb621
+            value: '1'
+            varType: string
+            variable_selector:
+            - '1754212275955'
+            - file_count
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 条件分支
+        type: if-else
+      height: 124
+      id: '1751447829988'
+      position:
+        x: 1563.6310341559754
+        y: 650.4684952275279
+      positionAbsolute:
+        x: 1563.6310341559754
+        y: 650.4684952275279
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "import json\n\ndef main(arg1: str) -> dict:\n    try:\n        # 按\
+          \ ```json 分割，取后半部分\n        part = arg1.split('```json', 1)[-1]\n      \
+          \  # 再按 ``` 分割，取第一部分并去除首尾空白\n        json_content = part.split('```', 1)[0].strip()\n\
+          \        \n        # 尝试解析 JSON 内容\n        data = json.loads(json_content)\n\
+          \        \n        # 检查 data 是否为字典\n        if not isinstance(data, dict):\n\
+          \            raise ValueError(\"Expected a JSON object, but got: {}\".format(type(data)))\n\
+          \        \n        # 直接访问字典的字段，不需要遍历\n        invoice_data = [\n       \
+          \     data.get('发票代码', ''),\n            data.get('发票号码', ''),\n       \
+          \     data.get('开票日期', ''),\n            data.get('开票类目', ''),\n       \
+          \     str(data.get('金额', '')),\n            str(data.get('税额', '')),\n \
+          \           data.get('发票类型', '')\n        ]\n        table = [invoice_data]\
+          \  # 注意：这里用 [] 包裹，因为只有一条记录\n        \n        return {\n            \"result\"\
+          : str(table).replace(\"'\", '\"')\n        }\n    \n    except json.JSONDecodeError\
+          \ as e:\n        # 若 JSON 解析失败，返回原始内容\n        return {\n            \"\
+          result\": [[\"错误\", \"JSON 解析失败\", str(e)]]\n        }\n    \n    except\
+          \ ValueError as e:\n        # 若数据结构不匹配，返回错误信息\n        return {\n      \
+          \      \"result\": [[\"错误\", \"数据格式错误\", str(e)]]\n        }\n    \n   \
+          \ except Exception as e:\n        # 捕获其他异常\n        return {\n         \
+          \   \"result\": [[\"错误\", \"未知错误\", str(e)]]\n        }"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 单张发票记录
+        type: code
+        variables:
+        - value_selector:
+          - '1749105824146'
+          - text
+          variable: arg1
+      height: 52
+      id: '17514479903070'
+      position:
+        x: 2099.1885519854736
+        y: 650.4684952275279
+      positionAbsolute:
+        x: 2099.1885519854736
+        y: 650.4684952275279
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        is_team_authorization: true
+        output_schema: null
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Spreadsheet token, supports input of spreadsheet URL.
+            ja_JP: Spreadsheet token, supports input of spreadsheet URL.
+            pt_BR: Spreadsheet token, supports input of spreadsheet URL.
+            zh_Hans: 电子表格 token，支持输入电子表格 url。
+          label:
+            en_US: spreadsheet_token
+            ja_JP: spreadsheet_token
+            pt_BR: spreadsheet_token
+            zh_Hans: 电子表格 token
+          llm_description: 电子表格 token，支持输入电子表格 url。
+          max: null
+          min: null
+          name: spreadsheet_token
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Sheet ID, either sheet_id or sheet_name must be filled.
+            ja_JP: Sheet ID, either sheet_id or sheet_name must be filled.
+            pt_BR: Sheet ID, either sheet_id or sheet_name must be filled.
+            zh_Hans: 工作表 ID，与 sheet_name 二者其一必填。
+          label:
+            en_US: sheet_id
+            ja_JP: sheet_id
+            pt_BR: sheet_id
+            zh_Hans: 工作表 ID
+          llm_description: 工作表 ID，与 sheet_name 二者其一必填。
+          max: null
+          min: null
+          name: sheet_id
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Sheet name, either sheet_id or sheet_name must be filled.
+            ja_JP: Sheet name, either sheet_id or sheet_name must be filled.
+            pt_BR: Sheet name, either sheet_id or sheet_name must be filled.
+            zh_Hans: 工作表名称，与 sheet_id 二者其一必填。
+          label:
+            en_US: sheet_name
+            ja_JP: sheet_name
+            pt_BR: sheet_name
+            zh_Hans: 工作表名称
+          llm_description: 工作表名称，与 sheet_id 二者其一必填。
+          max: null
+          min: null
+          name: sheet_name
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: form
+          human_description:
+            en_US: Number of rows to add, range (0-5000].
+            ja_JP: Number of rows to add, range (0-5000].
+            pt_BR: Number of rows to add, range (0-5000].
+            zh_Hans: 要增加行数，范围(0-5000]。
+          label:
+            en_US: length
+            ja_JP: length
+            pt_BR: length
+            zh_Hans: 要增加行数
+          llm_description: 要增加行数，范围(0-5000]。
+          max: null
+          min: null
+          name: length
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: number
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: 'Content of the new rows, array of objects in string format, each
+              array represents a row of table data, format like: [ [ "ID","Name","Age"
+              ],[ 1,"Zhang San",10 ],[ 2,"Li Si",11 ] ].
+
+              '
+            ja_JP: 'Content of the new rows, array of objects in string format, each
+              array represents a row of table data, format like: [ [ "ID","Name","Age"
+              ],[ 1,"Zhang San",10 ],[ 2,"Li Si",11 ] ].
+
+              '
+            pt_BR: 'Content of the new rows, array of objects in string format, each
+              array represents a row of table data, format like: [ [ "ID","Name","Age"
+              ],[ 1,"Zhang San",10 ],[ 2,"Li Si",11 ] ].
+
+              '
+            zh_Hans: 新增行的表格内容，数组对象字符串，每个数组一行表格数据，格式,如：[["编号","姓名","年龄"],[1,"张三",10],[2,"李四",11]]。
+          label:
+            en_US: values
+            ja_JP: values
+            pt_BR: values
+            zh_Hans: 新增行的表格内容
+          llm_description: 新增行的表格内容，数组对象字符串，每个数组一行表格数据，格式,如：[["编号","姓名","年龄"],[1,"张三",10],[2,"李四",11]]。
+          max: null
+          min: null
+          name: values
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        params:
+          length: ''
+          sheet_id: ''
+          sheet_name: ''
+          spreadsheet_token: ''
+          values: ''
+        provider_id: langgenius/feishu_spreadsheet/feishu_spreadsheet
+        provider_name: langgenius/feishu_spreadsheet/feishu_spreadsheet
+        provider_type: builtin
+        selected: false
+        title: 新增多行至工作表最后 (2)
+        tool_configurations:
+          length:
+            type: constant
+            value: 1
+        tool_description: 新增多行至工作表最后
+        tool_label: 新增多行至工作表最后
+        tool_name: add_rows
+        tool_node_version: '2'
+        tool_parameters:
+          sheet_id:
+            type: mixed
+            value: ''
+          spreadsheet_token:
+            type: mixed
+            value: '{{#env.fenshuurl#}}'
+          values:
+            type: mixed
+            value: '{{#1749115381294.result#}}'
+        type: tool
+      height: 88
+      id: '17514490270830'
+      position:
+        x: 2362.493804647156
+        y: 777.5486392164499
+      positionAbsolute:
+        x: 2362.493804647156
+        y: 777.5486392164499
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "import json\n\ndef main(uploaded_files: list) -> dict:\n    # 计算上传文件的数量\n\
+          \    file_count = len(uploaded_files)\n    \n    # 将 file_count 转换为字符串\n\
+          \    file_count_str = str(file_count)\n    \n    return {\n        \"file_count\"\
+          : file_count_str\n    }"
+        code_language: python3
+        desc: ''
+        outputs:
+          file_count:
+            children: null
+            type: string
+        selected: false
+        title: 判断上传文件数量
+        type: code
+        variables:
+        - value_selector:
+          - sys
+          - files
+          value_type: array[file]
+          variable: uploaded_files
+      height: 52
+      id: '1754212275955'
+      position:
+        x: 1286.8619528051909
+        y: 650.4684952275279
+      positionAbsolute:
+        x: 1286.8619528051909
+        y: 650.4684952275279
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: Qwen/Qwen2.5-VL-72B-Instruct
+          provider: langgenius/siliconflow/siliconflow
+        prompt_template:
+        - id: 5dc7034f-b1bb-4939-b644-f7eefa0c0c29
+          role: system
+          text: "# Role: 财务发票整理专家\n\n## Profile\n\n- 专业领域: 财务管理、发票处理\n- 专长: 电子发票信息提取、数据整理、JSON格式输出、特殊发票处理\n\
+            - 工作经验: 10年以上财务发票处理经验，包括各类特殊发票\n\n## Background\n\n你是一位经验丰富的财务发票整理专家，擅长处理各类电子发票，并能够准确提取关键信息。你的工作涉及大量发票数据的处理和整理，需要高度的准确性和一致性。你了解最新的发票格式变化，包括某些发票将发票代码和发票号码合并的情况，以及航空电子客运发票的特殊格式，以及新版火车票的税额计算方法。\n\
+            \n## Goals\n\n1. 准确提取电子发票中的关键信息\n2. 将提取的信息整理成统一的数据格式\n3. 以JSON格式输出处理后的发票数据\n\
+            4. 确保所有必要字段都被正确识别和填充\n5. 正确处理发票代码和发票号码合并的情况\n6. 适当处理航空电子客运发票的特殊格式\n7.\
+            \ 对于新版火车票，在无法直接提取税额时进行准确计算\n\n## Skills\n\n- 精通各类电子发票结构和内容，包括最新的格式变化和特殊发票类型\n\
+            - 熟练使用图像识别技术提取发票信息\n- 擅长数据整理和格式化\n- 熟悉JSON数据格式\n- 注重细节，保证数据的准确性和完整性\n\
+            - 能够灵活处理不同格式的发票信息，包括航空电子客运发票\n- 熟悉特殊发票的税额计算方法\n\n## Workflows\n\n1. 接收电子发票图像链接\n\
+            2. 使用图像识别工具提取发票信息\n3. 识别发票类型和格式\n4. 根据发票类型采取相应的信息提取策略：\n   - 普通发票：正常提取所有字段\n\
+            \   - 合并格式发票：将完整号码放入\"发票号码\"字段\n   - 航空电子客运发票：将电子客票号码放入\"发票号码\"字段\n  \
+            \ - 新版火车票：尝试提取税额，如果无法提取则根据金额计算\n5. 整理提取的信息，确保包含所有必要字段\n6. 对于新版火车票，如果税额未提取到，进行税额计算\n\
+            7. 将整理后的信息转换为JSON格式\n8. 检查输出数据的完整性和准确性\n9. 返回最终的JSON格式数据\n\n## Rules\n\
+            \n1. 必须提取的字段包括: \"发票代码\"、\"发票号码\"、\"开票日期\"、\"开票类目\"、\"金额\"、\"税额\"、\"发票类型\"\
+            \n2. 所有提取的信息必须准确无误\n3. 输出必须使用JSON格式\n4. 如果某个字段在发票中不存在，应在JSON中将该字段值设为\"\
+            \"\n5. 对于发票代码和发票号码合并的新格式发票：\n   - 将完整的合并号码填入\"发票号码\"字段\n   - \"发票代码\"\
+            字段应设置为\"\"\n6. 对于航空电子客运发票：\n   - 将电子客票号码填入\"发票号码\"字段\n   - \"发票代码\"字段应设置为\"\
+            \"\n7. 对于新版火车票：\n   - 如果无法直接提取税额，使用以下公式计算：\n     税额 = 票面金额 ÷ (1 + 9%)\
+            \ × 9%\n   - 计算结果保留两位小数\n8. \"发票类型\"字段应准确反映发票的类型，如\"增值税电子普通发票\"、\"航空电子客运发票\"\
+            、\"铁路电子客票\"等\n9. 保持数据格式的一致性，即使处理多张不同类型的发票\n\n## Output Format\n\n{\n \
+            \ \"发票代码\": \"string or  \",\n  \"发票号码\": \"string\",\n  \"开票日期\": \"\
+            string\",\n  \"开票类目\": \"string\",\n  \"金额\": \"number\",\n  \"税额\": \"\
+            number\",\n  \"发票类型\": \"string\"\n}\n\n## Initialization\n\n作为财务发票整理专家，我已准备好协助您处理各种类型的电子发票信息。我了解不同发票格式的特点，包括新格式发票将发票代码和发票号码合并的情况，以及航空电子客运发票只有电子客票号码的特殊情况。我会根据实际情况灵活处理这些信息，确保输出的JSON数据格式统一且准确。请提供需要处理的电子发票图像链接，我将为您提取关键信息并以JSON格式输出。如果您有任何特殊要求或额外的处理需求，请告诉我。让我们开始工作吧！"
+        - id: b071a2e9-7551-467d-8798-86220c5d8b2e
+          role: user
+          text: '{{#sys.files#}}'
+        selected: false
+        title: LLM (1)
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+            variable_selector:
+            - sys
+            - files
+          enabled: true
+      height: 88
+      id: '17542127425600'
+      position:
+        x: 1832.52539414044
+        y: 777.5486392164499
+      positionAbsolute:
+        x: 1832.52539414044
+        y: 777.5486392164499
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: empty
+            id: 7cafd68b-8800-48e7-90e5-618745cabe4c
+            value: ''
+            varType: array[file]
+            variable_selector:
+            - sys
+            - files
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 条件分支 5
+        type: if-else
+      height: 124
+      id: '1754375238834'
+      position:
+        x: 1009.5132630354576
+        y: 511.0876181312255
+      positionAbsolute:
+        x: 1009.5132630354576
+        y: 511.0876181312255
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: 请在对话框中，上传发票图片，再开始执行操作！
+        desc: ''
+        selected: false
+        title: 直接回复 2 (1)
+        type: answer
+        variables: []
+      height: 116
+      id: '17543752722170'
+      position:
+        x: 1286.8619528051909
+        y: 486.80694330551114
+      positionAbsolute:
+        x: 1286.8619528051909
+        y: 486.80694330551114
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    viewport:
+      x: -564.1942344747072
+      y: -188.28674884688735
+      zoom: 0.7436176056541741

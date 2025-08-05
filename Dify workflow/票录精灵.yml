@@ -1,0 +1,555 @@
+app:
+  description: '本工作流主要是为财务工作人员提供一种识别电子发票（图片）信息，并自动录入飞书多维表格。
+
+
+    实现发票识别的核心节点。
+
+
+    模型选择：建议选择多模态视觉理解模型（如Qwen2.5-VL-72B-Instruct模型）。
+
+    视觉能力：必须打开该模型节点的“视觉”开关，并将开始节点的upload变量传入。
+
+    Prompt设计：为了让模型能稳定、准确地返回结构化数据，需要在提示词中明确定义AI的角色、任务，并给出了严格的JSON输出格式要求，包括处理项目列表、数据清洗规则等。'
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: 票录精灵
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/feishu_base:0.0.1@00d7b356f3e8ac9980850be25444d2112abe0f3cf22c540b1d2c77603589d2ee
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/siliconflow:0.0.20@a0297ff9ba92d57b12efa51dad87bbf68f6556979d2f32ed15fc833a3a1f4f39
+kind: app
+version: 0.3.1
+workflow:
+  conversation_variables: []
+  environment_variables:
+  - description: ''
+    id: 63306689-c9ef-4ae7-881e-db346ed6cb9b
+    name: fenshuurl
+    selector:
+    - env
+    - fenshuurl
+    value: https://wsscrk9nfw.feishu.cn/base/MuNqbikDiask1CshnyjchxLEnFb?table=tblWO4s13tOkHJtA&view=vewkENIg8A
+    value_type: string
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: llm
+      id: 1749095874754-source-1749105824146-target
+      source: '1749095874754'
+      sourceHandle: source
+      target: '1749105824146'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: 1749105824146-source-1754205325255-target
+      source: '1749105824146'
+      sourceHandle: source
+      target: '1754205325255'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: tool
+      id: 1754205325255-source-1754205433943-target
+      source: '1754205325255'
+      sourceHandle: source
+      target: '1754205433943'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: answer
+      id: 1754205433943-source-1754205482787-target
+      source: '1754205433943'
+      sourceHandle: source
+      target: '1754205482787'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - allowed_file_extensions: []
+          allowed_file_types:
+          - image
+          allowed_file_upload_methods:
+          - local_file
+          label: 发票图片
+          max_length: 48
+          options: []
+          required: true
+          type: file
+          variable: file
+      height: 88
+      id: '1749095874754'
+      position:
+        x: 158.35443296323973
+        y: 449.9009969499045
+      positionAbsolute:
+        x: 158.35443296323973
+        y: 449.9009969499045
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: Qwen/Qwen2.5-VL-72B-Instruct
+          provider: langgenius/siliconflow/siliconflow
+        prompt_template:
+        - id: 5dc7034f-b1bb-4939-b644-f7eefa0c0c29
+          role: system
+          text: "# 角色\n你是一个专业的发票信息提取助手。\n\n# 任务\n你的任务是从图片中，精准地提取所有关键信息，并严格按照指定的 JSON\
+            \ 格式输出。请忽略文本中与发票无关的干扰项（如“下载次数”）。\n\n# 输入变量\n发票的原始文本内容将通过变量 `{{upload}}`\
+            \ 传入。\n\n# 输出要求\n1.  **严格的JSON格式**：你的回答必须是一个完整的、格式正确的 JSON 对象，不能包含任何 JSON\
+            \ 之外的解释、注释或文字。\n2.  **数据清洗**：\n    * 对于金额和数量，只保留数字，去除货币符号（如 `¥`）。\n  \
+            \  * 对于日期，统一输出为 `YYYY-MM-DD` 格式。\n    * 对于税率，输出百分比字符串，例如 `\"13%\"`。\n\
+            \    * 如果某一项信息在发票中不存在，请使用 `null` 或者空字符串 `\"\"` 作为值。\n3.  **处理项目列表**：发票中的“项目名称”部分可能包含多个商品或服务，甚至可能包含折扣（金额为负数）。你需要将每一个项目都作为一个独立的对象，放入\
+            \ `items` 数组中。\n\n# JSON 输出格式\n\n```json\n{\n  \"invoice_title\": \"string\"\
+            ,\n  \"invoice_number\": \"string\",\n  \"issue_date\": \"string\",\n\
+            \  \"buyer_info\": {\n    \"name\": \"string\",\n    \"tax_id\": \"string\"\
+            \n  },\n  \"seller_info\": {\n    \"name\": \"string\",\n    \"tax_id\"\
+            : \"string\"\n  },\n  \"items\": [\n    {\n      \"name\": \"string\"\
+            ,\n      \"model\": \"string\",\n      \"unit\": \"string\",\n      \"\
+            quantity\": \"number | null\",\n      \"unit_price\": \"number | null\"\
+            ,\n      \"amount\": \"number\",\n      \"tax_rate\": \"string\",\n  \
+            \    \"tax_amount\": \"number\"\n    }\n  ],\n  \"total_amount_exclusive_tax\"\
+            : \"number\",\n  \"total_tax_amount\": \"number\",\n  \"total_amount_inclusive_tax\"\
+            : {\n    \"in_words\": \"string\",\n    \"in_figures\": \"number\"\n \
+            \ },\n  \"remarks\": \"string\",\n  \"issuer\": \"string\"\n}"
+        - id: ad7fd0d9-37c0-4798-b16e-cfca6eedb055
+          role: user
+          text: '{{#1749095874754.file#}}'
+        selected: false
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+            variable_selector:
+            - '1749095874754'
+            - file
+          enabled: true
+      height: 88
+      id: '1749105824146'
+      position:
+        x: 462.877039773614
+        y: 449.9009969499045
+      positionAbsolute:
+        x: 462.877039773614
+        y: 449.9009969499045
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "import json\nimport re\nfrom datetime import datetime, timezone\n\n\
+          def main(output: str) -> dict:\n    # 去除首尾的 markdown 代码块标记和空白\n    output\
+          \ = output.strip()\n    output = re.sub(r\"^```[\\w]*\\s*\", \"\", output,\
+          \ flags=re.IGNORECASE)\n    output = re.sub(r\"```$\", \"\", output)\n \
+          \   output = output.strip()\n\n    try:\n        data = json.loads(output)\n\
+          \    except json.JSONDecodeError as e:\n        raise ValueError(f\"Invalid\
+          \ JSON: {e}\")\n\n    # 解析日期（增强容错）\n    def parse_date(date_str):\n    \
+          \    if not date_str:\n            return None\n        date_str = re.sub(r\"\
+          [/\\.]\", \"-\", str(date_str).strip())\n        formats = [\"%Y-%m-%d\"\
+          , \"%Y-%m-%d %H:%M:%S\", \"%Y-%m-%d %H:%M\", \"%Y年%m月%d日\"]\n        for\
+          \ fmt in formats:\n            try:\n                dt = datetime.strptime(date_str,\
+          \ fmt)\n                return int(dt.replace(tzinfo=timezone.utc).timestamp()\
+          \ * 1000)\n            except ValueError:\n                continue\n  \
+          \      return None\n\n    timestamp = parse_date(data.get(\"issue_date\"\
+          ))\n\n    # 格式化 items 为多行文本字符串\n    def format_items(items):\n        if\
+          \ not items or not isinstance(items, list):\n            return \"\"\n \
+          \       lines = []\n        for item in items:\n            if not isinstance(item,\
+          \ dict):\n                continue\n            name = item.get(\"name\"\
+          , \"未知商品\")\n            model = item.get(\"model\", \"\")\n           \
+          \ unit = item.get(\"unit\", \"\")\n            quantity = item.get(\"quantity\"\
+          , \"\")\n            unit_price = item.get(\"unit_price\", \"\")\n     \
+          \       amount = item.get(\"amount\", \"\")\n            tax_rate = item.get(\"\
+          tax_rate\", \"\")\n            tax_amount = item.get(\"tax_amount\", \"\"\
+          )\n\n            item_text = [\n                f\"名称: {name}\",\n     \
+          \       ]\n            if model:\n                item_text.append(f\"型号:\
+          \ {model}\")\n            item_text.append(f\"单位: {unit}\")\n          \
+          \  item_text.append(f\"数量: {quantity}\")\n            item_text.append(f\"\
+          单价: {unit_price}\")\n            item_text.append(f\"金额: {amount}\")\n \
+          \           if tax_rate:\n                item_text.append(f\"税率: {tax_rate}\"\
+          )\n            item_text.append(f\"税额: {tax_amount}\")\n\n            lines.append(\"\
+          \\n\".join(item_text))\n        return \"\\n\\n\".join(lines)\n\n    # 安全访问嵌套字段\n\
+          \    record = {\n        \"发票抬头(invoice_title)\": data.get(\"invoice_title\"\
+          , \"\"),\n        \"发票号码(invoice_number)\": data.get(\"invoice_number\"\
+          , \"\"),\n        \"开票日期(issue_date)\": timestamp,\n        \"购买方名称(buyer_info.name)\"\
+          : data.get(\"buyer_info\", {}).get(\"name\", \"\"),\n        \"购买方税号(buyer_info.tax_id)\"\
+          : data.get(\"buyer_info\", {}).get(\"tax_id\", \"\"),\n        \"销售方名称(seller_info.name)\"\
+          : data.get(\"seller_info\", {}).get(\"name\", \"\"),\n        \"销售方税号(seller_info.tax_id)\"\
+          : data.get(\"seller_info\", {}).get(\"tax_id\", \"\"),\n        \"商品详情(items)\"\
+          : format_items(data.get(\"items\", [])),  # ✅ 改为字符串\n        \"合计金额(total_amount_exclusive_tax)\"\
+          : data.get(\"total_amount_exclusive_tax\", \"\"),\n        \"合计税额(total_tax_amount)\"\
+          : data.get(\"total_tax_amount\", \"\"),\n        \"价税合计大写(total_amount_inclusive_tax.in_words)\"\
+          : data.get(\"total_amount_inclusive_tax\", {}).get(\"in_words\", \"\"),\n\
+          \        \"价税合计小写(total_amount_inclusive_tax.in_figures)\": data.get(\"\
+          total_amount_inclusive_tax\", {}).get(\"in_figures\", \"\"),\n        \"\
+          备注(remarks)\": data.get(\"remarks\", \"\"),\n        \"开票人(issuer)\": data.get(\"\
+          issuer\", \"\")\n    }\n\n    return {\n        \"result\": json.dumps([record],\
+          \ ensure_ascii=False)\n    }"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 代码执行 3
+        type: code
+        variables:
+        - value_selector:
+          - '1749105824146'
+          - text
+          value_type: string
+          variable: output
+      height: 52
+      id: '1754205325255'
+      position:
+        x: 731.1856011066135
+        y: 449.9009969499045
+      positionAbsolute:
+        x: 731.1856011066135
+        y: 449.9009969499045
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        is_team_authorization: true
+        output_schema: null
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Unique identifier for the multidimensional table, supports inputting
+              document URL.
+            ja_JP: Unique identifier for the multidimensional table, supports inputting
+              document URL.
+            pt_BR: Unique identifier for the multidimensional table, supports inputting
+              document URL.
+            zh_Hans: 多维表格的唯一标识符，支持输入文档 URL。
+          label:
+            en_US: app_token
+            ja_JP: app_token
+            pt_BR: app_token
+            zh_Hans: app_token
+          llm_description: 多维表格的唯一标识符，支持输入文档 URL。
+          max: null
+          min: null
+          name: app_token
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Unique identifier for the multidimensional table data, either table_id
+              or table_name must be provided, cannot be empty simultaneously.
+            ja_JP: Unique identifier for the multidimensional table data, either table_id
+              or table_name must be provided, cannot be empty simultaneously.
+            pt_BR: Unique identifier for the multidimensional table data, either table_id
+              or table_name must be provided, cannot be empty simultaneously.
+            zh_Hans: 多维表格数据表的唯一标识符，table_id 和 table_name 至少需要提供一个，不能同时为空。
+          label:
+            en_US: table_id
+            ja_JP: table_id
+            pt_BR: table_id
+            zh_Hans: table_id
+          llm_description: 多维表格数据表的唯一标识符，table_id 和 table_name 至少需要提供一个，不能同时为空。
+          max: null
+          min: null
+          name: table_id
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Name of the multidimensional table data, either table_name or table_id
+              must be provided, cannot be empty simultaneously.
+            ja_JP: Name of the multidimensional table data, either table_name or table_id
+              must be provided, cannot be empty simultaneously.
+            pt_BR: Name of the multidimensional table data, either table_name or table_id
+              must be provided, cannot be empty simultaneously.
+            zh_Hans: 多维表格数据表的名称，table_name 和 table_id 至少需要提供一个，不能同时为空。
+          label:
+            en_US: table_name
+            ja_JP: table_name
+            pt_BR: table_name
+            zh_Hans: table_name
+          llm_description: 多维表格数据表的名称，table_name 和 table_id 至少需要提供一个，不能同时为空。
+          max: null
+          min: null
+          name: table_name
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: 'List of records to be added in this request. Example value: [{"multi-line-text":"text
+              content","single_select":"option 1","date":1674206443000}]
+
+              For supported field types, refer to the integration guide (https://open.larkoffice.com/document/server-docs/docs/bitable-v1/notification).
+              For data structures of different field types, refer to the data structure
+              overview (https://open.larkoffice.com/document/server-docs/docs/bitable-v1/bitable-structure).
+
+              '
+            ja_JP: 'List of records to be added in this request. Example value: [{"multi-line-text":"text
+              content","single_select":"option 1","date":1674206443000}]
+
+              For supported field types, refer to the integration guide (https://open.larkoffice.com/document/server-docs/docs/bitable-v1/notification).
+              For data structures of different field types, refer to the data structure
+              overview (https://open.larkoffice.com/document/server-docs/docs/bitable-v1/bitable-structure).
+
+              '
+            pt_BR: 'List of records to be added in this request. Example value: [{"multi-line-text":"text
+              content","single_select":"option 1","date":1674206443000}]
+
+              For supported field types, refer to the integration guide (https://open.larkoffice.com/document/server-docs/docs/bitable-v1/notification).
+              For data structures of different field types, refer to the data structure
+              overview (https://open.larkoffice.com/document/server-docs/docs/bitable-v1/bitable-structure).
+
+              '
+            zh_Hans: '本次请求将要新增的记录列表，示例值：[{"多行文本":"文本内容","单选":"选项 1","日期":1674206443000}]。
+
+              当前接口支持的字段类型请参考接入指南(https://open.larkoffice.com/document/server-docs/docs/bitable-v1/notification)，不同类型字段的数据结构请参考数据结构概述(https://open.larkoffice.com/document/server-docs/docs/bitable-v1/bitable-structure)。
+
+              '
+          label:
+            en_US: records
+            ja_JP: records
+            pt_BR: records
+            zh_Hans: 记录列表
+          llm_description: '本次请求将要新增的记录列表，示例值：[{"多行文本":"文本内容","单选":"选项 1","日期":1674206443000}]。
+
+            当前接口支持的字段类型请参考接入指南(https://open.larkoffice.com/document/server-docs/docs/bitable-v1/notification)，不同类型字段的数据结构请参考数据结构概述(https://open.larkoffice.com/document/server-docs/docs/bitable-v1/bitable-structure)。
+
+            '
+          max: null
+          min: null
+          name: records
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: open_id
+          form: form
+          human_description:
+            en_US: User ID type, optional values are open_id, union_id, user_id, with
+              a default value of open_id.
+            ja_JP: User ID type, optional values are open_id, union_id, user_id, with
+              a default value of open_id.
+            pt_BR: User ID type, optional values are open_id, union_id, user_id, with
+              a default value of open_id.
+            zh_Hans: 用户 ID 类型，可选值有 open_id、union_id、user_id，默认值为 open_id。
+          label:
+            en_US: user_id_type
+            ja_JP: user_id_type
+            pt_BR: user_id_type
+            zh_Hans: 用户 ID 类型
+          llm_description: 用户 ID 类型，可选值有 open_id、union_id、user_id，默认值为 open_id。
+          max: null
+          min: null
+          name: user_id_type
+          options:
+          - icon: ''
+            label:
+              en_US: open_id
+              ja_JP: open_id
+              pt_BR: open_id
+              zh_Hans: open_id
+            value: open_id
+          - icon: ''
+            label:
+              en_US: union_id
+              ja_JP: union_id
+              pt_BR: union_id
+              zh_Hans: union_id
+            value: union_id
+          - icon: ''
+            label:
+              en_US: user_id
+              ja_JP: user_id
+              pt_BR: user_id
+              zh_Hans: user_id
+            value: user_id
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        params:
+          app_token: ''
+          records: ''
+          table_id: ''
+          table_name: ''
+          user_id_type: ''
+        provider_id: langgenius/feishu_base/feishu_base
+        provider_name: langgenius/feishu_base/feishu_base
+        provider_type: builtin
+        selected: false
+        title: 新增多条记录
+        tool_configurations:
+          user_id_type:
+            type: constant
+            value: open_id
+        tool_description: 在多维表格数据表中新增多条记录
+        tool_label: 新增多条记录
+        tool_name: add_records
+        tool_node_version: '2'
+        tool_parameters:
+          app_token:
+            type: mixed
+            value: https://wsscrk9nfw.feishu.cn/base/MuNqbikDiask1CshnyjchxLEnFb?table=tblWO4s13tOkHJtA&view=vewkENIg8A
+          records:
+            type: mixed
+            value: '{{#1754205325255.result#}}'
+          table_id:
+            type: mixed
+            value: tblWO4s13tOkHJtA
+          table_name:
+            type: mixed
+            value: null
+        type: tool
+      height: 88
+      id: '1754205433943'
+      position:
+        x: 1008.9554638942491
+        y: 449.9009969499045
+      positionAbsolute:
+        x: 1008.9554638942491
+        y: 449.9009969499045
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '{{#1749105824146.text#}}
+
+          {{#env.fenshuurl#}}'
+        desc: ''
+        selected: false
+        title: 直接回复 2
+        type: answer
+        variables: []
+      height: 103
+      id: '1754205482787'
+      position:
+        x: 1289.1898186548817
+        y: 449.9009969499045
+      positionAbsolute:
+        x: 1289.1898186548817
+        y: 449.9009969499045
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    viewport:
+      x: 357.51562150337884
+      y: -133.8661113942104
+      zoom: 0.7795436097183616

@@ -1,0 +1,489 @@
+app:
+  description: 文粹 AI 是一个由 Dify 驱动的智能工作流。它能自动化处理并精炼批量上传的文档，提取其核心“文粹”。无论是报告、论文还是会议纪要，文粹
+    AI 都能为你提供精准、高效的智能摘要服务。
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: 文粹 AI——批量文档总结神器
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/ollama:0.0.6@f430f3eb959f4863b1e87171544a8fec179441b90deda5693c85f07712d2a68c
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/siliconflow:0.0.20@a0297ff9ba92d57b12efa51dad87bbf68f6556979d2f32ed15fc833a3a1f4f39
+kind: app
+version: 0.3.1
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: 请先上传需要萃取的文档，注意最多只能上传 10 个文档，上传文档成功后，请在对话框输入：“请开始总结”，回车执行！
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: iteration
+      id: 1754873666809-source-1754873757155-target
+      source: '1754873666809'
+      sourceHandle: source
+      target: '1754873757155'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1754873757155'
+        sourceType: iteration-start
+        targetType: document-extractor
+      id: 1754873757155start-source-1754873761974-target
+      source: 1754873757155start
+      sourceHandle: source
+      target: '1754873761974'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1754873757155'
+        sourceType: document-extractor
+        targetType: llm
+      id: 1754873761974-source-1754873854765-target
+      source: '1754873761974'
+      sourceHandle: source
+      target: '1754873854765'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1754873757155'
+        sourceType: llm
+        targetType: llm
+      id: 1754873854765-source-1754873990862-target
+      source: '1754873854765'
+      sourceHandle: source
+      target: '1754873990862'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInLoop: false
+        sourceType: iteration
+        targetType: answer
+      id: 1754873757155-source-answer-target
+      source: '1754873757155'
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - allowed_file_extensions: []
+          allowed_file_types:
+          - image
+          - document
+          allowed_file_upload_methods:
+          - local_file
+          - remote_url
+          label: 上传文档
+          max_length: 10
+          options: []
+          required: true
+          type: file-list
+          variable: UplodFile
+      height: 88
+      id: '1754873666809'
+      position:
+        x: 379
+        y: 172.72822159325045
+      positionAbsolute:
+        x: 379
+        y: 172.72822159325045
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '{{#1754873757155.output#}}'
+        desc: ''
+        selected: false
+        title: 直接回复
+        type: answer
+        variables: []
+      height: 103
+      id: answer
+      position:
+        x: 1125.1760021792359
+        y: 484.93330275539205
+      positionAbsolute:
+        x: 1125.1760021792359
+        y: 484.93330275539205
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        error_handle_mode: terminated
+        height: 178
+        is_parallel: false
+        iterator_input_type: array[file]
+        iterator_selector:
+        - '1754873666809'
+        - UplodFile
+        output_selector:
+        - '1754873990862'
+        - text
+        output_type: array[string]
+        parallel_nums: 10
+        selected: false
+        start_node_id: 1754873757155start
+        title: 迭代
+        type: iteration
+        width: 992.0015391414138
+      height: 178
+      id: '1754873757155'
+      position:
+        x: 379
+        y: 282
+      positionAbsolute:
+        x: 379
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 992
+      zIndex: 1
+    - data:
+        desc: ''
+        isInIteration: true
+        selected: false
+        title: ''
+        type: iteration-start
+      draggable: false
+      height: 48
+      id: 1754873757155start
+      parentId: '1754873757155'
+      position:
+        x: 24
+        y: 68
+      positionAbsolute:
+        x: 403
+        y: 350
+      selectable: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-iteration-start
+      width: 44
+      zIndex: 1002
+    - data:
+        desc: ''
+        isInIteration: true
+        isInLoop: false
+        is_array_file: false
+        iteration_id: '1754873757155'
+        selected: false
+        title: 文档提取器
+        type: document-extractor
+        variable_selector:
+        - '1754873757155'
+        - item
+      height: 90
+      id: '1754873761974'
+      parentId: '1754873757155'
+      position:
+        x: 128
+        y: 68
+      positionAbsolute:
+        x: 507
+        y: 350
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+      zIndex: 1002
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1754873761974'
+          - text
+        desc: ''
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1754873757155'
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-ai/DeepSeek-V3
+          provider: langgenius/siliconflow/siliconflow
+        prompt_template:
+        - id: 5f6663bb-c6cb-4830-8eba-1e3b03ca8ec1
+          role: system
+          text: '阅读以下文章内容并执行任务
+
+            {{#1754873761974.text#}}
+
+            # 任务
+
+
+
+            - **主要目标**：全面解析文章的结构。
+
+            - **目标**：详细说明文章每个部分的内容。
+
+            - **要求**：尽可能详细地分析。
+
+            - **限制**：无特别的格式限制，但需要保持解析的条理性和逻辑性。
+
+            - **预期输出**：文章结构的详细解析，包括每个部分的主要内容和作用。
+
+
+
+            # 推理顺序
+
+
+
+            - **推理部分**：通过仔细阅读文章，识别和解析其结构。
+
+            - **结论部分**：提供每个部分的具体内容和作用。
+
+
+
+            # 输出格式
+
+
+
+            - **解析格式**：每个部分应以标题形式列出，后跟对该部分内容的详细说明。
+
+            - **结构形式**：Markdown，以增强可读性。
+
+            - **具体说明**：每个部分的内容和作用，包括但不限于引言、正文、结论、引用等。
+
+
+
+            # 示例输出
+
+
+
+            ## 示例文章解析
+
+
+
+            ### 引言
+
+            - **内容**：介绍研究的背景、目的和重要性。
+
+            - **作用**：吸引读者的注意力，为文章内容提供上下文。
+
+
+
+            ### 方法
+
+            - **内容**：描述研究的具体方法和步骤，包括实验设计、数据收集和分析技术。
+
+            - **作用**：使读者了解研究的科学性和可重复性。
+
+
+
+            ### 结果
+
+            - **内容**：展示研究的主要发现和数据。
+
+            - **作用**：提供研究结论的证据基础。
+
+
+
+            ### 讨论
+
+            - **内容**：解释结果的意义，对比其他研究，提出可能的改进方向。
+
+            - **作用**：帮助读者理解结果的广泛影响和未来研究的潜力。
+
+
+
+            ### 结论
+
+            - **内容**：总结研究的主要发现和贡献。
+
+            - **作用**：强化文章的核心信息，提供明确的结论。
+
+
+
+            ### 引用
+
+            - **内容**：列出文章中引用的所有文献。
+
+            - **作用**：提供进一步阅读的资源，确保学术诚信。
+
+
+
+            # 备注
+
+
+
+            - **边缘情况**：如果文章结构不典型（例如，缺少某些部分或有额外的部分），应在解析中明确指出这些特殊情况。
+
+            - **重要考虑事项**：解析时应关注文章的逻辑性和连贯性，确保每个部分的内容与文章的整体目标一致。'
+        selected: false
+        title: 结构提取
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 88
+      id: '1754873854765'
+      parentId: '1754873757155'
+      position:
+        x: 430.0015391414138
+        y: 68
+      positionAbsolute:
+        x: 809.0015391414138
+        y: 350
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+      zIndex: 1002
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1754873854765'
+          - text
+        desc: ''
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1754873757155'
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen3:latest
+          provider: langgenius/ollama/ollama
+        prompt_template:
+        - id: 12114b16-de89-4286-9486-cc9c0dec3cd6
+          role: system
+          text: '阅读以下文章内容并执行任务
+
+            {{#1754873854765.text#}}
+
+
+            # 任务
+
+
+
+            - **主要目标**：全面阅读上文，针对文章进行总结和归纳
+
+            - **要求**：基于当前归纳总结请输出一篇字数2000字左右的概要总结
+
+            - **限制**：无特定限制。
+
+            - **预期输出**：逻辑结构清晰，复合材料主题。不偏离事实
+
+
+
+            # 推理顺序
+
+
+
+            - **推理部分**：全面阅读文章，分析文章各个部分的内容，思考每个部分整体的内容
+
+            - **结论部分**：提出有意义和有价值的观点，确保观点不能偏离材料
+
+
+
+            # 输出格式
+
+
+
+            - **格式**：标题以加黑输出
+
+            - **内容**：针对文章的各个部分（如引言、背景、方法、结果、讨论、结论等）分别输出。'
+        selected: false
+        title: 内容总结输出
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 88
+      id: '1754873990862'
+      parentId: '1754873757155'
+      position:
+        x: 733.0015391414138
+        y: 68
+      positionAbsolute:
+        x: 1112.0015391414138
+        y: 350
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+      zIndex: 1002
+    viewport:
+      x: 48.726204681284116
+      y: -80.80735556520779
+      zoom: 0.8465858118045835

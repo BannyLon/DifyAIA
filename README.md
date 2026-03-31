@@ -8,7 +8,7 @@
 
 </div>
 
-本仓库为B站 **bannylon7** UP主 设计制作的 **Dify工作流DSL开源示例库（Dify-Workflow-DSL-Examples）** ，这里开源的Dify工作流均是B站UP主 **bannylon7** 在学习Dify过程中构建的完整工作流示例，全部调试成功后才发布，但不保证随着dify版本升级以及大模型的选择使用而出现错误。所有示例均附带注释说明。欢迎通过Issue提交需求，也期待你的PR共同完善这个知识库！项目采用MIT开源协议，特别适合：
+本仓库为B站 **嗯哌AI** UP主 设计制作的 **Dify工作流DSL开源示例库（Dify-Workflow-DSL-Examples）** ，这里开源的Dify工作流均是B站UP主 **嗯哌AI** 在学习Dify过程中构建的完整工作流示例，全部调试成功后才发布，但不保证随着dify版本升级以及大模型的选择使用而出现错误。所有示例均附带注释说明。欢迎通过Issue提交需求，也期待你的PR共同完善这个知识库！项目采用MIT开源协议，特别适合：
 
 ✅ 刚接触Dify的开发者快速上手</br>
 ✅ 企业团队建立标准化流程规范</br>
@@ -18,7 +18,7 @@
 
 # 《转型AI工程师》专栏知识点
 学完本专栏，你能够从API调用到RAG、从低代码到代码级Agent全链路讲清原理并在面试中说出企业级落地的关键点(私有化、记忆管理、提示词安全、RAG优化、Agent编排)。这些知识点既是课程的核心价值，也是大厂、大模型应用/AI智能体」岗位的高频考点。
-<a href="https://xiaobot.net/p/earnByYourself?refer=55b90820-174d-470e-a50a-e0b04bd39440" target="_blank"><img src="https://github.com/BannyLon/DifyAIA/blob/main/Dify%20workflow/IME/AI_20260312191259_12_833.jpg" alt="B站bannylon7视频合集"/></a>
+<a href="https://xiaobot.net/p/earnByYourself?refer=55b90820-174d-470e-a50a-e0b04bd39440" target="_blank"><img src="https://github.com/BannyLon/DifyAIA/blob/main/Dify%20workflow/IME/AI_20260312191259_12_833.jpg" alt="B站“嗯哌AI”视频合集"/></a>
 
 # VIP群（AIGC交流群）
 我准备筹建一个AIGC交流群:专注于人工智能生成内容(AIGC)技术的交流和学习。
@@ -197,7 +197,7 @@ DifyAIA库中的 **【Dify workflow】文件夹** 存储我精心整理的所有
 <br><br><br><br><br><br>
 
 
-👨‍💼 作者：BannyLon7<br>
+👨‍💼 作者：嗯哌AI7<br>
 💚 微信：banny-pan<br>
 🗨 微信公众号：嗯哌<br>
 🌍网站: https://www.agidt.com/<br>

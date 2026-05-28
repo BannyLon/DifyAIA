@@ -15,6 +15,17 @@
 ✅ 教学场景演示工作流设计原理</br>
 ✅ 开源社区协作改进自动化方案
 
+# 🔥 嗯哌关注的优质资源——DolOffer 数字订阅指南
+👉  http://github.com/Doloffer-g/guide
+
+一个面向「数字订阅用户 & 内容创作者」的中文开源仓库，主要整理：
+- ChatGPT / Claude / Gemini / Midjourney 等 AI 工具充值与共享方案
+- YouTube Premium、Spotify、Apple Music 等流媒体与音乐订阅
+- iCloud、Office 365、Notion 等生产力与云服务的使用与选购思路
+
+同时附带风险提示、FAQ、账号与退款规则，以及给创作者用的推广话术与模版，适合自用省钱，也适合做内容和联盟推广时当作「素材库」查阅。
+
+
 # VIP群（AIGC交流群）
 我准备筹建一个AIGC交流群:专注于人工智能生成内容(AIGC)技术的交流和学习。
 ### 群友要求:

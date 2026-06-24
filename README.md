@@ -199,12 +199,14 @@ DifyAIA库中的 **【Dify workflow】文件夹** 存储我精心整理的所有
 | [Dify_AI应用：News_Hot_List_36氪.yml](https://www.bilibili.com/video/BV1R5U6YvEZB/)     |    一键获取36氪平台的热榜精华文章     |        ![](./Dify%20workflow/IME/1732613122342.jpg?raw=true) |
 | [儿童故事播客.yml](https://www.bilibili.com/video/BV1xPioYPEJB/)     |    运用先进的大语言模型，根据用户需求定制生成精彩的儿童故事内容；随后，利用Audio工具将故事转化为生动的语音；同时，借助ComfyUI工具，还会为播客创作一张吸引人的主题图片。     |        ![](./Dify%20workflow/IME/1733996694245.jpg?raw=true) |
 
+<br><br>
 
-<br><br><br><br><br><br>
-
-
-👨‍💼 作者：嗯哌AI7<br>
+👨‍💼 作者：嗯哌AI<br>
 💚 微信：banny-pan<br>
 🗨 微信公众号：嗯哌<br>
 🌍网站: https://www.agidt.com/<br>
 &emsp;&emsp;&emsp;&emsp;https://www.npie.net/
+<br><br>
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=BannyLon/DifyAIA&type=Date)](https://star-history.com/#BannyLon/DifyAIA&Date)

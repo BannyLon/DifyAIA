@@ -198,4 +198,4 @@ DifyAIA库中的 **【Dify workflow】文件夹** 存储我精心整理的所有
 <br><br>
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=BannyLon/DifyAIA&type=Date)](https://star-history.com/#BannyLon/DifyAIA&Date)
+[![Star History Chart](https://star-history.dera.page/svg?repos=BannyLon/DifyAIA&type=Date)](https://star-history.dera.page/#BannyLon/DifyAIA&Date)
